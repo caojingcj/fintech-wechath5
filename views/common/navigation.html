@@ -1,0 +1,41 @@
+<!--<nav class="navbar-default navbar-static-side" role="navigation" style="position:absolute;top:0;bottom:0;overflow:auto;">-->
+<nav class="navbar-default navbar-static-side" role="navigation" style="background-color: #2f4050">
+  <div class="sidebar-collapse">
+    <ul side-navigation class="nav metismenu" id="side-menu">
+      <!--user info-->
+      <li class="nav-header">
+        <div class="profile-element" uib-dropdown>
+          <img class="img-circle" width="100%" src="img/logo.png" alt="" style="width:100px;height:50px;">
+          <span uib-dropdown-toggle class="clear">
+            <strong class="block m-t-xs m-b-sm">Welcome to QR MGR.</strong>
+            <span class="text-muted text-xs block pointer">乔融金服<b class="caret"></b></span>
+          </span>
+          <ul uib-dropdown-menu class="animated fadeInRight m-t-xs">
+            <li style="border-bottom:1px solid #ccc;"><a ui-sref="app.changePassWord.resetPassword">修改密码</a></li>
+            <li><a ui-sref="login">安全退出</a></li>
+          </ul>
+        </div>
+        <div class="logo-element">
+          乔融
+        </div>
+      </li>
+      <!--list start-->
+      <li ng-class="{active: state.includes('app.home')}">
+        <a ui-sref="app.home" ui-sref-opts="{reload:true}"><i class="fa fa-home" style="font-size: 18px"></i> <span class="nav-label">控制台首页</span></a>
+      </li>
+      <li ng-class="{active: state.includes('app.order')}">
+        <a href="#"><i class="glyphicon glyphicon-level-up"></i> <span class="nav-label ">订单管理</span> <span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse" ng-class="{in: state.includes('app.order')}">
+          <li ui-sref-active="active"><a ui-sref="app.order.orderManage" ui-sref-opts="{reload:true}">订单管理</a></li>
+          <li ui-sref-active="active"><a ui-sref="app.order.returnManage" ui-sref-opts="{reload:true}">还款管理</a></li>
+        </ul>
+      </li>
+      <li ng-class="{active: state.includes('app.company')}">
+        <a ui-sref="app.company.companyManage" ui-sref-opts="{reload:true}"><i class="fa fa-desktop" style="font-size: 18px"></i> <span class="nav-label">商户管理</span></a>
+      </li>
+      <li ng-class="{active: state.includes('app.user')}">
+        <a ui-sref="app.user.userManage" ui-sref-opts="{reload:true}"><i class="fa fa-user-circle-o" style="font-size: 18px"></i> <span class="nav-label">用户管理</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>

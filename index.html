@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="app" id="ng-app" class="ng-cloak">
+
+<head>
+
+  <meta http-equiv="content-Type" content="text/html; charset=utf-8">
+  <meta content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+
+  <!-- Page title set in pageTitle directive -->
+  <title page-title></title>
+
+  <link rel="bookmark" type="image/x-icon" href="favicon.ico"/>
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- Bootstrap -->
+  <link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font awesome -->
+  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="lib/sweetalert2/sweetalert2.css">
+  <link rel="stylesheet" href="css/fileinput.min.css">
+  <link rel="stylesheet" href="lib/loading/loading.css">
+  <!-- Main Inspinia CSS files -->
+  <link href="css/animate.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/public.css">
+
+</head>
+<body ng-controller="MainCtrl as main" class="pace-done fixed-sidebar {{skin}}" landing-scrollspy id="page-top" style="background-color: #f3f3f4">
+
+<div ui-view></div>
+
+<toaster-container toaster-options="{'position-class': 'toast-bottom-right'}"></toaster-container>
+
+<toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'toaster-id': 2, 'limit': 1}"></toaster-container>
+
+<script src="lib/jquery/jquery-3.1.1.min.js"></script>
+<!--[if lte IE 8]>
+<h1>请使用最新版本浏览器打开</h1>
+<![endif]-->
+<script src="lib/bootstrap/bootstrap.min.js"></script>
+
+<script src="lib/jquery/jquery.metisMenu.js"></script>
+<script src="lib/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="js/inspinia.js"></script>
+
+<!-- Main Angular scripts-->
+<script src="lib/angular/angular.min.js"></script>
+<script src="lib/angular/angular-animate.min.js"></script>
+<script src="lib/angular/angular-sanitize.js"></script>
+<script src="lib/oclazyload/ocLazyLoad.min.js"></script>
+<script src="lib/angular-ui-router/angular-ui-router.min.js"></script>
+<script src="lib/toastr/toastr.min.js"></script>
+<script src="lib/switchery-master/ng-switchery.js"></script>
+<script src="lib/bootstrap/ui-bootstrap-tpls-1.1.2.js"></script>
+
+<script src="lib/bsTableDirective.js"></script>
+<script src="lib/ui-uploader-master/uploader.js"></script>
+<script src="lib/w5cValidator/w5cValidator.js"></script>
+<script src="lib/sweetalert2/sweetalert2.js"></script>
+<script src="lib/loading/loading.js"></script>
+<script charset="UTF-8" type="text/javascript"></script>
+
+<!-- Anglar App Script -->
+<script src="js/app.js"></script>
+<script src="js/config.js"></script>
+<script src="js/constants.js"></script>
+<script src="js/filter.js"></script>
+<script src="js/rest.js"></script>
+<script src="js/run.js"></script>
+<script src="js/directives.js"></script>
+<script src="js/mainCtrl.js"></script>
+
+</body>
+</html>

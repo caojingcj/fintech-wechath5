@@ -1,0 +1,52 @@
+<div ng-controller="createAccountCtrl as cre" class="createAccountCtrl">
+    <div class="wrapper sidebar-content wrapper-content animated fadeInRight homeCtrl"
+         ng-class="isSmart?'smart-no-padding':''">
+        <div class="container-fluid" style="padding-left: 0;padding-right: 0;margin-top: 25px;">
+            <div class="col-xs-12 col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>身份证（正面）</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="activity-stream">
+                            <div class="well text-center" style="margin-bottom: 0">
+                                <i class="glyphicon glyphicon-camera upPic"></i>
+                            </div>
+                            <ul class="ul-list" style="margin-bottom: 0">
+                                <li><span> <i class="fa fa-fw fa-user"></i> 姓名</span><span class="ng-binding">方青</span></li>
+                                <li><span> <i class="fa fa-fw fa-vcard"></i> 身份证</span><span class="ng-binding">340827199209153730</span></li>
+                                <li><span> <i class="fa fa-fw fa-child"></i> 名族</span><span class="ng-binding">汉族</span></li>
+                                <li><span> <i class="fa fa-fw fa-mobile"></i> 住址</span><span class="ng-binding">上海市徐汇区龙漕路199号</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>身份证（反面）</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="activity-stream">
+                            <div class="well text-center" style="margin-bottom: 0">
+                                <i class="glyphicon glyphicon-camera upPic"></i>
+                            </div>
+                            <ul class="ul-list" style="margin-bottom: 0">
+                                <li><span> <i class="fa fa-fw fa-user"></i> 有效期</span><span class="ng-binding">2018-12-22至2018-12-22</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-12 text-center" style="margin-bottom: 25px;">
+                <button type="submit" class="btn btn-w-m btn-primary col-xs-12" href="#licInfo" style="padding: 8px 25px;"
+                        ng-click="cre.handle.nextStep()">
+                    <i class="fa fa-arrow-right"></i>&nbsp;下一步
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

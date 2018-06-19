@@ -1,0 +1,43 @@
+<div id="wrapper">
+  <!-- Page wraper -->
+  <div id="page-wrapper" class="gray-bg {{$state.current.name}}" style="padding:0;margin-left: 0!important;">
+
+    <!-- header bar -->
+    <!--<div>-->
+      <!--<div class="row border-bottom" style="margin:0;">-->
+        <!--&lt;!&ndash;<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0;padding: 15px 15px;">&ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="navbar-header">&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<div><span style="font-size: 40px;color: #29a1f7;">乔融金服</span> <span style="font-size: 30px;">| 实名认证</span></div>&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</nav>&ndash;&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <div ui-view></div>
+
+    <div>
+      <div class="footer">
+        <div class="pull-right">
+          <!--<small> &copy; 2017-2018 <a href="http://www.16fenqi.com" target="_blank">上海乔融金融信息服务有限公司</a>-->
+          <!--</small>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="group-template.html">
+  <div class="panel panel-default">
+    <div class="panel-heading" ng-click="toggleOpen()">
+      <p class="panel-title" uib-accordion-transclude="heading">
+        <span>{{heading}}</span> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}"></i>
+      </p>
+    </div>
+    <div class="panel-collapse collapse" uib-collapse="!isOpen">
+      <div class="panel-body" ng-transclude></div>
+    </div>
+  </div>
+</script>
+<script>
+
+</script>

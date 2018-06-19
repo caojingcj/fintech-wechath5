@@ -1,0 +1,60 @@
+<div ng-controller="orderDetailCtrl as det" class="orderDetailCtrl">
+    <div class="wrapper sidebar-content wrapper-content animated fadeInRight orderDetailCtrl"
+         ng-class="isSmart?'smart-no-padding':''">
+        <div class="container-fluid" style="padding-left: 0;padding-right: 0;margin-top: 25px;">
+            <div class="col-xs-12 col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div class="alert"
+                             ng-class="{ 'alert-success': det.orderState.orderState === '05' || det.orderState.orderState === '13' || det.orderState.orderState === '99','alert-gray': det.orderState.orderState === '12' }"
+                             style="position: relative;">
+                            <ul class="ul-list" style="margin-bottom: 0">
+                                <li><span class="pull-left"> <i
+                                        class="glyphicon glyphicon-lock"></i> 商户：</span><span
+                                        class="ng-binding pull-left">{{det.orderState.companyName}}</span></li>
+                                <li><span class="pull-left"> <i
+                                        class="glyphicon glyphicon-fire"></i> 名称：</span><span
+                                        class="ng-binding pull-left">{{det.orderState.name}}</span></li>
+                                <li><span class="pull-left"> <i
+                                        class="glyphicon glyphicon-retweet"></i> 期次：</span><span
+                                        class="ng-binding pull-left">{{det.orderState.seq}} 期</span></li>
+                                <li><span class="pull-left"> <i
+                                        class="glyphicon glyphicon-yen"></i> 申请金额：</span><span
+                                        class="ng-binding pull-left">{{det.orderState.sendMoney}} 元</span></li>
+                                <li><span class="pull-left"> <i
+                                        class="glyphicon glyphicon-envelope"></i> 订单状态：</span><span
+                                        class="ng-binding pull-left">{{det.orderState.orderState === '05' ? '分期还款中' : det.orderState.orderState === '12' ? '已退款' :det.orderState.orderState === '13' ? '已提前结清': det.orderState.orderState === '99' ? '已结清' : ''}}</span>
+                                </li>
+                                <li><span class="pull-left"> <i
+                                        class="glyphicon glyphicon-th-list"></i> 订单时间：</span><span
+                                        class="ng-binding pull-left">{{det.orderState.orderTime}}</span></li>
+                            </ul>
+                        </div>
+                        <div class="lineList">
+                            <p><i class="glyphicon glyphicon-dashboard"></i>&nbsp;&nbsp; 还款计划：<span class="ng-binding"
+                                                                                                    style=" font-size: 12px;">YLFQYMFQ201806171786774655697774</span>
+                            </p>
+                            <ul class="ul-list list1" style="position: relative" ng-repeat="item in det.dataList.dataList">
+                                <li>
+                                    <i class="glyphicon" ng-class="{'glyphicon-alert' : item.state === '2' ,'glyphicon-ok': item.state === '1', 'glyphicon-dashboard':item.state === '0'}" style="position: absolute;right: 10%;top:50%;"></i>
+                                    <span class="pull-left"> <i
+                                        class="glyphicon glyphicon-signal"></i> 还款期次：</span><span
+                                        class="ng-binding pull-left">第 {{item.companyName}} 次</span></li>
+                                <li><span class="pull-left"> <i
+                                        class="glyphicon glyphicon-check"></i> 应还日期：</span><span
+                                        class="ng-binding pull-left">{{item.orderTime}}</span></li>
+                                <li><span class="pull-left"> <i
+                                        class="glyphicon glyphicon-yen"></i> 应还总额：</span><span
+                                        class="ng-binding pull-left">{{item.sendMoney}} 元</span></li>
+                                <li ng-if="item.state === '1'"><span class="pull-left"> <i
+                                        class="glyphicon glyphicon-record"></i> 还款时间：</span><span
+                                        class="ng-binding pull-left">{{item.orderTime}}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

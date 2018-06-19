@@ -1,0 +1,53 @@
+<div ng-controller="orderListCtrl as ord" class="orderListCtrl">
+    <div class="wrapper sidebar-content wrapper-content animated fadeInRight orderListCtrl"
+         ng-class="isSmart?'smart-no-padding':''">
+        <div class="container-fluid" style="padding-left: 0;padding-right: 0;margin-top: 25px;">
+            <div class="col-xs-12 col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div ng-repeat="item in dataList.dataList">
+                            <div class="alert" ng-class="{
+                             'alert-success': item.orderState === '99' || item.orderState === '13' || item.orderState === '05',
+                             'alert-info': item.orderState === '00',
+                             'alert-warning': item.orderState === '00' || item.orderState === '01' || item.orderState === '02',
+                             'alert-danger': item.orderState === '00',
+                             'alert-hhh': item.orderState === '04',
+                             'alert-gray': item.orderState === '11' || item.orderState === '12' || item.orderState === '13' || item.orderState === '03'
+                            }" style="position: relative;">
+                                <i class="glyphicon glyphicon-menu-right goTodetail" ng-click="ord.handle.goDetail()"
+                                   ng-if="item.orderState == '00' || item.orderState == '04' || item.orderState == '00' ||item.orderState == '05' || item.orderState == '12' || item.orderState == '99'"></i>
+                                <ul class="ul-list" style="margin-bottom: 0">
+                                    <li><span class="pull-left"> <i
+                                            class="glyphicon glyphicon-lock"></i> 商户：</span><span
+                                            class="ng-binding pull-left">{{item.companyName}}</span></li>
+                                    <li><span class="pull-left"> <i
+                                            class="glyphicon glyphicon-fire"></i> 名称：</span><span
+                                            class="ng-binding pull-left">{{item.name}}</span></li>
+                                    <li><span class="pull-left"> <i
+                                            class="glyphicon glyphicon-retweet"></i> 期次：</span><span
+                                            class="ng-binding pull-left">{{item.seq}} 期</span></li>
+                                    <li><span class="pull-left"> <i
+                                            class="glyphicon glyphicon-yen"></i> 申请金额：</span><span
+                                            class="ng-binding pull-left">{{item.sendMoney}} 元</span></li>
+                                    <li><span class="pull-left"> <i
+                                            class="glyphicon glyphicon-envelope"></i> 订单状态：</span><span
+                                            class="ng-binding pull-left">{{
+                                        item.orderState === '00' ? '录入中' : item.orderState === '01' ? '待审批' :item.orderState === '02' ? '审批中' :
+                                        item.orderState === '03' ? '审批拒绝' :  item.orderState === '04' ? '待用户签署' : item.orderState === '05' ? '分期还款中' :
+                                        item.orderState === '11' ? '已取消': item.orderState === '12' ? '已退款' :item.orderState === '13' ? '已提前结清':
+                                        item.orderState === '99' ? '已结清' : ''
+                                        }}</span>
+                                    </li>
+                                    <li><span class="pull-left"> <i
+                                            class="glyphicon glyphicon-th-list"></i> 订单时间：</span><span
+                                            class="ng-binding pull-left">{{item.orderTime}}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

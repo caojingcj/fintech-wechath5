@@ -1,0 +1,29 @@
+<div ng-controller="medicalCtrl as med" class="createAccountCtrl">
+    <div class="wrapper sidebar-content wrapper-content animated fadeInRight homeCtrl"
+         ng-class="isSmart?'smart-no-padding':''">
+        <div class="container-fluid" style="padding-left: 0;padding-right: 0;margin-top: 25px;">
+            <div class="col-xs-12 col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>医疗确认单</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="activity-stream">
+                            <div class="well text-center" style="margin-bottom: 0">
+                                <i class="glyphicon glyphicon-camera upPic"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 text-center" style="margin-bottom: 25px;">
+                <button type="submit" class="btn btn-w-m btn-primary col-xs-12" href="#licInfo" style="padding: 8px 25px;"
+                        ng-click="med.handle.goStep()">
+                    <i class="fa fa-arrow-right"></i>&nbsp;完成并签署合同
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

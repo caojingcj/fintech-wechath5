@@ -1,0 +1,150 @@
+/**
+ *  Created by fangqing.
+ */
+body, html {
+  background-color: white;
+  height: 100%;
+}
+
+ol {
+  list-style: decimal;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.seize-code {
+  border-bottom: 1px solid #7c7c7c;
+}
+
+.container {
+  width: 94%;
+  margin: 0% 2%;
+  font-family: Roboto-Regular;
+  font-size: 12px;
+}
+.container>.list-title{
+  font-size: 14px;
+  font-family: Roboto-Medium !important;
+  line-height: 35px;
+  display: block;
+  padding-top: 5%;
+  font-weight: bold;
+}
+.container > .contract-title {
+  font-size: 20px;
+  font-family: Roboto-Medium !important;
+  line-height: 35px;
+  display: block;
+  padding-top: 5%;
+  margin-bottom: 0!important;
+}
+
+.container > .contract-title.center {
+  text-align: center;
+}
+
+.container > .details {
+  padding-top: 5%;
+  margin-bottom: 0 !important;
+}
+
+.container > .details.center {
+  text-align: center;
+  margin-bottom: 10%;
+}
+
+.container > .details.right {
+  text-align: right;
+}
+
+.transverse {
+  display: flex;
+  padding-top: 3%;
+}
+
+.container > .transverse > dt {
+  font-weight: bold;
+  width: 30%;
+}
+
+.container > .transverse > dd {
+  width: 70%;
+  line-height: 24px;
+}
+
+.subtitle > dt {
+  font-weight: bold;
+  width: 6% !important;
+}
+
+.subtitle > dd {
+  width: 90% !important;
+}
+
+.container  .table {
+  width: 90%;
+  margin-top: 5%;
+  margin-left: 10%;
+  border-bottom: 1px solid #757575;
+  border-right: 1px solid #757575;
+}
+
+.container  .table > tbody > tr {
+  height: 35px;
+}
+
+.container  .table > tbody > tr > td {
+  border-top: 1px solid #757575;
+  border-left: 1px solid #757575;
+  padding: 2%;
+}
+
+.container>.promise{
+  height: 140px;
+  line-height: 70px;
+  padding: 10px;
+  margin-top: 50px;
+}
+.container>.promise>.sign{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container>.promise>.sign-time{
+  text-align: right;
+}
+
+.container .formula{
+  display: inline-block;
+  text-align: center;
+}
+.container .formula>hr{
+  background-color: #000;
+}
+.container .formula>span>sup{
+  font-size: 12px;
+  -webkit-transform: scale(0.7);
+  display: inline-block;
+  margin-left: -12px;
+}
+.container .promise2>div{
+  margin-top: 30px;
+  line-height: 30px;
+}
+dd{
+  margin-left: 5px!important;
+}
+
+.tableList td{
+  padding-left: 5px;
+  line-height: 25px;
+  text-align: left;
+  width: 50%;
+}
+p{
+  line-height: 25px!important;
+  padding: 0 10px;
+}
