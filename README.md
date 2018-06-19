@@ -1,1 +1,1 @@
-# fintech-manage
+# fintech-weCha
