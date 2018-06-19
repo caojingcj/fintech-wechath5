@@ -1,1 +1,1 @@
-# fintech-weCha
+# fintech-WeChat
