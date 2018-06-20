@@ -17,19 +17,19 @@
                                 <i class="glyphicon glyphicon-menu-right goTodetail" ng-click="ord.handle.goDetail()"
                                    ng-if="item.orderState == '00' || item.orderState == '04' || item.orderState == '00' ||item.orderState == '05' || item.orderState == '12' || item.orderState == '99'"></i>
                                 <ul class="ul-list" style="margin-bottom: 0">
-                                    <li><span class="pull-left"> <i
+                                    <li><span class="pull-left fontWeight"> <i
                                             class="glyphicon glyphicon-lock"></i> 商户：</span><span
                                             class="ng-binding pull-left">{{item.companyName}}</span></li>
-                                    <li><span class="pull-left"> <i
+                                    <li><span class="pull-left fontWeight"> <i
                                             class="glyphicon glyphicon-fire"></i> 名称：</span><span
                                             class="ng-binding pull-left">{{item.name}}</span></li>
-                                    <li><span class="pull-left"> <i
+                                    <li><span class="pull-left fontWeight"> <i
                                             class="glyphicon glyphicon-retweet"></i> 期次：</span><span
                                             class="ng-binding pull-left">{{item.seq}} 期</span></li>
-                                    <li><span class="pull-left"> <i
+                                    <li><span class="pull-left fontWeight"> <i
                                             class="glyphicon glyphicon-yen"></i> 申请金额：</span><span
                                             class="ng-binding pull-left">{{item.sendMoney}} 元</span></li>
-                                    <li><span class="pull-left"> <i
+                                    <li><span class="pull-left fontWeight"> <i
                                             class="glyphicon glyphicon-envelope"></i> 订单状态：</span><span
                                             class="ng-binding pull-left">{{
                                         item.orderState === '00' ? '录入中' : item.orderState === '01' ? '待审批' :item.orderState === '02' ? '审批中' :
@@ -38,7 +38,7 @@
                                         item.orderState === '99' ? '已结清' : ''
                                         }}</span>
                                     </li>
-                                    <li><span class="pull-left"> <i
+                                    <li><span class="pull-left fontWeight"> <i
                                             class="glyphicon glyphicon-th-list"></i> 订单时间：</span><span
                                             class="ng-binding pull-left">{{item.orderTime}}</span></li>
                                 </ul>

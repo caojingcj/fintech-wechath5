@@ -106,6 +106,17 @@
     margin-top: 10px!important;
 }
 
+.ul-list > li > span + span{
+    font-weight: normal;
+}
+
+.orderDetailCtrl .ul-list .fontWeight{
+    font-weight: 700;
+}
+.orderListCtrl .ul-list .fontWeight{
+    font-weight: 700;
+}
+
 
 
 
