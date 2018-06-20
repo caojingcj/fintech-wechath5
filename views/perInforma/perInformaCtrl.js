@@ -12,7 +12,16 @@
             };
 
             function goStep() {
-                $state.go('app.medical');
+                $('body').loading({
+                    title:'请稍等',
+                    name:'test',
+                    discription:'数据加载中..',
+                });
+
+                setTimeout(function(){
+                    removeLoading('test');
+                    $state.go('app.medical');
+                },1000);
             }
         }])
 })();

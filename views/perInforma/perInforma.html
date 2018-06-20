@@ -12,63 +12,54 @@
                                   name="rateUserrateUser">
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12">
-                                        <select class="form-control col-xs-12" required
-                                                ng-model="bas.merInfo.medicalBeauty" name="medicalBeauty"
-                                                ng-options="item.val as item.tit for item in bas.init.companyType">
-                                            <option disabled value="">* 婚姻状况</option>
-                                        </select>
+                                        <div class="group">
+                                            <select  ng-model="ent.parameter.seq" name="seq"  ng-options="item.val as item.tit for item in ent.init.companyType"></select><span class="highlight"></span><span class="bar"></span>
+                                            <label>* 婚姻状况</label>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12">
-                                        <select class="form-control col-xs-12" required
-                                                ng-model="bas.merInfo.medicalBeauty" name="medicalBeauty"
-                                                ng-options="item.val as item.tit for item in bas.init.companyType">
-                                            <option disabled value="">* 学历</option>
-                                        </select>
+                                        <div class="group">
+                                            <select  ng-model="ent.parameter.seq" name="seq"  ng-options="item.val as item.tit for item in ent.init.companyType"></select><span class="highlight"></span><span class="bar"></span>
+                                            <label>* 学历</label>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12">
-                                        <select class="form-control col-xs-12" required
-                                                ng-model="bas.merInfo.medicalBeauty" name="medicalBeauty"
-                                                ng-options="item.val as item.tit for item in bas.init.companyType">
-                                            <option disabled value="">* 职业状况</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-sm-12 col-xs-12 ">
-                                        <div class="input-group col-xs-12">
-                                            <input type="text" class="form-control verCode"
-                                                   placeholder="*&nbsp;&nbsp;常用联系地址" ng-required
-                                                   ng-model="adc.licInfo.licenseAccountName"
-                                                   name="licenseAccountName">
+                                        <div class="group">
+                                            <select  ng-model="ent.parameter.seq" name="seq"  ng-options="item.val as item.tit for item in ent.init.companyType"></select><span class="highlight"></span><span class="bar"></span>
+                                            <label>* 职业状况</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12 ">
-                                        <div class="input-group col-xs-12">
-                                            <input type="text" class="form-control verCode"
-                                                   placeholder="*&nbsp;&nbsp;联系人电话" ng-required
-                                                   ng-model="adc.licInfo.licenseAccountName"
-                                                   name="licenseAccountName">
+                                        <div class="group">
+                                            <input type="text"  name="companyName" ng-model="ent.parameter.companyName"><span class="highlight"></span><span class="bar"></span>
+                                            <label>*&nbsp;&nbsp;常用联系地址</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12 ">
-                                        <div class="input-group col-xs-12">
-                                            <input type="text" class="form-control verCode"
-                                                   placeholder="定金金额" ng-required
-                                                   ng-model="adc.licInfo.licenseAccountName"
-                                                   name="licenseAccountName">
+                                        <div class="group">
+                                            <input type="text"  name="companyName" ng-model="ent.parameter.companyName"><span class="highlight"></span><span class="bar"></span>
+                                            <label>*&nbsp;&nbsp;联系人电话</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12 col-xs-12 ">
+                                        <div class="group">
+                                            <input type="text"  name="companyName" ng-model="ent.parameter.companyName"><span class="highlight"></span><span class="bar"></span>
+                                            <label>定金金额</label>
                                         </div>
                                     </div>
                                 </div>

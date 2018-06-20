@@ -12,22 +12,27 @@
                 goStep:goStep
             };
 
+            vm.init ={
+                companyType:[
+                    {val:1,tit:'整容'},
+                    {val:1,tit:'养身'},
+                    {val:1,tit:'植发'}
+                ]
+            };
+
+            console.log(vm.init.companyType);
+
             function goStep(data) {
                 $('body').loading({
-                    loadingWidth:180,
-                    title:'请稍等!',
+                    title:'请稍等',
                     name:'test',
-                    discription:'描述描述描述描述',
-                    smallLoading:false,
-                    loadingMaskBg:'rgba(0,0,0,0.2)'
+                    discription:'数据加载中..',
                 });
 
                 setTimeout(function(){
                     removeLoading('test');
+                    $state.go('app.createAccount');
                 },1000);
-                console.log(data);
-                // REST.pop('success', null, '出错了');
-                $state.go('app.createAccount');
             }
         }])
 })();

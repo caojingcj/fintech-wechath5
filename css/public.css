@@ -81,9 +81,9 @@
     background-color: rgba(0, 0, 0, 0.59)!important;
     border-radius: 0!important;
 }
-input{
-    border: none;
-}
+/*input{*/
+    /*border: none;*/
+/*}*/
 .form-control{
     /*border: 0!important;*/
     border-bottom: 1px solid #e5e6e7;
@@ -102,7 +102,9 @@ input{
 #toast-container *{
     margin-bottom: 5px;
 }
-
+.has-error .w5c-error{
+    margin-top: 10px!important;
+}
 
 
 

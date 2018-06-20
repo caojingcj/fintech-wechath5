@@ -22,7 +22,16 @@
             };
 
             function nextStep() {
-                $state.go('app.home');
+                $('body').loading({
+                    title:'请稍等',
+                    name:'test',
+                    discription:'数据加载中..',
+                });
+
+                setTimeout(function(){
+                    removeLoading('test');
+                    $state.go('app.home');
+                },1000);
             }
         }])
 })();
