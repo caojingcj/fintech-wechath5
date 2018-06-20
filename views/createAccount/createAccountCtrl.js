@@ -29,8 +29,8 @@
                 });
 
                 setTimeout(function(){
-                    removeLoading('test');
                     $state.go('app.home');
+                    removeLoading('test');
                 },1000);
             }
         }])

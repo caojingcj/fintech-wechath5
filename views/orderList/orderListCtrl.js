@@ -102,8 +102,8 @@
                 });
 
                 setTimeout(function(){
-                    removeLoading('test');
                     $state.go('app.orderDetail')
+                    removeLoading('test');
                 },1000);
             }
         }])

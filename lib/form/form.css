@@ -1,20 +1,9 @@
-
-
-/*form {*/
-    /*!*width: 380px;*!*/
-    /*margin: 4em auto;*/
-    /*padding: 3em 2em 2em 2em;*/
-    /*background: #fafafa;*/
-    /*border: 1px solid #ebebeb;*/
-    /*box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;*/
-/*}*/
-
 .group {
     position: relative;
     margin-bottom: 20px;
 }
 
-input ,select{
+input, select {
     font-size: 18px;
     padding: 10px 10px 10px 5px;
     display: block;
@@ -22,12 +11,17 @@ input ,select{
     border: none;
     border-radius: 0;
     border-bottom: 1px solid #757575;
+    -moz-appearance: none;
+    /*-webkit-appearance:none;*/
 }
 
-input:focus { outline: none; }
-select:focus { outline: none; }
+input:focus {
+    outline: none;
+}
 
-
+select:focus {
+    outline: none;
+}
 
 label {
     color: #999;
@@ -40,24 +34,22 @@ label {
     transition: all 0.2s ease;
 }
 
-
 /* active */
 
 input:focus ~ label, input.used ~ label {
     top: -20px;
-    transform: scale(.75); left: -2px;
+    transform: scale(.75);
+    left: -2px;
     /* font-size: 14px; */
     color: #4a89dc;
 }
+
 select:focus ~ label, select.used ~ label {
     top: -20px;
-    transform: scale(.75); left: -2px;
-    /* font-size: 14px; */
+    transform: scale(.75);
+    left: -2px;
     color: #4a89dc;
 }
-
-
-
 
 .bar:before, .bar:after {
     content: '';
@@ -69,18 +61,21 @@ select:focus ~ label, select.used ~ label {
     transition: all 0.2s ease;
 }
 
-.bar:before { left: 50%; }
+.bar:before {
+    left: 50%;
+}
 
-.bar:after { right: 50%; }
+.bar:after {
+    right: 50%;
+}
 
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+    width: 50%;
+}
 
-/* active */
-
-input:focus ~ .bar:before, input:focus ~ .bar:after { width: 50%; }
-select:focus ~ .bar:before, select:focus ~ .bar:after { width: 50%; }
-
-
-/* Highlight */
+select:focus ~ .bar:before, select:focus ~ .bar:after {
+    width: 50%;
+}
 
 .highlight {
     position: absolute;
@@ -92,26 +87,23 @@ select:focus ~ .bar:before, select:focus ~ .bar:after { width: 50%; }
     opacity: 0.5;
 }
 
-
-/* active */
-
 input:focus ~ .highlight {
     animation: inputHighlighter 0.3s ease;
 }
+
 select:focus ~ .highlight {
     animation: inputHighlighter 0.3s ease;
 }
 
-
-/* Animations */
-
 @keyframes inputHighlighter {
-    from { background: #4a89dc; }
-    to 	{ width: 0; background: transparent; }
+    from {
+        background: #4a89dc;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
 }
-
-
-/* Button */
 
 .button {
     position: relative;
@@ -132,20 +124,6 @@ select:focus ~ .highlight {
     cursor: pointer;
     transition: all 0.15s ease;
 }
-.button:focus { outline: 0; }
-
-
-/* Button modifiers */
-
-.buttonBlue {
-    background: #4a89dc;
-    text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
-}
-
-.buttonBlue:hover { background: #357bd8; }
-
-
-/* Ripples container */
 
 .ripples {
     position: absolute;
@@ -156,9 +134,6 @@ select:focus ~ .highlight {
     overflow: hidden;
     background: transparent;
 }
-
-
-/* Ripples circle */
 
 .ripplesCircle {
     position: absolute;
@@ -176,13 +151,14 @@ select:focus ~ .highlight {
     animation: ripples .4s ease-in;
 }
 
-
-/* Ripples animation */
-
 @keyframes ripples {
-    0% { opacity: 0; }
+    0% {
+        opacity: 0;
+    }
 
-    25% { opacity: 1; }
+    25% {
+        opacity: 1;
+    }
 
     100% {
         width: 200%;

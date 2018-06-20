@@ -23,8 +23,8 @@
                 });
 
                 setTimeout(function(){
-                    removeLoading('test');
                     $state.go('app.orderList')
+                    removeLoading('test');
                 },1000);
             }
         }])

@@ -20,9 +20,8 @@
                 ]
             };
 
-            console.log(vm.init.companyType);
-
             function goStep(data) {
+                console.log(data);
                 $('body').loading({
                     title:'请稍等',
                     name:'test',
@@ -30,8 +29,8 @@
                 });
 
                 setTimeout(function(){
-                    removeLoading('test');
                     $state.go('app.createAccount');
+                    removeLoading('test');
                 },1000);
             }
         }])
