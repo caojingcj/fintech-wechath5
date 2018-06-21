@@ -23,13 +23,27 @@
     app.config(function ($stateProvider, $urlRouterProvider, $controllerProvider, $ocLazyLoadProvider) {
         app.controllerProvider = $controllerProvider;
 
-        $urlRouterProvider.otherwise("app/entAccount");    // 商户系统进注册页面
+        // $urlRouterProvider.otherwise("app/entAccount");    // 商户系统进注册页面
+        $urlRouterProvider.otherwise("/login");    // 商户系统进注册页面
 
         $ocLazyLoadProvider.config({
             debug: 0
         });
 
         $stateProvider
+
+        // system
+            .state('login', {
+                url: "/login",
+                templateUrl: "views/common/login.html",
+                controller: 'loginCtrl',
+                data: {pageTitle: '登录', specialClass: 'gray-bg'},
+                resolve: {
+                    deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load('views/common/login.js')
+                    }]
+                }
+            })
             // pages
             .state('app', {
                 url: "/app",
