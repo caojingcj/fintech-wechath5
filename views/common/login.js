@@ -19,15 +19,15 @@
         }
 
         $scope.getCode = function (ev) {
-            // $('body').loading({
-            //     title:'请稍等',
-            //     name:'test1',
-            //     discription:'正在获取..',
-            // });
+            $('body').loading({
+                title:'请稍等',
+                name:'test1',
+                discription:'正在获取验证码,请注意查收',
+            });
 
             setTimeout(function(){
                 removeLoading('test1');
-            },1000);
+            },2000);
             btn = ev.target;
             console.log(btn.innerHTML);
             btn.disabled = true;

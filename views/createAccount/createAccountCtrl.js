@@ -12,6 +12,9 @@
                 nextStep:nextStep
             };
 
+            vm.pic = 'http://manager-front.oss-cn-beijing.aliyuncs.com/manage/merchant/attach/20180614/999999/EK001-ddc8bec5-fde8-4816-bd34-208555585784-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180517135809.png';
+
+            vm.picUp = 'http://weixin-front.oss-cn-beijing.aliyuncs.com/images/201806/21/YDC20180621175643815f24a23f0959045f5bcd5cc32ca1f88e42.jpg';
             vm.init = {
                 protectProblem:[
                     {val:1,tit:'我的名字是？'},
