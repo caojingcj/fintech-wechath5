@@ -7,13 +7,13 @@
                 <i class="glyphicon glyphicon-user loginNameIcon"></i>
             </div>
             <div class="form-group loginform" style="margin-bottom: 30px;">
-                <input type="password" class="loginPass" placeholder="短信验证" required ng-model="pwd">
+                <input type="password" class="loginPass" placeholder="短信验证" required ng-model="pwd" style="position: relative">
                 <i class="glyphicon glyphicon-lock loginPassIcon"></i>
-                <button class="getCode" ng-click="getCode()">获取验证码</button>
+                <button ng-click="getCode($event)" class="getCode">获取验证码</button>
             </div>
-            <button type="button" class="loginBtn"  ng-click="login()">登 入 / 注 册</button>
+            <!--<input type="button" class="getCode" value="获取验证码" ng-click="getCode($event)" style="">-->
+
+            <button type="button" class="loginBtn"  ng-click="login()" ng-disabled="!loginForm.$valid || loginFormDisable">登 入 / 注 册</button>
         </form>
-        <p class="m-t">
-        </p>
     </div>
 </div>
