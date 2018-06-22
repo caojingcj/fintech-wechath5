@@ -173,11 +173,11 @@ input, select {
     font-size: 14px;
     text-indent: 1em;
     margin-bottom: 15px;
+    background: rgba(70, 159, 255, 0.05);
 }
 select {
     -moz-appearance:none;
     -webkit-appearance:none;
-    background: #ffffff;
     border: 0;
     font-size: 14px;
     text-indent: 1em;
@@ -191,6 +191,11 @@ select {
 }
 .ibox-content{
     border: 0!important;
+    background: none;
+    padding: 0 20px 20px 20px;
+}
+.ibox-title{
+    background: none;
 }
 
 
