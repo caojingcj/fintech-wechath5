@@ -3,8 +3,8 @@
          ng-class="isSmart?'smart-no-padding':''">
         <div class="container-fluid" style="padding-left: 0;padding-right: 0;margin-top: 25px;">
             <div class="col-sm-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-content">
+                <div class="ibox float-e-margins" style="margin-bottom: 0">
+                    <div class="ibox-content" style="background: none;padding: 20px 0">
                         <div class="activity-stream">
                             <form class="form-horizontal"
                                   w5c-submit="adc.handle.seveInfo(adc.licInfo,'manage/updateManageCompanyMobile.do?','licInfo')"
@@ -12,55 +12,52 @@
                                   name="rateUserrateUser">
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12">
-                                        <div class="group">
-                                            <select  ng-model="ent.parameter.seq" name="seq"  ng-options="item.val as item.tit for item in ent.init.companyType"></select><span class="highlight"></span><span class="bar"></span>
-                                            <label>* 婚姻状况</label>
-                                        </div>
+                                        <i class="glyphicon glyphicon-menu-right inconRight"></i>
+                                        <select ng-model="ent.parameter.departmentCode" name="departmentCode"
+                                                ng-options="item.val as item.tit for item in ent.init.companyType">
+                                            <option value="">* 婚姻状况</option>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12">
-                                        <div class="group">
-                                            <select  ng-model="ent.parameter.seq" name="seq"  ng-options="item.val as item.tit for item in ent.init.companyType"></select><span class="highlight"></span><span class="bar"></span>
-                                            <label>* 学历</label>
-                                        </div>
+                                        <i class="glyphicon glyphicon-menu-right inconRight"></i>
+                                        <select ng-model="ent.parameter.departmentCode" name="departmentCode"
+                                                ng-options="item.val as item.tit for item in ent.init.companyType">
+                                            <option value="">* 学历</option>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12">
-                                        <div class="group">
-                                            <select  ng-model="ent.parameter.seq" name="seq"  ng-options="item.val as item.tit for item in ent.init.companyType"></select><span class="highlight"></span><span class="bar"></span>
-                                            <label>* 职业状况</label>
-                                        </div>
+                                        <i class="glyphicon glyphicon-menu-right inconRight"></i>
+                                        <select ng-model="ent.parameter.departmentCode" name="departmentCode"
+                                                ng-options="item.val as item.tit for item in ent.init.companyType">
+                                            <option value="">* 职业状况</option>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12 ">
-                                        <div class="group">
-                                            <input type="text"  name="companyName" ng-model="ent.parameter.companyName"><span class="highlight"></span><span class="bar"></span>
-                                            <label>*&nbsp;&nbsp;常用联系地址</label>
-                                        </div>
+                                        <input type="text" name="companyName" ng-model="ent.parameter.companyName"
+                                               style="" placeholder="*&nbsp;&nbsp;常用联系地址">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12 ">
-                                        <div class="group">
-                                            <input type="text"  name="companyName" ng-model="ent.parameter.companyName"><span class="highlight"></span><span class="bar"></span>
-                                            <label>*&nbsp;&nbsp;联系人电话</label>
-                                        </div>
+                                        <input type="text" name="companyName" ng-model="ent.parameter.companyName"
+                                               style="" placeholder="*&nbsp;&nbsp;联系人电话">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12 ">
-                                        <div class="group">
-                                            <input type="text"  name="companyName" ng-model="ent.parameter.companyName"><span class="highlight"></span><span class="bar"></span>
-                                            <label>定金金额</label>
-                                        </div>
+                                        <input type="text" name="companyName" ng-model="ent.parameter.companyName"
+                                               style="" placeholder="*&nbsp;&nbsp;定金金额">
                                     </div>
                                 </div>
                             </form>

@@ -16,7 +16,7 @@
                                         class="glyphicon glyphicon-fire"></i> 名称：</span><span
                                         class="ng-binding pull-left">{{det.orderState.name}}</span></li>
                                 <li><span class="pull-left fontWeight"> <i
-                                        class="glyphicon glyphicon-retweet"></i> 期次：</span><span
+                                        class="glyphicon glyphicon-retweet"></i> 期数：</span><span
                                         class="ng-binding pull-left">{{det.orderState.seq}} 期</span></li>
                                 <li><span class="pull-left"> <i
                                         class="glyphicon glyphicon-yen"></i> 申请金额：</span><span
@@ -41,8 +41,8 @@
                                 <li>
                                     <i class="glyphicon" ng-class="{'glyphicon-alert' : item.state === '2' ,'glyphicon-ok': item.state === '1', 'glyphicon-dashboard':item.state === '0'}" style="position: absolute;right: 10%;top:50%;"></i>
                                     <span class="pull-left fontWeight"> <i
-                                        class="glyphicon glyphicon-signal"></i> 还款期次：</span><span
-                                        class="ng-binding pull-left">第 {{item.companyName}} 次</span></li>
+                                        class="glyphicon glyphicon-signal"></i> 还款期数：</span><span
+                                        class="ng-binding pull-left">第 {{item.companyName}} 期</span></li>
                                 <li><span class="pull-left fontWeight"> <i
                                         class="glyphicon glyphicon-check"></i> 应还日期：</span><span
                                         class="ng-binding pull-left">{{item.orderTime}}</span></li>
