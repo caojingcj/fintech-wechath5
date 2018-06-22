@@ -4,7 +4,7 @@
         <div class="container-fluid" style="padding-left: 0;padding-right: 0;margin-top: 25px;">
             <div class="col-xs-12 col-sm-12">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-content">
+                    <div class="ibox-content" style="padding: 0 10px 20px 10px">
                         <div class="alert"
                              ng-class="{ 'alert-success': det.orderState.orderState === '05' || det.orderState.orderState === '13' || det.orderState.orderState === '99','alert-gray': det.orderState.orderState === '12' }"
                              style="position: relative;">
@@ -37,7 +37,7 @@
                                 </span>
                                 <span class="ng-binding pull-right" style=" font-size: 12px;">YLFQYMFQ201806171786774655697774</span>
                             </p>
-                            <ul class="ul-list list1" style="position: relative;margin-top: 10px;" ng-repeat="item in det.dataList.dataList">
+                            <ul class="ul-list list1" style="position: relative;margin-top: 10px;background: rgba(70, 159, 255, 0.05)" ng-repeat="item in det.dataList.dataList">
                                 <li>
                                     <i class="glyphicon" ng-class="{'glyphicon-alert' : item.state === '2' ,'glyphicon-ok': item.state === '1', 'glyphicon-dashboard':item.state === '0'}" style="position: absolute;right: 10%;top:50%;"></i>
                                     <span class="pull-left fontWeight"> <i
