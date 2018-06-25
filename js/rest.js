@@ -56,9 +56,7 @@
         function get (url, params, _noPop) {
             var deferred = $q.defer();
             var promise = deferred.promise;
-            var s = sessionId
-            var testUrl = url + '&' + $.param(params || {});
-            // pendingUrls.push(testUrl)
+            var s = sessionId;
             $http.jsonp(RS.ip + url + '&callback=JSON_CALLBACK&sessionId=' + sessionId, {
                 timeout: 1000 * 30,
                 params: params
@@ -69,24 +67,11 @@
                 } else if (res.data.code === '000100') {
                     deferred.reject(res.data.message);
                     // console.error(RS.ip + url + '&callback=JSON_CALLBACK', res.data);
-                    if ($rootScope.timeoutToast) {
-                        $rootScope.timeoutToast = false;
-                        swal({
-                            title: '会话已过期，请重新登陆!',
-                            showCancelButton: false,
-                            confirmButtonColor: '#21b9bb',
-                            confirmButtonText: '确认',
-                            width: '300px'
-                        }).then(function () {
-                            logout();
-                        });
-                    }
                 } else {
                     deferred.reject(res.data.message);
                     pop('error', null, res.data.message, 3000, _noPop);
                 }
             }, function (err) {
-                pendingUrls.splice($.inArray(testUrl, pendingUrls), 1)
                 deferred.reject(err);
                 if (err.status === -1) {
                     pop('error', null, '未找到服务器！', 3000);
