@@ -118,7 +118,9 @@
                 data: {pageTitle: '签署合同'},
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load('views/contract/contractCtrl.js')
+                        return $ocLazyLoad.load([
+                            'views/contract/contractCtrl.js'
+                        ])
                     }]
                 }
             })
