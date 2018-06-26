@@ -3,11 +3,10 @@
 
         var token = '';
         var userInfo = JSON.parse(sessionStorage.getItem('finTechInfo'));
-        console.log(userInfo);
         $rootScope.timeoutToast = true;
 
         if (userInfo !== null) {
-            sessionId = userInfo;
+            token = userInfo;
         } else {
             // logout();
         }
@@ -52,11 +51,11 @@
                 deferred.reject(err.data.message);
                 pop('error', null, err.data.message, 3000);
             });
-
             return promise
         }
 
         function get (url, params, _noPop) {
+            console.log(token);
             var deferred = $q.defer();
             var promise = deferred.promise;
             $http.get(RS.ip + url + '&token=' + token, {
@@ -67,10 +66,6 @@
                     deferred.resolve(res.data);
                     // console.log(RS.ip + url + token, res.data);
                 }
-                // else if (res.data.code === '000100') {
-                //     deferred.reject(res.data.message);
-                //     // console.error(RS.ip + url + '&callback=JSON_CALLBACK', res.data);
-                // }
                 else {
                     deferred.reject(res.data.message);
                     pop('error', null, res.data.message, 3000, _noPop);
@@ -90,9 +85,10 @@
         function post (url, data) {
             var deferred = $q.defer();
             var promise = deferred.promise;
-            $http.post(RS.ip + url + '&token=' + token, data).then(function (res) {
+            data.token = token;
+            $http.post(RS.ip + url , data).then(function (res) {
                 if (res.data.code === '000000') {
-                    deferred.resolve(res.data.data);
+                    deferred.resolve(res.data);
                     // console.log(RS.ip + url + '&sessionId=' + sessionId, res.data)
                 } else {
                     deferred.reject(res.data.message);

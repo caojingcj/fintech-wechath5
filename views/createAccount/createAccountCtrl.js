@@ -5,9 +5,10 @@
     'use strict';
 
     app
-        .controller('createAccountCtrl', ['REST', '$timeout', '$state', '$scope', '$compile',function (REST, $timeout, $state, $scope,$compile) {
+        .controller('createAccountCtrl', ['REST', '$timeout', '$state', '$scope','$stateParams',function (REST, $timeout, $state, $scope,$stateParams) {
             var vm = this;
-
+            var mobile = REST.sessionParam('mobile', $stateParams.mobile === "" ? null : $stateParams.mobile);
+            var order = REST.sessionParam('order', $stateParams.order === "" ? null : $stateParams.order);
             vm.handle = {
                 nextStep:nextStep
             };
@@ -32,7 +33,7 @@
                 });
 
                 setTimeout(function(){
-                    $state.go('app.home');
+                    $state.go('app.home',{mobile:mobile,order:order});
                     removeLoading('test');
                 },1000);
             }

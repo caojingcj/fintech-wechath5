@@ -41,6 +41,7 @@
             })
         };
         $scope.login = function (mob, cod) {
+            REST.login('app/appLogin/appLoginVerification?mobile=' + mob + '&code=' + cod).then(function (res) {
                 $('body').loading({
                     title: '请稍等',
                     name: 'test1',
@@ -50,17 +51,7 @@
                     $state.go('app.entAccount',{data:mob});
                     removeLoading('test1');
                 }, 1000);
-            // REST.login('app/appLogin/appLoginVerification?mobile=' + mob + '&code=' + cod).then(function (res) {
-            //     $('body').loading({
-            //         title: '请稍等',
-            //         name: 'test1',
-            //         discription: '正在加载中..'
-            //     });
-            //     setTimeout(function () {
-            //         $state.go('app.entAccount',{data:mob});
-            //         removeLoading('test1');
-            //     }, 1000);
-            // })
+            })
         };
     }])
 })();

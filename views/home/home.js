@@ -5,11 +5,25 @@
     'use strict';
 
     app
-        .controller('homeCtrl', ['REST', '$timeout', '$state', '$scope', function (REST, $timeout, $state, $scope) {
+        .controller('homeCtrl', ['REST', '$timeout', '$state', '$scope','$stateParams', '$window',function (REST, $timeout, $state, $scope,$stateParams,$window) {
            var  vm =this;
-           vm.handle = {
+            var mobile = REST.sessionParam('mobile', $stateParams.mobile === "" ? null : $stateParams.mobile);
+            var order = REST.sessionParam('order', $stateParams.order === "" ? null : $stateParams.order);
+            var windowHeight = $window.innerHeight; //获取窗口高度
+            $scope.objHeight={
+                "height":windowHeight - 120
+            };
+            vm.handle = {
                nextStep:nextStep
            };
+            toMoxieCarrierH5();
+
+            function toMoxieCarrierH5() {
+                REST.get('app/moxie/toMoxieCarrierH5?mobile=' + mobile + '&idCard=' + '340827199209153730' + '&name=' + '方青' + '&orderId=' + order).then(function (res) {
+                    console.log(res);
+                    $("#object").attr('data',res.data)
+                })
+            }
 
            function nextStep() {
                $('body').loading({
@@ -19,7 +33,7 @@
                });
 
                setTimeout(function(){
-                   $state.go('app.perInforma')
+                   $state.go('app.perInforma',{mobile:mobile,order:order});
                    removeLoading('test');
                },1000);
            }

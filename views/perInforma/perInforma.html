@@ -7,14 +7,14 @@
                     <div class="ibox-content" style="background: none;padding: 20px 0">
                         <div class="activity-stream">
                             <form class="form-horizontal"
-                                  w5c-submit="adc.handle.seveInfo(adc.licInfo,'manage/updateManageCompanyMobile.do?','licInfo')"
-                                  w5c-form-validate="adc.form.validateOptions" novalidate
+                                  w5c-submit="per.handle.seveInfo(per.parameter)"
+                                  w5c-form-validate="per.form.validateOptions" novalidate
                                   name="rateUserrateUser">
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12">
                                         <i class="glyphicon glyphicon-menu-right inconRight"></i>
-                                        <select ng-model="ent.parameter.departmentCode" name="departmentCode"
-                                                ng-options="item.val as item.tit for item in ent.init.companyType">
+                                        <select ng-model="per.parameter.maritalStatus" name="maritalStatus" required
+                                                ng-options="item.val as item.tit for item in per.initArry.maritalStatus">
                                             <option value="">* 婚姻状况</option>
                                         </select>
                                     </div>
@@ -23,8 +23,8 @@
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12">
                                         <i class="glyphicon glyphicon-menu-right inconRight"></i>
-                                        <select ng-model="ent.parameter.departmentCode" name="departmentCode"
-                                                ng-options="item.val as item.tit for item in ent.init.companyType">
+                                        <select ng-model="per.parameter.educationalStatus" name="educationalStatus" required
+                                                ng-options="item.val as item.tit for item in per.initArry.educationalStatus">
                                             <option value="">* 学历</option>
                                         </select>
                                     </div>
@@ -33,8 +33,8 @@
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12">
                                         <i class="glyphicon glyphicon-menu-right inconRight"></i>
-                                        <select ng-model="ent.parameter.departmentCode" name="departmentCode"
-                                                ng-options="item.val as item.tit for item in ent.init.companyType">
+                                        <select ng-model="per.parameter.vocationStatus" name="vocationStatus" required
+                                                ng-options="item.val as item.tit for item in per.initArry.vocationStatus">
                                             <option value="">* 职业状况</option>
                                         </select>
                                     </div>
@@ -42,34 +42,34 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12 ">
-                                        <input type="text" name="companyName" ng-model="ent.parameter.companyName"
-                                               style="" placeholder="*&nbsp;&nbsp;常用联系地址">
+                                        <input type="text" name="commAddr" ng-model="per.parameter.commAddr" required placeholder="*&nbsp;&nbsp;常用联系地址">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12 ">
-                                        <input type="text" name="companyName" ng-model="ent.parameter.companyName"
-                                               style="" placeholder="*&nbsp;&nbsp;联系人电话">
+                                        <input type="text" name="contactName" ng-model="per.parameter.contactName" required placeholder="*&nbsp;&nbsp;联系姓名">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12 ">
-                                        <input type="text" name="companyName" ng-model="ent.parameter.companyName"
-                                               style="" placeholder="*&nbsp;&nbsp;定金金额">
+                                        <input type="text" name="contactPhone" ng-model="per.parameter.contactPhone" required placeholder="*&nbsp;&nbsp;联系人电话">
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12 col-xs-12 ">
+                                        <input type="text" name="depositAmount" ng-model="per.parameter.depositAmount" required placeholder="*&nbsp;&nbsp;定金金额">
+                                    </div>
+                                </div>
+                                <button type="submit" class="loginBtn" ng-click="per.handle.goStep('app.bankCard')">
+                                    <i class="fa fa-arrow-right"></i>&nbsp;下一步
+                                </button>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-12 col-xs-12 text-center">
-                <button type="submit" class="loginBtn" href="#licInfo"
-                        ng-click="per.handle.goStep('app.bankCard')">
-                    <i class="fa fa-arrow-right"></i>&nbsp;下一步
-                </button>
             </div>
         </div>
     </div>

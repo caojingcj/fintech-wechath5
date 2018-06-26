@@ -56,6 +56,7 @@
                 url: "/home",
                 templateUrl: "views/home/home.html",
                 data: {pageTitle: '运营商认证'},
+                params: {mobile:'',order:''},
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load('views/home/home.js')
@@ -81,6 +82,7 @@
                 url: "/createAccount",
                 templateUrl: "views/createAccount/createAccount.html",
                 data: {pageTitle: '身份证信息认证'},
+                params: {mobile:'',order:''},
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load('views/createAccount/createAccountCtrl.js')
@@ -93,6 +95,7 @@
                 url: "/perInforma",
                 templateUrl: "views/perInforma/perInforma.html",
                 data: {pageTitle: '个人基本信息'},
+                params: {mobile:'',order:''},
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load('views/perInforma/perInformaCtrl.js')

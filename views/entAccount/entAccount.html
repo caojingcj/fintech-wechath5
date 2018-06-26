@@ -9,16 +9,16 @@
                             <form class="form-horizontal">
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12 ">
-                                        <input type="text" name="companyName" ng-model="ent.parameter.companyName"
-                                               style="" placeholder="商户名称" >
+                                        <input type="text" name="companyName" ng-model="ent.data.companyName"
+                                               style="" placeholder="商户名称" disabled>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12">
                                         <i class="glyphicon glyphicon-menu-right inconRight"></i>
-                                        <select ng-model="ent.parameter.itemName" name="itemName"
-                                                ng-options="item.val as item.tit for item in ent.initArry.itemName">
+                                        <select ng-model="ent.parameter.itemName" name="itemName" ng-change="ent.handle.getItemName(ent.parameter.itemName)"
+                                                ng-options="(m.itemCode + ' - ' + m.itemName) for m in ent.initArry.itemName">
                                             <option value="">请选择项目</option>
                                         </select>
                                     </div>
@@ -26,7 +26,7 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12 ">
-                                        <input type="text" name="orderAmount" ng-model="ent.parameter.orderAmount"
+                                        <input type="text" name="orderAmount" ng-model="ent.data.orderAmount"
                                                style="" placeholder="申请金额">
                                     </div>
                                 </div>
@@ -34,8 +34,8 @@
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12">
                                         <i class="glyphicon glyphicon-menu-right inconRight"></i>
-                                        <select ng-model="ent.parameter.totalPeriod" name="totalPeriod"
-                                                ng-options="item.id as item.period for item in ent.initArry.totalPeriod">
+                                        <select ng-model="ent.data.totalPeriod" name="totalPeriod"
+                                                ng-options="dict.period as dict.period for dict in ent.initArry.totalPeriod">
                                             <option value="">请选择期数</option>
                                         </select>
                                     </div>
@@ -44,8 +44,8 @@
                                 <div class="form-group">
                                     <div class="col-sm-12 col-xs-12">
                                         <i class="glyphicon glyphicon-menu-right inconRight"></i>
-                                        <select ng-model="ent.parameter.companyChannelName" name="companyChannelName"
-                                                ng-options="item.id as item.channelName for item in ent.initArry.companyChannelName">
+                                        <select ng-model="ent.parameter.companyChannelName" name="companyChannelName" ng-change="ent.handle.getcompanyChannel(ent.parameter.companyChannelName)"
+                                                ng-options="(m.id + ' - ' + m.channelName) for m in ent.initArry.companyChannelName">
                                             <option value="">咨询师选择</option>
                                         </select>
                                     </div>
