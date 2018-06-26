@@ -149,5 +149,17 @@
                 }
             })
 
+            //
+            .state('app.return', {
+                url: "/return",
+                templateUrl: "views/return/return.html",
+                data: {pageTitle: '我要还款'},
+                resolve: {
+                    deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load('views/return/returnCtrl.js')
+                    }]
+                }
+            })
+
     })
 })();

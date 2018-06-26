@@ -21,9 +21,9 @@
             }
         }
 
-        function pop(type, title, text, time) {
+        function pop(title, text, time) {
             $timeout(function () {
-                toaster.pop(type, title, text, time || 1500)
+                toaster.pop('success', title, text, time || 1500)
             })
         }
 
@@ -66,10 +66,12 @@
                 if (res.data.code === '000000') {
                     deferred.resolve(res.data);
                     // console.log(RS.ip + url + token, res.data);
-                } else if (res.data.code === '000100') {
-                    deferred.reject(res.data.message);
-                    // console.error(RS.ip + url + '&callback=JSON_CALLBACK', res.data);
-                } else {
+                }
+                // else if (res.data.code === '000100') {
+                //     deferred.reject(res.data.message);
+                //     // console.error(RS.ip + url + '&callback=JSON_CALLBACK', res.data);
+                // }
+                else {
                     deferred.reject(res.data.message);
                     pop('error', null, res.data.message, 3000, _noPop);
                 }
@@ -82,7 +84,6 @@
                 }
                 console.error(RS.ip + url + token, err);
             });
-
             return promise
         }
 

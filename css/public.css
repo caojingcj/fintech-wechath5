@@ -44,9 +44,19 @@
 .orderDetailCtrl .lineList .list1 {
     border: 1px solid #abd2dd;
     padding: 15px 15px;
+    border-radius: 4px;
+}
+
+.returnCtrl .lineList .list1 {
+    border: 1px solid #abd2dd;
+    padding: 15px 15px;
+    border-radius: 4px;
 }
 
 .orderDetailCtrl .ul-list li {
+    border: 0 !important;
+}
+.returnCtrl .ul-list li {
     border: 0 !important;
 }
 
@@ -80,13 +90,13 @@
     width: 100%;
 }
 
-/*.toast {*/
-    /*background-color: rgba(0, 0, 0, 0.59) !important;*/
-    /*border-radius: 0 !important;*/
-/*}*/
-/*.toast .ng-binding ,.ng-scope {*/
+.toast {
+    background-color: rgb(0, 0, 0) !important;
+    border-radius: 0 !important;
+}
+.toast .ng-binding ,.ng-scope {
     /*color: red;*/
-/*}*/
+}
 
 /*input{*/
 /*border: none;*/

@@ -18,7 +18,7 @@
                 totalPeriod: []              // 申请期数
             };
 
-            initCompany();
+            // initCompany();
 
             vm.parameter = {
                 companyName: '',        // 商户名
@@ -43,22 +43,23 @@
             }
 
             function goStep(data) {
-                console.log(vm.parameter);
-                REST.pop('error', null,'哈哈哈哈哈', 200);
-                // REST.get('app/appLogin/appLoginVerification?').then(function (res) {
-                //
-                // });
                 // $('body').loading({
                 //     title:'请稍等',
                 //     name:'test',
                 //     discription:'数据加载中..',
-                // })
+                // });
                 //
                 //
                 // setTimeout(function(){
                 //     $state.go('app.createAccount');
                 //     removeLoading('test');
                 // },1000);
+                console.log(vm.parameter);
+                // REST.get('app/appLogin/appLoginVerification?').then(function (res) {
+
+                // });
+
+
             }
         }])
 })();
