@@ -80,10 +80,13 @@
     width: 100%;
 }
 
-.toast {
-    background-color: rgba(0, 0, 0, 0.59) !important;
-    border-radius: 0 !important;
-}
+/*.toast {*/
+    /*background-color: rgba(0, 0, 0, 0.59) !important;*/
+    /*border-radius: 0 !important;*/
+/*}*/
+/*.toast .ng-binding ,.ng-scope {*/
+    /*color: red;*/
+/*}*/
 
 /*input{*/
 /*border: none;*/
@@ -197,6 +200,9 @@ select {
 .ibox-title{
     background: none;
 }
+/*.toaster .ng-binding ,.ng-scope{*/
+    /*color: #ffffff;*/
+/*}*/
 
 
 

@@ -22,6 +22,7 @@
                     discription:'数据加载中..',
                 });
 
+
                 setTimeout(function(){
                     $state.go('app.orderList')
                     removeLoading('test');

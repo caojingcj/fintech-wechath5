@@ -67,6 +67,7 @@
             .state('app.entAccount', {
                 url: "/entAccount",
                 templateUrl: "views/entAccount/entAccount.html",
+                params: {data:''},
                 data: {pageTitle: '项目信息填写'},
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
