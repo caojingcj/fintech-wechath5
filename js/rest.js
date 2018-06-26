@@ -3,9 +3,8 @@
 
         var token = '';
         var userInfo = JSON.parse(sessionStorage.getItem('finTechInfo'));
-        console.log(userInfo);
         $rootScope.timeoutToast = true;
-
+        console.log(userInfo)
         if (userInfo !== null) {
             token = userInfo;
         } else {
@@ -23,7 +22,7 @@
 
         function pop(title, text, time) {
             $timeout(function () {
-                toaster.pop('success', title, text, time || 1500)
+                toaster.pop('success', title, text, time || 2000)
             })
         }
 
@@ -90,14 +89,15 @@
             $http.post(RS.ip + url , data).then(function (res) {
                 if (res.data.code === '000000') {
                     deferred.resolve(res.data);
-                    // console.log(RS.ip + url + '&sessionId=' + sessionId, res.data)
+                    // console.log(RS.ip + url + '&token=' + token, res.data)
                 } else {
                     deferred.reject(res.data.message);
                     pop( res.data.message);
-                    // console.error(RS.ip + url + '&sessionId=' + sessionId, res.data)
+                    // console.error(RS.ip + url + '&token=' + token, res.data)
                 }
             }, function (err) {
                 deferred.reject(err);
+                console.log(err);
                 pop('通讯错误');
             });
 

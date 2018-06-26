@@ -16,26 +16,37 @@
             vm.pic = 'http://manager-front.oss-cn-beijing.aliyuncs.com/manage/merchant/attach/20180614/999999/EK001-ddc8bec5-fde8-4816-bd34-208555585784-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180517135809.png';
 
             vm.picUp = 'http://weixin-front.oss-cn-beijing.aliyuncs.com/images/201806/21/YDC20180621175643815f24a23f0959045f5bcd5cc32ca1f88e42.jpg';
-            vm.init = {
-                protectProblem:[
-                    {val:1,tit:'我的名字是？'},
-                    {val:1,tit:'我的年龄？'},
-                    {val:1,tit:'我的配偶的名字？'},
-                    {val:1,tit:'我的第一家公司的名字？'}
-                ]
-            };
 
+            vm.data ={
+                orderId: order
+            };
             function nextStep() {
-                $('body').loading({
-                    title:'请稍等',
-                    name:'test',
-                    discription:'数据加载中..',
+                REST.post('app/orderbaseinfo/saveIdentity',vm.data).then(function (res) {
+                    console.log(res);
+                    $('body').loading({
+                        title:'请稍等',
+                        name:'test',
+                        discription:'数据加载中..'
+                    });
+
+                    setTimeout(function(){
+                        $state.go('app.home',{mobile:mobile,order:order});
+                        removeLoading('test');
+                    },1000);
+                },function (res) {
+                    console.log('err:' + res);
+                    $('body').loading({
+                        title:'请稍等',
+                        name:'test',
+                        discription:'数据加载中..'
+                    });
+
+                    setTimeout(function(){
+                        $state.go('app.home',{mobile:mobile,order:order});
+                        removeLoading('test');
+                    },1000);
                 });
 
-                setTimeout(function(){
-                    $state.go('app.home',{mobile:mobile,order:order});
-                    removeLoading('test');
-                },1000);
             }
         }])
 })();

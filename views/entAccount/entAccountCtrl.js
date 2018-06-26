@@ -43,7 +43,8 @@
                 companyChannelName: '', // 咨询师名称
                 companyChannelId: '',   // 咨询师编号
                 orderId: '',            // 订单编号
-                companyId: ''           // 商户编号
+                companyId: '',           // 商户编号
+                companyChannelPhone: ''           // 商户编号
             };
 
 
@@ -57,6 +58,8 @@
                 console.log(val);
                 vm.data.companyChannelName  = val.channelName;
                 vm.data.companyChannelId  = val.id;
+                vm.data.companyChannelPhone = val.channelPhone
+
             }
 
             function initCompany() {
@@ -66,7 +69,7 @@
                     vm.initArry.itemName = res.data.items;
                     vm.data.orderId = res.data.order.orderId;
                     vm.data.companyId = res.data.order.companyId;
-                    vm.data.companyName = res.data.order.companyName
+                    vm.data.companyName = res.data.order.companyName;
                 })
             }
 
@@ -78,7 +81,7 @@
                         $('body').loading({
                             title:'请稍等',
                             name:'test',
-                            discription:'数据加载中..',
+                            discription:'数据加载中..'
                         });
                         setTimeout(function(){
                             $state.go('app.createAccount',{mobile:mobile,order:vm.data.orderId});
@@ -86,8 +89,6 @@
                         },1000);
                     }
                 });
-
-
             }
         }])
 })();
