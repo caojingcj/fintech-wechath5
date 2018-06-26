@@ -108,6 +108,7 @@
                 url: "/medical",
                 templateUrl: "views/medical/medical.html",
                 data: {pageTitle: '附件上传'},
+                params: {mobile:'',order:''},
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load('views/medical/medicalCtrl.js')
@@ -120,6 +121,7 @@
                 url: "/contract",
                 templateUrl: "views/contract/contract.html",
                 data: {pageTitle: '签署合同'},
+                params: {mobile:'',order:''},
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -133,6 +135,7 @@
                 url: "/orderList",
                 templateUrl: "views/orderList/orderList.html",
                 data: {pageTitle: '订单列表'},
+                params: {mobile:'',order:''},
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load('views/orderList/orderListCtrl.js')
@@ -145,6 +148,7 @@
                 url: "/orderDetail",
                 templateUrl: "views/orderDetail/orderDetail.html",
                 data: {pageTitle: '订单详情'},
+                params: {mobile:'',order:''},
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load('views/orderDetail/orderDetailCtrl.js')

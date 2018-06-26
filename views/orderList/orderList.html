@@ -5,42 +5,42 @@
             <div class="col-xs-12 col-sm-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-content" style="padding: 0 10px 20px 10px">
-                        <div ng-repeat="item in dataList.dataList">
+                        <div ng-repeat="item in ord.data">
                             <div class="alert" ng-class="{
-                             'alert-success': item.orderState === '99' || item.orderState === '13' || item.orderState === '05',
-                             'alert-info': item.orderState === '00',
-                             'alert-warning': item.orderState === '00' || item.orderState === '01' || item.orderState === '02',
-                             'alert-danger': item.orderState === '00',
-                             'alert-hhh': item.orderState === '04',
-                             'alert-gray': item.orderState === '11' || item.orderState === '12' || item.orderState === '13' || item.orderState === '03'
+                             'alert-success': item.orderStatus === '99' || item.orderStatus === '13' || item.orderStatus === '05',
+                             'alert-info': item.orderStatus === '00',
+                             'alert-warning': item.orderStatus === '00' || item.orderStatus === '01' || item.orderStatus === '02',
+                             'alert-danger': item.orderStatus === '00',
+                             'alert-hhh': item.orderStatus === '04',
+                             'alert-gray': item.orderStatus === '11' || item.orderStatus === '12' || item.orderStatus === '13' || item.orderStatus === '03'
                             }" style="position: relative;">
                                 <i class="glyphicon glyphicon-menu-right goTodetail" ng-click="ord.handle.goDetail()"
-                                   ng-if="item.orderState == '00' || item.orderState == '04' || item.orderState == '00' ||item.orderState == '05' || item.orderState == '12' || item.orderState == '99'"></i>
+                                   ng-if="item.orderStatus == '00' || item.orderStatus == '04' || item.orderStatus == '00' ||item.orderStatus == '05' || item.orderStatus == '12' || item.orderStatus == '99'"></i>
                                 <ul class="ul-list" style="margin-bottom: 0">
                                     <li><span class="pull-left fontWeight"> <i
                                             class="glyphicon glyphicon-lock"></i> 商户：</span><span
-                                            class="ng-binding pull-left">{{item.companyName}}</span></li>
+                                            class="ng-binding pull-left">{{item.companyName || '-'}}</span></li>
                                     <li><span class="pull-left fontWeight"> <i
                                             class="glyphicon glyphicon-fire"></i> 名称：</span><span
-                                            class="ng-binding pull-left">{{item.name}}</span></li>
+                                            class="ng-binding pull-left">{{item.itemName || '-'}}</span></li>
                                     <li><span class="pull-left fontWeight"> <i
-                                            class="glyphicon glyphicon-retweet"></i> 期次：</span><span
-                                            class="ng-binding pull-left">{{item.seq}} 期</span></li>
+                                            class="glyphicon glyphicon-retweet"></i> 期数：</span><span
+                                            class="ng-binding pull-left">{{item.totalPeriod || '-'}} 期</span></li>
                                     <li><span class="pull-left fontWeight"> <i
                                             class="glyphicon glyphicon-yen"></i> 申请金额：</span><span
-                                            class="ng-binding pull-left">{{item.sendMoney}} 元</span></li>
+                                            class="ng-binding pull-left">{{ord.handle.formatMoney(item.orderAmount) || '-'}} 元</span></li>
                                     <li><span class="pull-left fontWeight"> <i
                                             class="glyphicon glyphicon-envelope"></i> 订单状态：</span><span
                                             class="ng-binding pull-left">{{
-                                        item.orderState === '00' ? '录入中' : item.orderState === '01' ? '待审批' :item.orderState === '02' ? '审批中' :
-                                        item.orderState === '03' ? '审批拒绝' :  item.orderState === '04' ? '待用户签署' : item.orderState === '05' ? '分期还款中' :
-                                        item.orderState === '11' ? '已取消': item.orderState === '12' ? '已退款' :item.orderState === '13' ? '已提前结清':
-                                        item.orderState === '99' ? '已结清' : ''
+                                        item.orderStatus === '00' ? '录入中' : item.orderStatus === '01' ? '待审批' :item.orderStatus === '02' ? '审批中' :
+                                        item.orderStatus === '03' ? '审批拒绝' :  item.orderStatus === '04' ? '待用户签署' : item.orderStatus === '05' ? '分期还款中' :
+                                        item.orderStatus === '11' ? '已取消': item.orderStatus === '12' ? '已退款' :item.orderStatus === '13' ? '已提前结清':
+                                        item.orderStatus === '99' ? '已结清' : '-'
                                         }}</span>
                                     </li>
                                     <li><span class="pull-left fontWeight"> <i
                                             class="glyphicon glyphicon-th-list"></i> 订单时间：</span><span
-                                            class="ng-binding pull-left">{{item.orderTime}}</span></li>
+                                            class="ng-binding pull-left">{{item.createTime | date:'yyyy-MM-dd HH:mm:ss' || '-' }}</span></li>
                                 </ul>
                             </div>
                         </div>

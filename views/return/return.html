@@ -8,24 +8,28 @@
                         <div class="lineList">
                             <ul class="ul-list list1"
                                 style="position: relative;margin-top: 10px;background: rgba(70, 159, 255, 0.05)"
-                                ng-repeat="item in ren.dataList.dataList">
+                                ng-repeat="item in ren.dataList">
                                 <li>
                                     <i class="glyphicon"
-                                       ng-class="{'glyphicon-alert' : item.state === '2' ,'glyphicon-ok': item.state === '1', 'glyphicon-dashboard':item.state === '0'}"
+                                       ng-class="{'glyphicon-alert' : item.returnStatus === '2' ,'glyphicon-ok': item.returnStatus === '1', 'glyphicon-dashboard':item.returnStatus === '0'
+                                       ,'glyphicon-remove':item.returnStatus === '8','glyphicon-ok-sign':item.returnStatus === '9'}"
                                        style="position: absolute;right: 10%;top:50%;"></i>
                                     <span class="pull-left fontWeight"> <i
                                             class="glyphicon glyphicon-signal"></i> 还款期数：</span><span
-                                        class="ng-binding pull-left">第 {{item.companyName}} 期 （{{item.contractNumber}}）</span>
+                                        class="ng-binding pull-left">第 {{item.currentPeriod}} 期 （{{item.contractId}}）</span>
                                 </li>
                                 <li><span class="pull-left fontWeight"> <i
                                         class="glyphicon glyphicon-check"></i> 应还日期：</span><span
-                                        class="ng-binding pull-left">{{item.orderTime}}</span></li>
+                                        class="ng-binding pull-left">{{item.returnDate | date:'yyyy-MM-dd HH:mm:ss' || '-' }}</span>
+                                </li>
                                 <li><span class="pull-left fontWeight"> <i
                                         class="glyphicon glyphicon-yen"></i> 应还总额：</span><span
-                                        class="ng-binding pull-left">{{item.sendMoney}} 元</span></li>
+                                        class="ng-binding pull-left">{{(item.principalAmount + item.interestAmount + item.overdueAmount).toFixed(2) || '-'}} 元</span>
+                                </li>
                                 <li ng-if="item.state === '1'"><span class="pull-left fontWeight"> <i
                                         class="glyphicon glyphicon-record"></i> 还款时间：</span><span
-                                        class="ng-binding pull-left">{{item.orderTime}}</span></li>
+                                        class="ng-binding pull-left">{{item.returnDateAc | date:'yyyy-MM-dd HH:mm:ss' || '-' }}</span>
+                                </li>
                             </ul>
                         </div>
                     </div>

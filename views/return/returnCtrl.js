@@ -10,39 +10,16 @@
             vm.handle = {
             };
 
-            vm.dataList = ({
-                "dataList": [{
-                    "companyName": "1",
-                    "name": "眼部整形",
-                    "seq": "9",
-                    "sendMoney": "35000",
-                    "orderState": '00',
-                    "orderTime": '2018-12-12 12:12:12',
-                    "state":'1',
-                    "contractNumber":'YLFQYMFQ20180626722427',
+            vm.dataList = [];
 
-                },
-                    {
-                        "companyName": "2",
-                        "name": "眼部整形",
-                        "seq": "9",
-                        "sendMoney": "35000",
-                        "orderState": '01',
-                        "orderTime": '2018-12-12 12:12:12',
-                        "state":'2',
-                        "contractNumber":'YLFQYMFQ20180626722427',
-                    },
-                    {
-                        "companyName": "3",
-                        "name": "眼部整形",
-                        "seq": "02",
-                        "sendMoney": "35000",
-                        "orderState": '02',
-                        "orderTime": '2018-12-12 12:12:12',
-                        "state":'0',
-                        "contractNumber":'YLFQYMFQ20180626722427',
-                    }]
-            });
+            initReturnList();
+
+            function initReturnList() {
+                REST.get('app/orderbaseinfo/userReturnplans?').then(function (res) {
+                    console.log(res);
+                    vm.dataList = res.data.userReturnplan;
+                })
+            }
 
         }])
 })();

@@ -3,43 +3,33 @@
  */
 (function () {
     'use strict';
-
     app
-        .controller('orderDetailCtrl', ['REST', '$timeout', '$state', '$scope', function (REST, $timeout, $state, $scope) {
+        .controller('orderDetailCtrl', ['REST', '$timeout', '$state', '$scope','$stateParams','currencyFilter', function (REST, $timeout, $state, $scope,$stateParams,currencyFilter) {
+            var mobile = REST.sessionParam('mobile', $stateParams.mobile === "" ? null : $stateParams.mobile);
+            var order = REST.sessionParam('order', $stateParams.order === "" ? null : $stateParams.order);
+            console.log(order);
             var vm = this;
             vm.handle = {
-                goStep: goStep
+                goStep: goStep,
+                formatMoney:formatMoney
             };
 
-            vm.dataList = ({
-                "dataList": [{
-                    "companyName": "1",
-                    "name": "眼部整形",
-                    "seq": "9",
-                    "sendMoney": "35000",
-                    "orderState": '00',
-                    "orderTime": '2018-12-12 12:12:12',
-                    "state":'1'
-                },
-                    {
-                        "companyName": "2",
-                        "name": "眼部整形",
-                        "seq": "9",
-                        "sendMoney": "35000",
-                        "orderState": '01',
-                        "orderTime": '2018-12-12 12:12:12',
-                        "state":'2'
-                    },
-                    {
-                        "companyName": "3",
-                        "name": "眼部整形",
-                        "seq": "02",
-                        "sendMoney": "35000",
-                        "orderState": '02',
-                        "orderTime": '2018-12-12 12:12:12',
-                        "state":'0'
-                    }]
-            });
+            vm.dataList = [];
+
+            initOrderDetail();
+
+            $scope.gooo = function () {
+                $state.go('app.return');
+            };
+
+            function initOrderDetail() {
+                REST.get('app/orderbaseinfo/orderBaseinfoDetail?orderId=' + order).then(function (res) {
+                    console.log(res);
+                    vm.dataList = res.data.userReturnplan;
+                    vm.orderInfo = res.data.orderBaseInfo;
+                    console.log(vm.orderInfo);
+                })
+            }
 
 
             vm.orderState = {
@@ -54,6 +44,10 @@
 
             function goStep() {
                 $state.go('app.contract');
+            }
+
+            function formatMoney(val) {
+                return val ? currencyFilter(val, '￥') : '-'
             }
         }])
 })();

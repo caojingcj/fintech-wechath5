@@ -7,8 +7,7 @@
   }]);
   app.controller('mainCtrl2', ['$rootScope', '$scope', '$state', 'REST', function ($rootScope, $scope, $state, REST) {
     $scope.state = $state;
-    $scope.name = "注册";
-    $scope.user = JSON.parse(sessionStorage.getItem('qrmngr_user_info'));
+    $scope.user = JSON.parse(sessionStorage.getItem('finTechInfo'));
     $scope.$on('$stateChangeSuccess', function () {
       $("#page-wrapper")[0].style.minHeight = $(window).innerHeight() + 'px';
       if ($scope.isSmart) {

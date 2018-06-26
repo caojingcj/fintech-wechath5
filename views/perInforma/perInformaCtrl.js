@@ -58,7 +58,7 @@
                         });
 
                         setTimeout(function(){
-                            $state.go('app.medical');
+                            $state.go('app.medical',{mobile:mobile,order:order});
                             removeLoading('test');
                         },1000);
                     }

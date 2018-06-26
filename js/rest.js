@@ -3,6 +3,7 @@
 
         var token = '';
         var userInfo = JSON.parse(sessionStorage.getItem('finTechInfo'));
+        console.log(userInfo);
         $rootScope.timeoutToast = true;
 
         if (userInfo !== null) {
@@ -44,18 +45,18 @@
                     deferred.resolve(res.data);
                 } else {
                     deferred.reject(res.data.message);
-                    pop('error', null, res.data.message, 3000);
-                    console.error(RS.ip + url + '&callback=JSON_CALLBACK', res.data.data);
+                    console.log(res.data.message)
+                    pop(res.data.message);
+                    // console.error(RS.ip + url + '&callback=JSON_CALLBACK', res.data.data);
                 }
             }, function (err) {
                 deferred.reject(err.data.message);
-                pop('error', null, err.data.message, 3000);
+                pop(err.data.message);
             });
             return promise
         }
 
         function get (url, params, _noPop) {
-            console.log(token);
             var deferred = $q.defer();
             var promise = deferred.promise;
             $http.get(RS.ip + url + '&token=' + token, {
@@ -68,14 +69,14 @@
                 }
                 else {
                     deferred.reject(res.data.message);
-                    pop('error', null, res.data.message, 3000, _noPop);
+                    pop(res.data.message);
                 }
             }, function (err) {
                 deferred.reject(err);
                 if (err.status === -1) {
                     pop('error', null, '未找到服务器！', 3000);
                 } else if (err.status === 404) {
-                    pop('error', null, '网络异常，请检查您的网络连接并重试！', 3000);
+                    pop('网络异常，请检查您的网络连接并重试！');
                 }
                 console.error(RS.ip + url + token, err);
             });
@@ -92,13 +93,12 @@
                     // console.log(RS.ip + url + '&sessionId=' + sessionId, res.data)
                 } else {
                     deferred.reject(res.data.message);
-                    pop('error', null, res.data.message, 3000);
+                    pop( res.data.message);
                     // console.error(RS.ip + url + '&sessionId=' + sessionId, res.data)
                 }
             }, function (err) {
                 deferred.reject(err);
-                pop('error', null, '通讯错误', 3000);
-                // console.error(err);
+                pop('通讯错误');
             });
 
             return promise

@@ -11,23 +11,23 @@
                             <ul class="ul-list" style="margin-bottom: 0">
                                 <li><span class="pull-left" > <i
                                         class="glyphicon glyphicon-lock"></i> 商户：</span><span
-                                        class="ng-binding pull-left">{{det.orderState.companyName}}</span></li>
+                                        class="ng-binding pull-left">{{det.orderInfo.companyName || '-'}}</span></li>
                                 <li><span class="pull-left"> <i
                                         class="glyphicon glyphicon-fire"></i> 名称：</span><span
-                                        class="ng-binding pull-left">{{det.orderState.name}}</span></li>
+                                        class="ng-binding pull-left">{{det.orderInfo.itemName || '-'}}</span></li>
                                 <li><span class="pull-left fontWeight"> <i
                                         class="glyphicon glyphicon-retweet"></i> 期数：</span><span
-                                        class="ng-binding pull-left">{{det.orderState.seq}} 期</span></li>
+                                        class="ng-binding pull-left">{{det.orderInfo.totalPeriod || '-'}} 期</span></li>
                                 <li><span class="pull-left"> <i
                                         class="glyphicon glyphicon-yen"></i> 申请金额：</span><span
-                                        class="ng-binding pull-left">{{det.orderState.sendMoney}} 元</span></li>
+                                        class="ng-binding pull-left">{{det.handle.formatMoney(det.orderInfo.orderAmount) || '-'}} 元</span></li>
                                 <li><span class="pull-left"> <i
                                         class="glyphicon glyphicon-envelope"></i> 订单状态：</span><span
-                                        class="ng-binding pull-left">{{det.orderState.orderState === '05' ? '分期还款中' : det.orderState.orderState === '12' ? '已退款' :det.orderState.orderState === '13' ? '已提前结清': det.orderState.orderState === '99' ? '已结清' : ''}}</span>
+                                        class="ng-binding pull-left">{{det.orderInfo.orderStatus === '05' ? '分期还款中' : det.orderState.orderStatus === '12' ? '已退款' :det.orderState.orderStatus === '13' ? '已提前结清': det.orderState.orderStatus === '99' ? '已结清' : ''}}</span>
                                 </li>
                                 <li><span class="pull-left"> <i
                                         class="glyphicon glyphicon-th-list"></i> 订单时间：</span><span
-                                        class="ng-binding pull-left">{{det.orderState.orderTime}}</span></li>
+                                        class="ng-binding pull-left">{{det.orderInfo.createTime | date:'yyyy-MM-dd HH:mm:ss' || '-' }}</span></li>
                             </ul>
                         </div>
                         <div class="lineList">
@@ -35,23 +35,23 @@
                                 <span style="font-weight: 700">
                                 <i class="glyphicon glyphicon-dashboard"></i>&nbsp;&nbsp; 还款计划
                                 </span>
-                                <span class="ng-binding pull-right" style=" font-size: 12px;">YLFQYMFQ201806171786774655697774</span>
+                                <span class="ng-binding pull-right" style=" font-size: 12px;">{{det.orderInfo.contractId}}</span>
                             </p>
-                            <ul class="ul-list list1" style="position: relative;margin-top: 10px;background: rgba(70, 159, 255, 0.05)" ng-repeat="item in det.dataList.dataList">
+                            <ul class="ul-list list1" style="position: relative;margin-top: 10px;background: rgba(70, 159, 255, 0.05)" ng-repeat="item in det.dataList">
                                 <li>
-                                    <i class="glyphicon" ng-class="{'glyphicon-alert' : item.state === '2' ,'glyphicon-ok': item.state === '1', 'glyphicon-dashboard':item.state === '0'}" style="position: absolute;right: 10%;top:50%;"></i>
+                                    <i class="glyphicon" ng-class="{'glyphicon-alert' : item.returnStatus === '2' ,'glyphicon-ok': item.returnStatus === '1', 'glyphicon-dashboard':item.returnStatus === '0'}" style="position: absolute;right: 10%;top:50%;"></i>
                                     <span class="pull-left fontWeight"> <i
                                         class="glyphicon glyphicon-signal"></i> 还款期数：</span><span
-                                        class="ng-binding pull-left">第 {{item.companyName}} 期</span></li>
+                                        class="ng-binding pull-left">第 {{item.currentPeriod || '-'}} 期</span></li>
                                 <li><span class="pull-left fontWeight"> <i
                                         class="glyphicon glyphicon-check"></i> 应还日期：</span><span
-                                        class="ng-binding pull-left">{{item.orderTime}}</span></li>
+                                        class="ng-binding pull-left">{{item.returnDate | date:'yyyy-MM-dd HH:mm:ss' || '-' }}</span></li>
                                 <li><span class="pull-left fontWeight"> <i
                                         class="glyphicon glyphicon-yen"></i> 应还总额：</span><span
-                                        class="ng-binding pull-left">{{item.sendMoney}} 元</span></li>
-                                <li ng-if="item.state === '1'"><span class="pull-left fontWeight"> <i
-                                        class="glyphicon glyphicon-record"></i> 还款时间：</span><span
-                                        class="ng-binding pull-left">{{item.orderTime}}</span></li>
+                                        class="ng-binding pull-left">{{(item.principalAmount + item.interestAmount + item.overdueAmount).toFixed(2) || '-'}} 元</span></li>
+                                <li ng-if="item.returnStatus === '1'"><span class="pull-left fontWeight"> <i
+                                        class="glyphicon glyphicon-record"></i> 还款日期：</span><span
+                                        class="ng-binding pull-left">{{item.returnDateAc | date:'yyyy-MM-dd HH:mm:ss' || '-' }}</span></li>
                             </ul>
                         </div>
                     </div>
