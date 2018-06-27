@@ -22,16 +22,25 @@
                 })
             }
 
-            function goDetail() {
+
+
+            function goDetail(num) {
                 $('body').loading({
                     title: '请稍等',
                     name: 'test',
                     discription: '数据加载中..'
                 });
-                setTimeout(function () {
-                    $state.go('app.orderDetail',{mobile:mobile,order:order});
-                    removeLoading('test');
-                }, 1000);
+                if(num === '05'){
+                    setTimeout(function () {
+                        $state.go('app.orderDetail',{mobile:mobile,order:order});
+                        removeLoading('test');
+                    }, 1000);
+                }else {
+                    setTimeout(function () {
+                        $state.go('app.entAccount',{mobile:mobile,order:order});
+                        removeLoading('test');
+                    }, 1000);
+                }
             }
             function formatMoney(val) {
                 return val ? currencyFilter(val, '￥') : '-'
