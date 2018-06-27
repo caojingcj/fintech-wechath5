@@ -60,8 +60,8 @@
                 }
             }, function (err) {
                 console.log(err);
-                // deferred.reject(err.data.message);
-                // pop(err.data.message);
+                deferred.reject(err.data.message);
+                pop(err.data.message);
             });
             return promise
         }
