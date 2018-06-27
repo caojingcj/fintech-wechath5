@@ -9,7 +9,7 @@
             <div class="form-group loginform" style="margin-bottom: 30px;">
                 <input type="text" class="loginPass" placeholder="短信验证"  ng-model="code" style="position: relative">
                 <i class="glyphicon glyphicon-lock loginPassIcon"></i>
-                <div ng-click="getCode($event,mobile)" class="getCode" type="button">获取验证码</div>
+                <div ng-click="getCode($event,mobile)" class="getCode" type="button" style="color: #337ab7">获取验证码</div>
             </div>
             <button type="button" class="loginBtn"  ng-click="login(mobile,code)" ng-disabled="!loginForm.$valid || loginFormDisable">登 入 / 注 册</button>
         </form>
