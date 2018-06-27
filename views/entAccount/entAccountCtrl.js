@@ -36,27 +36,25 @@
             };
 
             vm.data = {
-                companyName: '',        // 商户名
-                itemName: '',           // 项目名称
-                itemCode: '',           // 项目编号
-                orderAmount: '',        // 申请金额
-                totalPeriod: '',        // 申请期数
-                companyChannelName: '', // 咨询师名称
-                companyChannelId: '',   // 咨询师编号
-                orderId: '',            // 订单编号
+                companyName: '',         // 商户名
+                itemName: '',            // 项目名称
+                itemCode: '',            // 项目编号
+                orderAmount: '',         // 申请金额
+                totalPeriod: '',         // 申请期数
+                companyChannelName: '',  // 咨询师名称
+                companyChannelId: '',    // 咨询师编号
+                orderId: '',             // 订单编号
                 companyId: '',           // 商户编号
-                companyChannelPhone: ''           // 商户编号
+                companyChannelPhone: ''  // 商户编号
             };
 
 
             function getItemName(val) {
-                console.log(val);
                 vm.data.itemCode  = val.itemCode;
                 vm.data.itemName  = val.itemName;
             }
 
             function getcompanyChannel(val) {
-                console.log(val);
                 vm.data.companyChannelName  = val.channelName;
                 vm.data.companyChannelId  = val.id;
                 vm.data.companyChannelPhone = val.channelPhone
@@ -77,7 +75,6 @@
             function seveInfo() {
                 console.log(vm.data);
                 REST.post('app/orderbaseinfo/saveProject',vm.data).then(function (res) {
-                    console.log(res);
                     if(res.code === '000000'){
                         $('body').loading({
                             title:'请稍等',
@@ -94,7 +91,6 @@
 
             function goStep() {
                 REST.post('app/orderbaseinfo/saveProject',vm.data).then(function (res) {
-                    console.log(res);
                     if(res.code === '000000'){
                         $('body').loading({
                             title:'请稍等',

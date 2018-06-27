@@ -22,8 +22,6 @@
                 })
             }
 
-
-
             function goDetail(num) {
                 $('body').loading({
                     title: '请稍等',
