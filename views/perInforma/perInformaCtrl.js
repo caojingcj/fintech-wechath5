@@ -51,16 +51,7 @@
             function seveInfo(data) {
                 REST.post('app/orderbaseinfo/saveDetailinfo',data).then(function (res) {
                     if(res.code === '000000'){
-                        $('body').loading({
-                            title:'请稍等',
-                            name:'test',
-                            discription:'数据加载中..',
-                        });
-
-                        setTimeout(function(){
                             $state.go('app.medical',{mobile:mobile,order:order});
-                            removeLoading('test');
-                        },1000);
                     }
                 })
             }

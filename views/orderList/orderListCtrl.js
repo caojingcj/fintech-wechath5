@@ -18,9 +18,7 @@
 
             function initOrderList() {
                 REST.get('app/orderbaseinfo/orderBaseinfos?').then(function (res) {
-                    console.log(res);
                     vm.data = res.data;
-                    console.log(vm.data);
                 })
             }
 
@@ -30,13 +28,11 @@
                     name: 'test',
                     discription: '数据加载中..'
                 });
-
                 setTimeout(function () {
                     $state.go('app.orderDetail',{mobile:mobile,order:order});
                     removeLoading('test');
                 }, 1000);
             }
-
             function formatMoney(val) {
                 return val ? currencyFilter(val, '￥') : '-'
             }

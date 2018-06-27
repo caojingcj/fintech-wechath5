@@ -3,15 +3,15 @@
     <div class="container-fluid" style="padding: 15px 25px;">
         <form class="m-t" name="loginForm">
             <div class="form-group loginform" style="margin-bottom: 30px;">
-                <input type="text" class="loginName" placeholder="登入手机号" ng-model="name">
+                <input type="text" class="loginName" placeholder="登入手机号" ng-model="mobile">
                 <i class="glyphicon glyphicon-user loginNameIcon"></i>
             </div>
             <div class="form-group loginform" style="margin-bottom: 30px;">
                 <input type="text" class="loginPass" placeholder="短信验证"  ng-model="code" style="position: relative">
                 <i class="glyphicon glyphicon-lock loginPassIcon"></i>
-                <button ng-click="getCode($event,name)" class="getCode">获取验证码</button>
+                <div ng-click="getCode($event,mobile)" class="getCode" type="button">获取验证码</div>
             </div>
-            <button type="button" class="loginBtn"  ng-click="login(name,code)" ng-disabled="!loginForm.$valid || loginFormDisable">登 入 / 注 册</button>
+            <button type="button" class="loginBtn"  ng-click="login(mobile,code)" ng-disabled="!loginForm.$valid || loginFormDisable">登 入 / 注 册</button>
         </form>
     </div>
 </div>

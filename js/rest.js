@@ -4,7 +4,7 @@
         var token = '';
         var userInfo = JSON.parse(sessionStorage.getItem('finTechInfo'));
         $rootScope.timeoutToast = true;
-        console.log(userInfo)
+        console.log(userInfo);
         if (userInfo !== null) {
             token = userInfo;
         } else {
@@ -37,14 +37,24 @@
         function login(url) {
             var deferred = $q.defer();
             var promise = deferred.promise;
+            $('body').loading({
+                title: '请稍等',
+                name: 'test1',
+                discription: '加载中'
+            });
             $http.get(RS.ip + url ).then(function (res) {
                 if (res.data.code === '000000') {
+                    setTimeout(function () {
+                        removeLoading('test1');
+                    }, 2000);
                     token = res.data.data;
                     sessionStorage.setItem('finTechInfo', JSON.stringify(res.data.data));
                     deferred.resolve(res.data);
                 } else {
+                    setTimeout(function () {
+                        removeLoading('test1');
+                    }, 2000);
                     deferred.reject(res.data.message);
-                    console.log(res.data.message)
                     pop(res.data.message);
                     // console.error(RS.ip + url + '&callback=JSON_CALLBACK', res.data.data);
                 }
@@ -55,22 +65,35 @@
             return promise
         }
 
-        function get (url, params, _noPop) {
+        function get (url, params) {
             var deferred = $q.defer();
             var promise = deferred.promise;
+            $('body').loading({
+                title: '请稍等',
+                name: 'test1',
+                discription: '加载中'
+            });
             $http.get(RS.ip + url + '&token=' + token, {
                 timeout: 1000 * 30,
                 params: params
             }).then(function (res) {
                 if (res.data.code === '000000') {
                     deferred.resolve(res.data);
-                    // console.log(RS.ip + url + token, res.data);
+                    setTimeout(function () {
+                        removeLoading('test1');
+                    }, 2000);
                 }
                 else {
+                    setTimeout(function () {
+                        removeLoading('test1');
+                    }, 2000);
                     deferred.reject(res.data.message);
                     pop(res.data.message);
                 }
             }, function (err) {
+                setTimeout(function () {
+                    removeLoading('test1');
+                }, 2000);
                 deferred.reject(err);
                 if (err.status === -1) {
                     pop('error', null, '未找到服务器！', 3000);
@@ -86,16 +109,30 @@
             var deferred = $q.defer();
             var promise = deferred.promise;
             data.token = token;
+            $('body').loading({
+                title: '请稍等',
+                name: 'test1',
+                discription: '加载中'
+            });
             $http.post(RS.ip + url , data).then(function (res) {
                 if (res.data.code === '000000') {
+                    setTimeout(function () {
+                        removeLoading('test1');
+                    }, 2000);
                     deferred.resolve(res.data);
                     // console.log(RS.ip + url + '&token=' + token, res.data)
                 } else {
+                    setTimeout(function () {
+                        removeLoading('test1');
+                    }, 2000);
                     deferred.reject(res.data.message);
                     pop( res.data.message);
                     // console.error(RS.ip + url + '&token=' + token, res.data)
                 }
             }, function (err) {
+                setTimeout(function () {
+                    removeLoading('test1');
+                }, 2000);
                 deferred.reject(err);
                 console.log(err);
                 pop('通讯错误');

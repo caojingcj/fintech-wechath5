@@ -22,31 +22,10 @@
             };
             function nextStep() {
                 REST.post('app/orderbaseinfo/saveIdentity',vm.data).then(function (res) {
-                    console.log(res);
-                    $('body').loading({
-                        title:'请稍等',
-                        name:'test',
-                        discription:'数据加载中..'
-                    });
-
-                    setTimeout(function(){
-                        $state.go('app.home',{mobile:mobile,order:order});
-                        removeLoading('test');
-                    },1000);
+                    $state.go('app.home',{mobile:mobile,order:order});
                 },function (res) {
-                    console.log('err:' + res);
-                    $('body').loading({
-                        title:'请稍等',
-                        name:'test',
-                        discription:'数据加载中..'
-                    });
-
-                    setTimeout(function(){
                         $state.go('app.home',{mobile:mobile,order:order});
-                        removeLoading('test');
-                    },1000);
                 });
-
             }
         }])
 })();

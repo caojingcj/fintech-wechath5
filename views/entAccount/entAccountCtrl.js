@@ -11,7 +11,8 @@
             vm.handle = {
                 goStep: goStep,
                 getItemName:getItemName,
-                getcompanyChannel:getcompanyChannel
+                getcompanyChannel:getcompanyChannel,
+                seveInfo:seveInfo
             };
 
             vm.initArry = {
@@ -73,8 +74,25 @@
                 })
             }
 
-            function goStep() {
+            function seveInfo() {
                 console.log(vm.data);
+                REST.post('app/orderbaseinfo/saveProject',vm.data).then(function (res) {
+                    console.log(res);
+                    if(res.code === '000000'){
+                        $('body').loading({
+                            title:'请稍等',
+                            name:'test',
+                            discription:'数据加载中..'
+                        });
+                        setTimeout(function(){
+                            $state.go('app.createAccount',{mobile:mobile,order:vm.data.orderId});
+                            removeLoading('test');
+                        },1000);
+                    }
+                });
+            }
+
+            function goStep() {
                 REST.post('app/orderbaseinfo/saveProject',vm.data).then(function (res) {
                     console.log(res);
                     if(res.code === '000000'){

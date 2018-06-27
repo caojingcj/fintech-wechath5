@@ -127,6 +127,7 @@
 
 .has-error .w5c-error {
     margin-top: 10px !important;
+    margin-left: 10px;
 }
 
 .ul-list > li > span + span {
@@ -174,12 +175,13 @@
 
 .getCode {
     position: absolute;
-    top: 10px;
+    top: 8px;
     right: 10px;
     border: 0;
     background: none;
     padding: 5px;
     font-size: 12px;
+    display: inline-block;
 }
 
 input, select {

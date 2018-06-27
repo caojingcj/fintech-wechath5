@@ -44,16 +44,7 @@
             function nextStep() {
                 REST.get('/app/orderbaseinfo/remoteSignCaOrder?orderId=' + order).then(function (res) {
                     if(res.code === '000000'){
-                        $('body').loading({
-                            title:'请稍等',
-                            name:'test',
-                            discription:'正在签署协议..'
-                        });
-
-                        setTimeout(function(){
                             $state.go('app.orderList',{mobile:mobile,order:order});
-                            removeLoading('test');
-                        },1500);
                     }
                 });
             }
