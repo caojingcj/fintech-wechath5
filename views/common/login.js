@@ -5,6 +5,14 @@
         var clock = '';
         var second = 60;
         var btn;
+        var token = JSON.parse(sessionStorage.getItem('finTechInfo'));
+
+        console.log(token);
+
+        verificationIdentity();
+        function verificationIdentity() {
+            // $state.go('app.entAccount',{data:mob});
+        }
 
         function doLoop() {
             second--;

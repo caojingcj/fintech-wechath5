@@ -9,21 +9,6 @@
             var mobile = REST.sessionParam('mobile', $stateParams.mobile === "" ? null : $stateParams.mobile);
             var order = REST.sessionParam('order', $stateParams.order === "" ? null : $stateParams.order);
             var token = JSON.parse(sessionStorage.getItem('finTechInfo'));
-            $("input[type=file].morePic").fileinput({ //这里的id是input标签的id
-                allowedFileExtensions: ['jpeg', 'jpg', 'png', 'rar', 'zip', 'pdf'], // 允许的文件类型
-                overwriteInitial: false,
-                showPreview: false, //是否显示预览,不写默认为true
-                showCaption: true, //是否显示标题
-                language: 'zh', //设置语言
-                maxFileSize: 0, //文件的最大大小 5000KB=5兆
-                maxFilesNum: 20, //最多文件数量
-                autoReplace: false,
-                showUpload: false, //是否显示上传按钮
-                enctype: 'multipart/form-data',
-                slugCallback: function (filename) {
-                    return filename.replace('(', '_').replace(']', '_');
-                }
-            });
             var vm = this;
             vm.handle = {
                 goStep: goStep,
@@ -56,7 +41,7 @@
                     allowOutsideClick: false,
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
-                    width: '400px'
+                    width: '300px'
                 }).then(function (file) {
                     var formData = new FormData();
                     formData.append("orderId", order);
@@ -117,7 +102,7 @@
                         removeLoading('test');
                     }, 1000);
                 }else {
-                    REST.pop('错误');
+                    REST.pop('请上传附件');
                 }
 
             }

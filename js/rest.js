@@ -5,10 +5,11 @@
         var userInfo = JSON.parse(sessionStorage.getItem('finTechInfo'));
         $rootScope.timeoutToast = true;
         console.log(userInfo);
+
         if (userInfo !== null) {
             token = userInfo;
         } else {
-            // logout();
+            logout();
         }
 
         function sessionParam (key, val) {
