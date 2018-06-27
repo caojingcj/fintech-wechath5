@@ -59,8 +59,9 @@
                     // console.error(RS.ip + url + '&callback=JSON_CALLBACK', res.data.data);
                 }
             }, function (err) {
-                deferred.reject(err.data.message);
-                pop(err.data.message);
+                console.log(err);
+                // deferred.reject(err.data.message);
+                // pop(err.data.message);
             });
             return promise
         }
