@@ -36,7 +36,6 @@
                     btn.innerHTML = second + '秒后可重新获取';
                     clock = setInterval(doLoop, 1000);
                 }, function (res) {
-                    REST.pop(res.message);
                     clearInterval(clock);
                     btn.disabled = false;
                     btn.innerHTML = '获取验证码';
@@ -48,19 +47,23 @@
            }
         };
         $scope.login = function (mob, cod) {
-            if(!mob){
-                REST.pop('请输入手机号');
-            }else if(!cod){
-                REST.pop('请输入验证码');
-            }else if(!mob && !cod){
-                REST.pop('请输入信息');
-            }else {
 
-                REST.login('app/appLogin/appLoginVerification?mobile=' + mob + '&code=' + cod).then(function (res) {
-                    $state.go('app.entAccount',{data:mob});
-
-                })
-            }
+            $http.get('http://www.duodingfen.com/fintech-app/wxServlet').then(function (value) {
+                alert(value)
+            })
+            // if(!mob){
+            //     REST.pop('请输入手机号');
+            // }else if(!cod){
+            //     REST.pop('请输入验证码');
+            // }else if(!mob && !cod){
+            //     REST.pop('请输入信息');
+            // }else {
+            //
+            //     REST.login('app/appLogin/appLoginVerification?mobile=' + mob + '&code=' + cod).then(function (res) {
+            //         $state.go('app.entAccount',{data:mob});
+            //
+            //     })
+            // }
         };
     }])
 })();

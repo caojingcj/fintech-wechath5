@@ -60,9 +60,16 @@
                     // console.error(RS.ip + url + '&callback=JSON_CALLBACK', res.data.data);
                 }
             }, function (err) {
-                console.log(err);
-                deferred.reject(err.data.message);
-                pop(err.data.message);
+                console.log(err)
+                setTimeout(function () {
+                    removeLoading('test1');
+                }, 2000);
+                deferred.reject(err);
+                if (err.status === -1) {
+                    pop( '未找到服务器！');
+                } else if (err.status === 404) {
+                    pop('网络异常，请检查您的网络连接并重试！');
+                }
             });
             return promise
         }
