@@ -1,19 +1,12 @@
 (function () {
     'use strict';
 
-    app.controller('loginCtrl', ['$rootScope', '$scope', '$state', '$http', 'REST', function ($rootScope, $scope, $state, $http, REST) {
+    app.controller('loginCtrl', ['$window', '$rootScope', '$scope', '$state', '$http', 'REST', 'RS','$stateParams', function ($window, $rootScope, $scope, $state, $http, REST, RS,$stateParams) {
         var clock = '';
         var second = 60;
         var btn;
-        var token = JSON.parse(sessionStorage.getItem('finTechInfo'));
-
-        console.log(token);
-
-        verificationIdentity();
-        function verificationIdentity() {
-            // $state.go('app.entAccount',{data:mob});
-        }
-
+        // var token = JSON.parse(sessionStorage.getItem('finTechInfo'));
+        var openId = $stateParams.openId;
         function doLoop() {
             second--;
             if (second > 0) {
@@ -28,10 +21,10 @@
 
         $scope.getCode = function (ev, mobile) {
             btn = ev.target;
-            if(!mobile){
-               REST.pop('请输入手机号');
-           }else {
-                REST.login('app/appLogin/appLogin?mobile=' + mobile).then(function (res) {
+            if (!mobile) {
+                REST.pop('请输入手机号');
+            } else {
+                REST.login('app/appLogin/appLogin?mobile=' + mobile + '&openId=' + openId).then(function (res) {
                     btn.disabled = true;
                     btn.innerHTML = second + '秒后可重新获取';
                     clock = setInterval(doLoop, 1000);
@@ -44,26 +37,21 @@
                         removeLoading('test1');
                     }, 2000);
                 })
-           }
+            }
         };
         $scope.login = function (mob, cod) {
+            if (!mob) {
+                REST.pop('请输入手机号');
+            } else if (!cod) {
+                REST.pop('请输入验证码');
+            } else if (!mob && !cod) {
+                REST.pop('请输入信息');
+            } else {
 
-            $http.get('http://www.duodingfen.com/fintech-app/wxServlet').then(function (value) {
-                alert(value)
-            })
-            // if(!mob){
-            //     REST.pop('请输入手机号');
-            // }else if(!cod){
-            //     REST.pop('请输入验证码');
-            // }else if(!mob && !cod){
-            //     REST.pop('请输入信息');
-            // }else {
-            //
-            //     REST.login('app/appLogin/appLoginVerification?mobile=' + mob + '&code=' + cod).then(function (res) {
-            //         $state.go('app.entAccount',{data:mob});
-            //
-            //     })
-            // }
+                REST.login('app/appLogin/appLoginVerification?mobile=' + mob + '&code=' + cod + '&openId=' + openId).then(function (res) {
+                    $state.go('app.entAccount', {mobile: mob});
+                })
+            }
         };
     }])
 })();

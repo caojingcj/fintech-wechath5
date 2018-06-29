@@ -24,7 +24,7 @@
         app.controllerProvider = $controllerProvider;
 
         // $urlRouterProvider.otherwise("app/entAccount");    // 商户系统进注册页面
-        $urlRouterProvider.otherwise("/login");    // 商户系统进注册页面
+        // $urlRouterProvider.otherwise("/waiting");    // 商户系统进注册页面
 
         $ocLazyLoadProvider.config({
             debug: 0
@@ -38,9 +38,22 @@
                 templateUrl: "views/common/login.html",
                 controller: 'loginCtrl',
                 data: {pageTitle: '登录', specialClass: 'gray-bg'},
+                params: {openId:''},
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load('views/common/login.js')
+                    }]
+                }
+            })
+
+            .state('waiting', {
+                url: "/waiting",
+                templateUrl: "views/common/waiting.html",
+                controller: 'waitingCtrl',
+                data: {pageTitle: '等待中', specialClass: 'gray-bg'},
+                resolve: {
+                    deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load('views/common/waiting.js')
                     }]
                 }
             })
@@ -68,7 +81,7 @@
             .state('app.entAccount', {
                 url: "/entAccount",
                 templateUrl: "views/entAccount/entAccount.html",
-                params: {data:''},
+                params: {mobile:''},
                 data: {pageTitle: '项目信息填写'},
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -135,7 +148,7 @@
                 url: "/orderList",
                 templateUrl: "views/orderList/orderList.html",
                 data: {pageTitle: '订单列表'},
-                params: {mobile:'',order:''},
+                params: {mobile:'',order:'',openId:''},
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load('views/orderList/orderListCtrl.js')
@@ -161,6 +174,7 @@
                 url: "/return",
                 templateUrl: "views/return/return.html",
                 data: {pageTitle: '我要还款'},
+                params: {openId:''},
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load('views/return/returnCtrl.js')

@@ -8,6 +8,8 @@
         .controller('orderListCtrl', ['REST', '$timeout', '$state', '$scope', '$stateParams', 'currencyFilter',function (REST, $timeout, $state, $scope, $stateParams,currencyFilter) {
             var mobile = REST.sessionParam('mobile', $stateParams.mobile === "" ? null : $stateParams.mobile);
             var order = REST.sessionParam('order', $stateParams.order === "" ? null : $stateParams.order);
+            var openId = REST.sessionParam('openId', $stateParams.openId === "" ? null : $stateParams.openId);
+
             var vm = this;
             vm.handle = {
                 goDetail: goDetail,

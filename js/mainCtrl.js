@@ -7,7 +7,7 @@
   }]);
   app.controller('mainCtrl2', ['$rootScope', '$scope', '$state', 'REST', function ($rootScope, $scope, $state, REST) {
     $scope.state = $state;
-    $scope.user = JSON.parse(sessionStorage.getItem('finTechInfo'));
+//  $scope.user = JSON.parse(sessionStorage.getItem('finTechInfo'));
     $scope.$on('$stateChangeSuccess', function () {
       $("#page-wrapper")[0].style.minHeight = $(window).innerHeight() + 'px';
       if ($scope.isSmart) {

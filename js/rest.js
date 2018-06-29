@@ -2,14 +2,14 @@
     app.service('REST', ['$rootScope', '$http', '$q', '$state', 'toaster', 'RS', '$timeout', function ($rootScope, $http, $q, $state, toaster, RS, $timeout) {
 
         var token = '';
-        var userInfo = JSON.parse(sessionStorage.getItem('finTechInfo'));
+        console.log(sessionStorage.getItem('finTechInfo'))
+        var userInfo = sessionStorage.getItem('finTechInfo');
         $rootScope.timeoutToast = true;
-        console.log(userInfo);
 
         if (userInfo !== null) {
             token = userInfo;
         } else {
-            logout();
+            // logout();
         }
 
         function sessionParam (key, val) {
@@ -30,7 +30,7 @@
         function logout() {
             token = '';
             userInfo = {};
-            $state.go('login');
+            $state.go('waiting');
             $rootScope.finTechInfo = null;
             sessionStorage.clear();
         }
@@ -49,8 +49,10 @@
                         removeLoading('test1');
                     }, 2000);
                     token = res.data.data;
-                    sessionStorage.setItem('finTechInfo', JSON.stringify(res.data.data));
                     deferred.resolve(res.data);
+                    console.log(res.data.data);
+                    sessionStorage.setItem('finTechInfo',res.data.data);
+
                 } else {
                     setTimeout(function () {
                         removeLoading('test1');

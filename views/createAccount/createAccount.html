@@ -9,63 +9,70 @@
                     </div>
                     <div class="ibox-content">
                         <div class="activity-stream">
-                            <div class="well text-center" style="margin-bottom: 0;padding: 15px 0;">
-                                <i class="glyphicon glyphicon-camera upPic"
-                                   ng-click="cre.handle.uploadPhotos('app/orderbaseinfo/saveIdentityPositive','上传身份证正面',1)"
-                                   ng-if="!cre.facadeIdCard"></i>
-                                <a href="{{cre.facadeIdCard}}" title="身份证正面" data-gallery ng-if="cre.facadeIdCard">
-                                    <img bn-lazy-src="{{cre.facadeIdCard}}" class="img-responsive"
-                                         style="height: 220px;width: 100%">
-                                </a>
+                            <div class="form-group">
+                                <div class="col-sm-12 col-xs-12 ">
+                                    <input type="text" name="companyName" ng-model="ent.data.companyName"
+                                           style="" placeholder="身份证正面" disabled>
+                                    <button class="ent.handle.upLoadPic()">上传</button>
+                                </div>
                             </div>
-                            <ul class="ul-list" style="margin-bottom: 0">
-                                <li><span> <i class="fa fa-fw fa-user"></i> 姓名</span><span class="ng-binding">{{cre.facadeIdCardInfo.custRealname}}</span>
-                                </li>
-                                <li><span> <i class="fa fa-fw fa-vcard"></i> 身份证</span><span class="ng-binding">{{cre.facadeIdCardInfo.custIdCardNo}}</span>
-                                </li>
-                                <li><span> <i class="fa fa-fw fa-child"></i> 名族</span><span class="ng-binding">{{cre.facadeIdCardInfo.custNation}}</span>
-                                </li>
-                                <li><span> <i class="fa fa-fw fa-mobile"></i> 住址</span><span class="ng-binding">{{cre.facadeIdCardInfo.custAddress}}</span>
-                                </li>
-                            </ul>
+                            <!--<div class="well text-center" style="margin-bottom: 0;padding: 15px 0;">-->
+                            <!--<i class="glyphicon glyphicon-camera upPic"-->
+                            <!--ng-click="cre.handle.uploadPhotos('app/orderbaseinfo/saveIdentityPositive','上传身份证正面',1)"-->
+                            <!--ng-if="!cre.facadeIdCard"></i>-->
+                            <!--<a href="{{cre.facadeIdCard}}" title="身份证正面" data-gallery ng-if="cre.facadeIdCard">-->
+                            <!--<img bn-lazy-src="{{cre.facadeIdCard}}" class="img-responsive"-->
+                            <!--style="height: 220px;width: 100%">-->
+                            <!--</a>-->
                         </div>
+                        <ul class="ul-list" style="margin-bottom: 0">
+                            <li><span> <i class="fa fa-fw fa-user"></i> 姓名</span><span class="ng-binding">{{cre.facadeIdCardInfo.custRealname}}</span>
+                            </li>
+                            <li><span> <i class="fa fa-fw fa-vcard"></i> 身份证</span><span class="ng-binding">{{cre.facadeIdCardInfo.custIdCardNo}}</span>
+                            </li>
+                            <li><span> <i class="fa fa-fw fa-child"></i> 名族</span><span class="ng-binding">{{cre.facadeIdCardInfo.custNation}}</span>
+                            </li>
+                            <li><span> <i class="fa fa-fw fa-mobile"></i> 住址</span><span class="ng-binding">{{cre.facadeIdCardInfo.custAddress}}</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
+            </div>
 
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>身份证（反面）</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <div class="activity-stream">
-                            <div class="well text-center" style="margin-bottom: 0;padding: 15px 0;">
-                                <i class="glyphicon glyphicon-camera upPic"
-                                   ng-click="cre.handle.uploadPhotos('app/orderbaseinfo/saveIdentitySide','上传身份反面',2)"
-                                   ng-if="!cre.identityCard"></i>
-                                <a href="{{cre.identityCard}}" title="身份证正面" data-gallery ng-if="cre.identityCard">
-                                    <img bn-lazy-src="{{cre.identityCard}}" class="img-responsive"
-                                         style="height: 220px;width: 100%">
-                                </a>
-                            </div>
-                            <ul class="ul-list" style="margin-bottom: 0">
-                                <li><span> <i class="fa fa-fw fa-mobile"></i> 有效期开始</span><span class="ng-binding">{{cre.custIdCardValtime.custIdCardValBegin | date:'yyyy-MM-dd'}}</span>
-                                </li>
-                                <li><span> <i class="fa fa-fw fa-mobile"></i> 有效期结束</span><span class="ng-binding">{{cre.custIdCardValtime.custIdCardValEnd | date:'yyyy-MM-dd'}}</span>
-                                </li>
-                            </ul>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>身份证（反面）</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="activity-stream">
+                        <div class="well text-center" style="margin-bottom: 0;padding: 15px 0;">
+                            <i class="glyphicon glyphicon-camera upPic"
+                               ng-click="cre.handle.uploadPhotos('app/orderbaseinfo/saveIdentitySide','上传身份反面',2)"
+                               ng-if="!cre.identityCard"></i>
+                            <a href="{{cre.identityCard}}" title="身份证正面" data-gallery ng-if="cre.identityCard">
+                                <img bn-lazy-src="{{cre.identityCard}}" class="img-responsive"
+                                     style="height: 220px;width: 100%">
+                            </a>
                         </div>
+                        <ul class="ul-list" style="margin-bottom: 0">
+                            <li><span> <i class="fa fa-fw fa-mobile"></i> 有效期开始</span><span class="ng-binding">{{cre.custIdCardValtime.custIdCardValBegin | date:'yyyy-MM-dd'}}</span>
+                            </li>
+                            <li><span> <i class="fa fa-fw fa-mobile"></i> 有效期结束</span><span class="ng-binding">{{cre.custIdCardValtime.custIdCardValEnd | date:'yyyy-MM-dd'}}</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-
             </div>
 
-            <div class="col-xs-12 col-sm-12 text-center" style="margin-bottom: 25px;">
-                <button type="submit" class="loginBtn" href="#licInfo" style="padding: 8px 25px;"
-                        ng-click="cre.handle.nextStep()">
-                    <i class="fa fa-arrow-right"></i>&nbsp;下一步
-                </button>
-            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 text-center" style="margin-bottom: 25px;">
+            <button type="submit" class="loginBtn" href="#licInfo" style="padding: 8px 25px;"
+                    ng-click="cre.handle.nextStep()">
+                <i class="fa fa-arrow-right"></i>&nbsp;下一步
+            </button>
         </div>
     </div>
+</div>
 </div>
 
