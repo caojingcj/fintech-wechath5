@@ -7,33 +7,57 @@
     app
         .controller('createAccountCtrl', ['REST', '$timeout', '$state', '$scope', '$stateParams', 'RS', function (REST, $timeout, $state, $scope, $stateParams, RS) {
             var vm = this;
-            $("input[type=file].voucher").fileinput({ //这里的id是input标签的id
-                allowedFileExtensions: ['jpg', 'png'], // 允许的文件类型
-                overwriteInitial: false,
-                showPreview: false, //是否显示预览,不写默认为true
-                showCaption: true, //是否显示标题
-                language: 'zh', //设置语言
-                maxFileSize: 5000, //文件的最大大小 5000KB=5兆
-                maxFilesNum: 20, //最多文件数量
-                autoReplace: false,
-                showUpload: true, //是否显示上传按钮
-                enctype: 'multipart/form-data',
-                slugCallback: function (filename) {
-                    return filename.replace('(', '_').replace(']', '_');
-                }
-            });
             var token = sessionStorage.getItem('finTechInfo') == undefined ? REST.sessionParam('token', $stateParams.token == "" ? '' : $stateParams.token) : sessionStorage.getItem('finTechInfo');
             var orderId = sessionStorage.getItem('orderId') == undefined ? REST.sessionParam('orderId', $stateParams.orderId == "" ? '' : $stateParams.orderId) : sessionStorage.getItem('orderId');
             var mobile = sessionStorage.getItem('mobile') == undefined ? REST.sessionParam('mobile', $stateParams.mobile == "" ? '' : $stateParams.mobile) : sessionStorage.getItem('mobile');
-            // alert('token==' + token);
-            // alert('orderId==' + orderId);
-            // alert('mobile==' + mobile);
             vm.handle = {
                 nextStep: nextStep,
-                uploadPhotos: uploadPhotos,
-                uploadPhotosfan: uploadPhotosfan
+                uploadPhotos: uploadPhotos
             };
+            REST.get('app/weixin/wxJSSignature?token=' + token).then(function (value) {
+                vm.data = value.data;
+                console.log("请求微信配置返回数据：", vm.data);
+                wx.config({
+                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: vm.data.appId, // 必填，公众号的唯一标识
+                    timestamp: vm.data.timestamp, // 必填，生成签名的时间戳
+                    nonceStr: vm.data.noncestr, // 必填，生成签名的随机串
+                    signature: vm.data.signature,// 必填，签名，见附录1
+                    jsApiList: [
+                        'chooseImage',
+                        'previewImage',
+                        'uploadImage',
+                        'translateVoice',
+                        'downloadImage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
 
+                wx.ready(function (res) {
+                    // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+                    //验证客户端是否支持js接口
+                    wx.checkJsApi({
+                        jsApiList: [
+                            'chooseImage',
+                            'previewImage',
+                            'uploadImage',
+                            'downloadImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+                        success: function (res) {
+                            console.log("checked api: ", res);
+                        },
+                        fail: function (res) {
+
+                            console.log("check api fail: ", res)
+
+                        }
+                    });
+                });
+                wx.error(function (res) {
+
+                    console.log("Weixin jsdk error", res);
+                    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+                });
+            });
+
+            // });
             vm.facadeIdCard = '';  						//zheng   finTechInfo-openId
             vm.identityCard = '';   					//fan
 
@@ -45,183 +69,67 @@
             };
             vm.wxConfig = {};
 
-
-            //zheng
-            function uploadPhotos(url, tit, num) {
-                alert(RS.ip);
-                var template =
-                    '<p class="text-danger">请务必确保照片清晰度和真实性</p>' +
-                    '      <form enctype="multipart/form-data" method="POST">' +
-                    '           <div style="padding:0 20px;">' +
-                    '                <input name="file2" class="voucher" type="file" id="voucherg" data-min-file-count="1" accept="image/*">' +
-                    '           </div>' +
-                    '      </form>';
-                swal({
-                    title: tit,
-                    html: template,
-                    preConfirm: function () {
-                        return new Promise(function (resolve, reject) {
-                            if ($('#voucherg')[0].value === '') {
-                                reject('您还未选择文件！');
-                                setTimeout(function () {
-                                    removeLoading('test1');
-                                }, 2000);
-                            } else {
-                                resolve()
-                            }
-                        })
+            function uploadPhotos(url, num) {
+                wx.chooseImage({
+                    count: 1, // 默认9
+                    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                    success: function (res) {
+                        var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                        console.log('localIds的值是' + localIds);
+                        uploadImage(localIds, url, num);
                     },
-                    showCancelButton: true,
-                    allowOutsideClick: false,
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    width: '300px'
-                }).then(function (file) {
-                    $('body').loading({
-                        title: '请稍等',
-                        name: 'test1',
-                        discription: '加载中'
-                    });
-                    var formData = new FormData();
-                    formData.append("orderId", orderId);
-                    formData.append("token", token);
-                    $(".voucher").each(function () {
-                        if (this.files.length > 0) {
-                            for (var i = 0; i < this.files.length; i++) {
-                                formData.append("file", this.files[i]);
-                            }
-                        }
-                    });
-                    $.ajax({
-                        crossDomain: true,
-                        type: "post",
-                        url: RS.ip + url,
-                        async: false,
-                        contentType: false, //这个一定要写
-                        processData: false, //这个也一定要写，不然会报错
-                        data: formData,
-                        dataType: 'text',
-                        success: function (data) {
-                            REST.pop(JSON.parse(data).message);
-                            if (JSON.parse(data).code === '000000') {
-                                vm.facadeIdCardInfo = JSON.parse(data).data;
-                                vm.facadeIdCard = JSON.parse(data).data.custIdCardFront;
-                                vm.facadeIdCardFlag = true;
-                            }
-                            setTimeout(function () {
-                                removeLoading('test1');
-                            }, 2000);
-                        }
-                    });
-                }, function () {
-                });
-                $("input[type=file].voucher").fileinput({ //这里的id是input标签的id
-                    allowedFileExtensions: ['jpg', 'png'], // 允许的文件类型
-                    overwriteInitial: false,
-                    showPreview: false, //是否显示预览,不写默认为true
-                    showCaption: true, //是否显示标题
-                    language: 'zh', //设置语言
-                    maxFileSize: 5000, //文件的最大大小 5000KB=5兆
-                    maxFilesNum: 20, //最多文件数量
-                    autoReplace: false,
-                    showUpload: false, //是否显示上传按钮
-                    enctype: 'multipart/form-data',
-                    slugCallback: function (filename) {
-                        return filename.replace('(', '_').replace(']', '_');
+                    fail: function () {
+                    },
+                    complete: function () {
                     }
-                })
+                });
             }
 
-            function uploadPhotosfan(url, tit, num) {
-                if (vm.facadeIdCardFlag) {
-                    var template =
-                        '<p class="text-danger">请务必确保照片清晰度和真实性</p>' +
-                        '      <form enctype="multipart/form-data" method="POST">' +
-                        '           <div style="padding:0 20px;">' +
-                        '                <input name="file1" class="voucherf" type="file" id="voucher" data-min-file-count="1">' +
-                        '           </div>' +
-                        '      </form>';
-                    swal({
-                        title: tit,
-                        html: template,
-                        preConfirm: function () {
-                            return new Promise(function (resolve, reject) {
-                                if ($('#voucher')[0].value === '') {
-                                    reject('您还未选择文件！');
-                                    setTimeout(function () {
-                                        removeLoading('test1');
-                                    }, 2000);
-                                } else {
-                                    resolve()
-                                }
-                            })
-                        },
-                        showCancelButton: true,
-                        allowOutsideClick: false,
-                        confirmButtonText: '确定',
-                        cancelButtonText: '取消',
-                        width: '300px'
-                    }).then(function (file) {
-                        // $('body').loading({
-                        //     title: '请稍等',
-                        //     name: 'test1',
-                        //     discription: '加载中'
-                        // });
-                        var formData = new FormData();
-                        formData.append("orderId", orderId);
-                        formData.append("token", token);
-                        $(".voucherf").each(function () {
-                            if (this.files.length > 0) {
-                                for (var i = 0; i < this.files.length; i++) {
-                                    formData.append("file", this.files[i]);
-                                }
-                            }
-                        });
+            function uploadImage(localIds, url, num) {
+                wx.uploadImage({
+                    localId: localIds[0], 					// 需要上传的图片的本地ID，由chooseImage接口获得
+                    isShowProgressTips: 1, 					// 默认为1，显示进度提示
+                    success: function (res) {
+                        var serverId = res.serverId; 		// 返回图片的服务器端ID
+                        console.log('serverId的值是' + serverId);
                         $.ajax({
                             crossDomain: true,
                             type: "post",
                             url: RS.ip + url,
                             async: false,
-                            contentType: false, //这个一定要写
-                            processData: false, //这个也一定要写，不然会报错
-                            data: formData,
+                            contentType: false, 				//这个一定要写
+                            processData: false, 				//这个也一定要写，不然会报错
+                            data: {
+                                serverId: serverI,
+                                token: token
+                            },
                             dataType: 'text',
                             success: function (data) {
-                                REST.pop(JSON.parse(data).message);
-                                if (JSON.parse(data).code === '000000') {
-                                    vm.custIdCardValtime = JSON.parse(data).data;
-                                    vm.identityCard = JSON.parse(data).data.custIdCardBack;
-                                    vm.identityCardFlag = true;
+                                REST.pop('上传成功');
+                                if (num === 1) {
+                                    vm.facadeIdCardFlag = true;  				//控制正面已经上传
+                                } else {
+                                    vm.identityCardFlag = true;  				//控制饭面已经上传
                                 }
+                                // REST.pop(JSON.parse(data).message);
+                                // if (JSON.parse(data).code === '000000') {
+                                //     vm.facadeIdCardInfo = JSON.parse(data).data;
+                                //     vm.facadeIdCard = JSON.parse(data).data.custIdCardFront;
+                                //     vm.facadeIdCardFlag = true;
+                                // }
                                 setTimeout(function () {
                                     removeLoading('test1');
                                 }, 2000);
                             }
                         });
-                    }, function () {
-                    });
-                    $("input[type=file].voucherf").fileinput({ //这里的id是input标签的id
-                        allowedFileExtensions: ['jpg', 'png'], // 允许的文件类型
-                        overwriteInitial: false,
-                        showPreview: false, //是否显示预览,不写默认为true
-                        showCaption: true, //是否显示标题
-                        language: 'zh', //设置语言
-                        maxFileSize: 5000, //文件的最大大小 5000KB=5兆
-                        maxFilesNum: 20, //最多文件数量
-                        autoReplace: false,
-                        showUpload: false, //是否显示上传按钮
-                        enctype: 'multipart/form-data',
-                        slugCallback: function (filename) {
-                            return filename.replace('(', '_').replace(']', '_');
-                        }
-                    })
-                } else {
-                    REST.pop('请务必先上传身份证正面')
-                }
-
+                    }
+                });
             }
 
             function nextStep() {
+                alert(vm.facadeIdCardFlag);
+                alert(vm.identityCardFlag);
                 if (vm.facadeIdCardFlag && vm.identityCardFlag) {
                     $('body').loading({
                         title: '请稍等',

@@ -9,23 +9,9 @@
                     </div>
                     <div class="ibox-content">
                         <div class="activity-stream">
-                            <!--<div class="form-group">-->
-                            <!--<div class="col-sm-12 col-xs-12 " style="padding: 0;">-->
-                            <!--&lt;!&ndash;<input type="text" name="companyName" ng-model="ent.data.companyName"&ndash;&gt;-->
-                            <!--&lt;!&ndash;style="" placeholder="身份证正面" style="position: relative;">&ndash;&gt;-->
-                            <!--<input name="file1" class="voucher" type="file" id="voucher upfile" data-min-file-count="1">-->
-                            <!--</div>-->
-                            <!--<div class="upload" ng-click="cre.handle.openCamera()" style="position: absolute!important;top:28%;right: 15%;color: #337ab7;">上传</div>-->
-                            <!--</div>-->
                             <div class="well text-center" style="margin-bottom: 0;padding: 15px 0;">
                                 <i class="glyphicon glyphicon-camera upPic"
-                                   ng-click="cre.handle.uploadPhotos('app/orderbaseinfo/saveIdentityPositive','上传身份证正面',1)"
-                                   ng-if="!cre.facadeIdCard"></i>
-                                <!--<input name="file1" class="voucher" type="file" id="voucher upfile" data-min-file-count="1" accept="image/*;capture=camera">-->
-                                <a href="{{cre.facadeIdCard}}" title="身份证正面" data-gallery ng-if="cre.facadeIdCard">
-                                    <img bn-lazy-src="{{cre.facadeIdCard}}" class="img-responsive"
-                                         style="height: 220px;width: 100%">
-                                </a>
+                                   ng-click="cre.handle.uploadPhotos('app/orderbaseinfo/saveIdentityPositive',1)"></i>
                             </div>
                         </div>
                         <ul class="ul-list" style="margin-bottom: 0">
@@ -50,12 +36,11 @@
                     <div class="activity-stream">
                         <div class="well text-center" style="margin-bottom: 0;padding: 15px 0;">
                             <i class="glyphicon glyphicon-camera upPic"
-                               ng-click="cre.handle.uploadPhotosfan('app/orderbaseinfo/saveIdentitySide','上传身份反面')"
-                               ng-if="!cre.identityCard"></i>
-                            <a href="{{cre.identityCard}}" title="身份证正面" data-gallery ng-if="cre.identityCard">
-                                <img bn-lazy-src="{{cre.identityCard}}" class="img-responsive"
-                                     style="height: 220px;width: 100%">
-                            </a>
+                               ng-click="cre.handle.uploadPhotos('app/orderbaseinfo/saveIdentitySide',2)"></i>
+
+                            <!--<i class="glyphicon glyphicon-camera upPic"-->
+                               <!--ng-click="cre.handle.uploadPhotosfan('app/orderbaseinfo/saveIdentitySide','上传身份反面',2)"-->
+                               <!--ng-if="!cre.identityCard"></i>-->
                         </div>
                         <ul class="ul-list" style="margin-bottom: 0">
                             <li><span> <i class="fa fa-fw fa-mobile"></i> 有效期开始</span><span class="ng-binding">{{cre.custIdCardValtime.custIdCardValBegin | date:'yyyy-MM-dd'}}</span>
@@ -77,9 +62,5 @@
         </div>
     </div>
 </div>
-<script>
-    $(".upload").click(function () {
-        alert(777)
-    })
-</script>
+
 
