@@ -5,10 +5,10 @@
     'use strict';
 
     app
-        .controller('medicalCtrl', ['REST', '$timeout', '$state', '$scope', 'RS','$stateParams',function (REST, $timeout, $state, $scope,RS,$stateParams) {
-            var token = sessionStorage.getItem('finTechInfo') == undefined ? REST.sessionParam('token', $stateParams.token == "" ? '' : $stateParams.token) : sessionStorage.getItem('finTechInfo') ;
-            var orderId = sessionStorage.getItem('orderId') == undefined ? REST.sessionParam('orderId', $stateParams.orderId == "" ? '' : $stateParams.orderId) : sessionStorage.getItem('orderId') ;
-            var mobile = sessionStorage.getItem('mobile') == undefined ? REST.sessionParam('mobile', $stateParams.mobile == "" ? '' : $stateParams.mobile) : sessionStorage.getItem('mobile') ;
+        .controller('medicalCtrl', ['REST', '$timeout', '$state', '$scope', 'RS', '$stateParams', function (REST, $timeout, $state, $scope, RS, $stateParams) {
+            var token = sessionStorage.getItem('finTechInfo') == undefined ? REST.sessionParam('token', $stateParams.token == "" ? '' : $stateParams.token) : sessionStorage.getItem('finTechInfo');
+            var orderId = sessionStorage.getItem('orderId') == undefined ? REST.sessionParam('orderId', $stateParams.orderId == "" ? '' : $stateParams.orderId) : sessionStorage.getItem('orderId');
+            var mobile = sessionStorage.getItem('mobile') == undefined ? REST.sessionParam('mobile', $stateParams.mobile == "" ? '' : $stateParams.mobile) : sessionStorage.getItem('mobile');
             // alert('token=='+token);
             // alert('orderId=='+orderId);
             // alert('mobile=='+mobile);
@@ -19,82 +19,90 @@
             };
 
             vm.flag = false;
-            // vm.saveOrderAttachment = false
-            function upPic() {
-                console.log();
-                var template =
-                    '<p class="text-danger">只支持jpg、zip、png格式且单文件大小不能超过5.0M</p>' +
-                    '      <form enctype="multipart/form-data" method="POST">' +
-                    '           <div style="padding:0 20px;">' +
-                    '                <input name="file1" class="voucher" type="file" id="voucher" data-min-file-count="1">' +
-                    '           </div>' +
-                    '      </form>';
-                swal({
-                    title: '上传医疗确认单',
-                    html: template,
-                    preConfirm: function () {
-                        return new Promise(function (resolve, reject) {
-                            if ($('#voucher')[0].value === '') {
-                                reject('您还未选择文件！')
-                            } else {
-                                resolve()
-                            }
-                        })
-                    },
-                    showCancelButton: true,
-                    allowOutsideClick: false,
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    width: '300px'
-                }).then(function (file) {
-                    var formData = new FormData();
-                    formData.append("orderId", orderId);
-                    formData.append("token",token );
-                    formData.append("atthType", 0);
-                    $(".voucher").each(function () {
-                        if (this.files.length > 0) {
-                            for (var i = 0; i < this.files.length; i++) {
-                                formData.append("file", this.files[i]);
-                            }
-                        }
-                    });
-                    $.ajax({
-                        crossDomain: true,
-                        type: "post",
-                        url: RS.ip + "app/orderbaseinfo/saveOrderAttachment",
-                        async: false,
-                        contentType: false, //这个一定要写
-                        processData: false, //这个也一定要写，不然会报错
-                        data: formData,
-                        dataType: 'text',
-                        success: function (data) {
-                            REST.pop(JSON.parse(data).message);
-                            vm.saveOrderAttachment = JSON.parse(data).data;
-                            vm.flag = true;
-                        }
-                    });
-                }, function () {
+
+            REST.get('app/weixin/wxJSSignature?token=' + token).then(function (value) {
+                vm.data = value.data;
+                console.log("请求微信配置返回数据：", vm.data);
+                wx.config({
+                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: vm.data.appId, // 必填，公众号的唯一标识
+                    timestamp: vm.data.timestamp, // 必填，生成签名的时间戳
+                    nonceStr: vm.data.noncestr, // 必填，生成签名的随机串
+                    signature: vm.data.signature,// 必填，签名，见附录1
+                    jsApiList: [
+                        'chooseImage',
+                        'previewImage',
+                        'uploadImage',
+                        'translateVoice',
+                        'downloadImage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
                 });
 
-                $("input[type=file].voucher").fileinput({ //这里的id是input标签的id
-                    allowedFileExtensions: ['jpeg', 'jpg', 'png', 'rar', 'zip', 'pdf'], // 允许的文件类型
-                    overwriteInitial: false,
-                    showPreview: false, //是否显示预览,不写默认为true
-                    showCaption: true, //是否显示标题
-                    language: 'zh', //设置语言
-                    maxFileSize: 5000, //文件的最大大小 5000KB=5兆
-                    maxFilesNum: 20, //最多文件数量
-                    autoReplace: false,
-                    showUpload: false, //是否显示上传按钮
-                    enctype: 'multipart/form-data',
-                    slugCallback: function (filename) {
-                        return filename.replace('(', '_').replace(']', '_');
+                wx.ready(function (res) {
+                    // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+                    //验证客户端是否支持js接口
+                    wx.checkJsApi({
+                        jsApiList: [
+                            'chooseImage',
+                            'previewImage',
+                            'uploadImage',
+                            'downloadImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+                        success: function (res) {
+                            console.log("checked api: ", res);
+                        },
+                        fail: function (res) {
+                            console.log("check api fail: ", res)
+
+                        }
+                    });
+                });
+                wx.error(function (res) {
+                    REST.pop('config配置错误');
+                    console.log("Weixin jsdk error", res);
+                    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+                });
+            });
+
+            function upPic(num) {
+                wx.chooseImage({
+                    count: 1, // 默认9
+                    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                    sourceType: ['album','camera'], // 可以指定来源是相册还是相机，默认二者都有
+                    success: function (res) {// 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                        uploadImage(res.localIds);
+                    },
+                    fail: function () {
+                    },
+                    complete: function () {
                     }
-                })
+                });
+            }
+
+            function uploadImage(localIds) {
+                wx.uploadImage({
+                    localId: localIds.toString(), 	// 需要上传的图片的本地ID，由chooseImage接口获得   真你吗坑老子 草
+                    isShowProgressTips: 1, 					// 默认为1，显示进度提示
+                    success: function (res) {
+                        var data = {
+                            token: token,
+                            orderId: orderId,
+                            serverId: res.serverId,
+                            atthType:0
+                        };
+                        REST.get('app/orderbaseinfo/saveOrderAttachment?', data).then(function (value) {
+                            if (value.code === '000000') {
+                                $(".medicalList").text('已上传').css("color", "#0d8ddb");//控制饭面已经上传
+                                vm.flag = true;  				//控制正面已经上传
+                                REST.pop(value.message);
+                            } else {
+                                REST.pop(value.message);
+                            }
+                        })
+                    }
+                });
             }
 
             function goStep() {
-                if(vm.flag === true){
+                if (vm.flag) {
                     $('body').loading({
                         title: '请稍等',
                         name: 'test',
@@ -102,10 +110,10 @@
                     });
 
                     setTimeout(function () {
-                        $state.go('app.contract',{mobile:mobile,orderId:orderId,token:token});
+                        $state.go('app.contract', {mobile: mobile, orderId: orderId, token: token});
                         removeLoading('test');
                     }, 1000);
-                }else {
+                } else {
                     REST.pop('请上传附件');
                 }
 

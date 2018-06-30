@@ -9,18 +9,25 @@
                     </div>
                     <div class="ibox-content" style="padding: 15px 0">
                         <div class="activity-stream">
-                            <div class="well text-center" style="margin-bottom: 0;padding: 15px 0;">
-                                <i class="glyphicon glyphicon-camera upPic" ng-click="med.handle.upPic()" ng-if="!med.saveOrderAttachment"></i>
-                                <a href="{{med.saveOrderAttachment}}" title="医疗确认单" data-gallery ng-if="med.saveOrderAttachment">
-                                    <img bn-lazy-src="{{med.saveOrderAttachment}}" class="img-responsive" style="height: 220px;width: 100%">
-                                </a>
+                            <div class="col-sm-12"
+                                 style="padding-bottom: 10px;border-bottom: 1px solid #928c8c;border-radius: 3px;">
+                                <span style="width: 30%;text-align: left;display: inline-block;color: #3f4244">医疗确认单</span>
+                                <span style="width: 31%;text-align: center;display: inline-block" class="medicalList">未上传</span>
+                                <span style="width: 31%;text-align: right;display: inline-block;color: #337ab7"
+                                     ng-click=med.handle.upPic()">上传</span>
                             </div>
+                            <!--<div class="well text-center" style="margin-bottom: 0;padding: 15px 0;">-->
+                                <!--<i class="glyphicon glyphicon-camera upPic" ng-click="med.handle.upPic()" ng-if="!med.saveOrderAttachment"></i>-->
+                                <!--<a href="{{med.saveOrderAttachment}}" title="医疗确认单" data-gallery ng-if="med.saveOrderAttachment">-->
+                                    <!--<img bn-lazy-src="{{med.saveOrderAttachment}}" class="img-responsive" style="height: 220px;width: 100%">-->
+                                <!--</a>-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 text-center" style="margin-bottom: 25px;">
+            <div class="col-xs-12 col-sm-12 text-center" style="margin-bottom: 25px;margin-top: 80px;">
                 <button type="submit" class="loginBtn" href="#licInfo" style="padding: 8px 25px;"
                         ng-click="med.handle.goStep()">
                     <i class="fa fa-arrow-right"></i>&nbsp;完成并签署合同

@@ -4,22 +4,28 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .box{
+        .ddd{
             height: 100px;
             width: 100px;
             border: 1px solid #0d8ddb;
             position: fixed;
+            top: 50%;
+            right: 25%;
         }
     </style>
 </head>
 <body style="height:2000px;">
-<h1>hello world</h1>
-<button class="btn">diansji </button>
-<div class="box"></div>
+
+
+<div class="ddd">hhhhhh</div>
+<button class="btn">dianji</button>
 </body>
 </html>
 <script src="lib/jquery/jquery-3.1.1.min.js"></script>
 <script>
+    $(".btn").click(function () {
+        console.log($('.ddd').text('1312131231'))
+    })
     var a =90;
     console.log(a>9?4:a>8)
 </script>
