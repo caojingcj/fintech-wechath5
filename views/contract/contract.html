@@ -1,7 +1,8 @@
 <div ng-controller="contractCtrl as con" class="createAccountCtrl">
     <div class="wrapper sidebar-content wrapper-content animated fadeInRight homeCtrl"
-         ng-class="isSmart?'smart-no-padding':''">
-        <div class="container-fluid" style="padding-left: 0;padding-right: 0;margin-top: 25px;">
+         ng-class="isSmart?'smart-no-padding':''" >
+
+        <div class="container-fluid" style="padding-left: 0;padding-right: 0;margin-top: 25px;display:inline;">
             <div class="col-xs-12 col-sm-12">
                 <div class="container" style="width: 100%;padding: 0;margin: 0">
                     <p class="contract-title center">分期服务协议</p>
@@ -666,13 +667,12 @@
                     <!--</div>-->
                 <!--</div>-->
             </div>
-
-            <div class="col-xs-12 col-sm-12 text-center" style="margin-bottom: 25px;margin-top: 25px;">
-                <button type="submit" class="loginBtn" href="#licInfo" style="padding: 8px 25px;"
-                        ng-click="con.handle.nextStep()">
-                    <i class="fa fa-arrow-right"></i>&nbsp;同意以上协议并签署
-                </button>
-            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 text-center" style="margin-top: 20px;margin-bottom: 25px;">
+            <button type="submit" class="loginBtn" href="#licInfo" style="padding: 8px 25px "
+                    ng-click="con.handle.nextStep()">
+                <i class="fa fa-arrow-right"></i>&nbsp;同意以上协议并签署
+            </button>
         </div>
     </div>
 </div>

@@ -2,7 +2,6 @@
     app.service('REST', ['$rootScope', '$http', '$q', '$state', 'toaster', 'RS', '$timeout', function ($rootScope, $http, $q, $state, toaster, RS, $timeout) {
 
         var token = '';
-        console.log(sessionStorage.getItem('finTechInfo'))
         var userInfo = sessionStorage.getItem('finTechInfo');
         $rootScope.timeoutToast = true;
 
@@ -50,7 +49,6 @@
                     }, 2000);
                     token = res.data.data;
                     deferred.resolve(res.data);
-                    console.log(res.data.data);
                     sessionStorage.setItem('finTechInfo',res.data.data);
 
                 } else {
@@ -62,7 +60,6 @@
                     // console.error(RS.ip + url + '&callback=JSON_CALLBACK', res.data.data);
                 }
             }, function (err) {
-                console.log(err)
                 setTimeout(function () {
                     removeLoading('test1');
                 }, 2000);
@@ -84,7 +81,7 @@
                 name: 'test1',
                 discription: '加载中'
             });
-            $http.get(RS.ip + url + '&token=' + token, {
+            $http.get(RS.ip + url, {
                 timeout: 1000 * 30,
                 params: params
             }).then(function (res) {
@@ -119,7 +116,6 @@
         function post (url, data) {
             var deferred = $q.defer();
             var promise = deferred.promise;
-            data.token = token;
             $('body').loading({
                 title: '请稍等',
                 name: 'test1',

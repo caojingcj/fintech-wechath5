@@ -3,42 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .box{
+            height: 100px;
+            width: 100px;
+            border: 1px solid #0d8ddb;
+            position: fixed;
+        }
+    </style>
 </head>
-<body>
+<body style="height:2000px;">
 <h1>hello world</h1>
+<button class="btn">diansji </button>
+<div class="box"></div>
 </body>
 </html>
 <script src="lib/jquery/jquery-3.1.1.min.js"></script>
 <script>
-
-    var GB2312UnicodeConverter = {
-        ToUnicode: function (str) {
-            return escape(str).toLocaleLowerCase().replace(/%u/gi, '\\u');
-        }
-        , ToGB2312: function (str) {
-            return unescape(str.replace(/\\u/gi, '%u'));
-        }
-    };
-
-    var dd = '%7BopenId%3DodL5x0VK1d4LhfYUSCi3crVjTBZM,%20loginFlag%3Dfalse%7D'
-    var obj1 = '{"token":"asASszf","val":"false"}'
-    var rrr = '{token:33,val:00}'
-    var ddd = 'www.duodingfeng.com/fintech/app#/waiting?%7B%7D';
-    var sss = ddd.split('?')[1]
-    var fff = GB2312UnicodeConverter.ToGB2312(dd)
-    // var eee = eval('(' + fff + ')');
-    var obj2=eval("("+obj1+")");
-    console.log(obj2)
-    console.log(fff)
-    // console.log(eee)
-    // console.log(typeof fff)
-    // eee.a ='9';
-    // var arr = Object.keys(eee);
-    // console.log(arr)
-    // alert(arr);//true
-
-
+    var a =90;
+    console.log(a>9?4:a>8)
 </script>
+<!--<script src="lib/wxSdk/index.js"></script>-->
+<!--<script>-->
+
+    <!--const Wechat = require('wechat-jssdk');-->
+    <!--const wx = new Wechat(wechatConfig);-->
+    <!---->
+    <!--$(".btn").click(function () {-->
+        <!--$.ajax({-->
+            <!--type:'get',-->
+            <!--url:'',-->
+            <!--async:false,-->
+            <!--cache:false,-->
+            <!--dataType:'JSON',-->
+            <!--success:function (res) {-->
+                <!--wx.config({-->
+
+                <!--})-->
+            <!--}-->
+        <!--})-->
+    <!--})-->
+
+    <!--var GB2312UnicodeConverter = {-->
+        <!--ToUnicode: function (str) {-->
+            <!--return escape(str).toLocaleLowerCase().replace(/%u/gi, '\\u');-->
+        <!--}-->
+        <!--, ToGB2312: function (str) {-->
+            <!--return unescape(str.replace(/\\u/gi, '%u'));-->
+        <!--}-->
+    <!--};-->
+
+    <!--var dd = '%7BopenId%3DodL5x0VK1d4LhfYUSCi3crVjTBZM,%20loginFlag%3Dfalse%7D'-->
+    <!--var obj1 = '{"token":"asASszf","val":"false"}'-->
+    <!--var rrr = '{token:33,val:00}'-->
+    <!--var ddd = 'www.duodingfeng.com/fintech/app#/waiting?%7B%7D';-->
+    <!--var sss = ddd.split('?')[1]-->
+    <!--var fff = GB2312UnicodeConverter.ToGB2312(dd)-->
+    <!--// var eee = eval('(' + fff + ')');-->
+    <!--var obj2=eval("("+obj1+")");-->
+    <!--console.log(obj2)-->
+    <!--console.log(fff)-->
+    <!--// console.log(eee)-->
+    <!--// console.log(typeof fff)-->
+    <!--// eee.a ='9';-->
+    <!--// var arr = Object.keys(eee);-->
+    <!--// console.log(arr)-->
+    <!--// alert(arr);//true-->
+
+
+<!--</script>-->
 <!--<script type="text/javascript">-->
 <!--var GB2312UnicodeConverter = {-->
 <!--ToUnicode: function (str) {-->

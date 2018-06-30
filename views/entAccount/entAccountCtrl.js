@@ -5,18 +5,14 @@
     'use strict';
 
     app
-        .controller('entAccountCtrl', ['REST', '$timeout', '$state', '$scope', '$compile', '$stateParams', function (REST, $timeout, $state, $scope, $compile, $stateParams) {
+        .controller('entAccountCtrl', ['REST', '$timeout', '$state', '$scope', '$compile', '$stateParams', '$window','RS',function (REST, $timeout, $state, $scope, $compile, $stateParams,$window,RS) {
             var vm = this;
-            var mobile = REST.sessionParam('mobile', $stateParams.mobile === "" ? null : $stateParams.mobile);
-            alert(1);
-            alert(mobile);
-            // var token = REST.sessionParam('token', $stateParams.token === "" ? null : $stateParams.token);
-            // var mobile2 = $stateParams.data;
-            // var token = $stateParams.token;
-            // var fin = sessionStorage.getItem('finTechInfo');
-            // alert('111mobile='+mobile)
-            // alert('2222mobile2='+mobile2)
-            // alert('11token='+fin)
+            var mobilew = REST.sessionParam('mobile', $stateParams.mobile == "" ? '' : $stateParams.mobile) ;
+            var token = sessionStorage.getItem('finTechInfo') == undefined ? REST.sessionParam('token', $stateParams.token == "" ? '' : $stateParams.token) : sessionStorage.getItem('finTechInfo') ;
+            var mobile = sessionStorage.getItem('mobile') == undefined ? mobilew : sessionStorage.getItem('mobile');
+            // alert(sessionStorage.getItem('finTechInfo') == undefined)
+            // alert('手机号mobile='+mobile)
+            // alert('token='+token)
             vm.handle = {
                 goStep: goStep,
                 getItemName: getItemName,
@@ -54,7 +50,8 @@
                 companyChannelId: '',    // 咨询师编号
                 orderId: '',             // 订单编号
                 companyId: '',           // 商户编号
-                companyChannelPhone: ''  // 商户编号
+                companyChannelPhone: '',  // 商户编号
+            	token:token
             };
 
 
@@ -71,18 +68,18 @@
             }
 
             function initCompany() {
-                REST.get('app/orderbaseinfo/scanPiece?mobile=' + mobile ).then(function (res) {
+                REST.get('app/orderbaseinfo/scanPiece?mobile=' + mobile +'&token=' + token ).then(function (res) {
                     vm.initArry.companyChannelName = res.data.channels;
                     vm.initArry.totalPeriod = res.data.periodFees;
                     vm.initArry.itemName = res.data.items;
                     vm.data.orderId = res.data.order.orderId;
                     vm.data.companyId = res.data.order.companyId;
                     vm.data.companyName = res.data.order.companyName;
+                    sessionStorage.setItem('orderId', res.data.order.orderId);
                 })
             }
 
             function seveInfo() {
-                console.log(vm.data);
                 REST.post('app/orderbaseinfo/saveProject', vm.data).then(function (res) {
                     if (res.code === '000000') {
                         $('body').loading({
@@ -107,7 +104,7 @@
                             discription: '数据加载中..'
                         });
                         setTimeout(function () {
-                            $state.go('app.createAccount', {mobile: mobile, order: vm.data.orderId});
+                            $state.go('app.createAccount', {mobile: mobile, orderId: vm.data.orderId,token:token});
                             removeLoading('test');
                         }, 1000);
                     }

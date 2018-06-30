@@ -6,9 +6,12 @@
 
     app
         .controller('medicalCtrl', ['REST', '$timeout', '$state', '$scope', 'RS','$stateParams',function (REST, $timeout, $state, $scope,RS,$stateParams) {
-            var mobile = REST.sessionParam('mobile', $stateParams.mobile === "" ? null : $stateParams.mobile);
-            var order = REST.sessionParam('order', $stateParams.order === "" ? null : $stateParams.order);
-            var token = JSON.parse(sessionStorage.getItem('finTechInfo'));
+            var token = sessionStorage.getItem('finTechInfo') == undefined ? REST.sessionParam('token', $stateParams.token == "" ? '' : $stateParams.token) : sessionStorage.getItem('finTechInfo') ;
+            var orderId = sessionStorage.getItem('orderId') == undefined ? REST.sessionParam('orderId', $stateParams.orderId == "" ? '' : $stateParams.orderId) : sessionStorage.getItem('orderId') ;
+            var mobile = sessionStorage.getItem('mobile') == undefined ? REST.sessionParam('mobile', $stateParams.mobile == "" ? '' : $stateParams.mobile) : sessionStorage.getItem('mobile') ;
+            // alert('token=='+token);
+            // alert('orderId=='+orderId);
+            // alert('mobile=='+mobile);
             var vm = this;
             vm.handle = {
                 goStep: goStep,
@@ -16,6 +19,7 @@
             };
 
             vm.flag = false;
+            // vm.saveOrderAttachment = false
             function upPic() {
                 console.log();
                 var template =
@@ -44,7 +48,7 @@
                     width: '300px'
                 }).then(function (file) {
                     var formData = new FormData();
-                    formData.append("orderId", order);
+                    formData.append("orderId", orderId);
                     formData.append("token",token );
                     formData.append("atthType", 0);
                     $(".voucher").each(function () {
@@ -98,7 +102,7 @@
                     });
 
                     setTimeout(function () {
-                        $state.go('app.contract',{mobile:mobile,order:order});
+                        $state.go('app.contract',{mobile:mobile,orderId:orderId,token:token});
                         removeLoading('test');
                     }, 1000);
                 }else {

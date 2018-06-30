@@ -7,9 +7,12 @@
     app
         .controller('perInformaCtrl', ['REST', '$timeout', '$state', '$scope','$stateParams', function (REST, $timeout, $state, $scope,$stateParams) {
             var  vm =this;
-            var mobile = REST.sessionParam('mobile', $stateParams.mobile === "" ? null : $stateParams.mobile);
-            var order = REST.sessionParam('order', $stateParams.order === "" ? null : $stateParams.order);
-            console.log(mobile);
+            var token = sessionStorage.getItem('finTechInfo') == undefined ? REST.sessionParam('token', $stateParams.token == "" ? '' : $stateParams.token) : sessionStorage.getItem('finTechInfo') ;
+            var orderId = sessionStorage.getItem('orderId') == undefined ? REST.sessionParam('orderId', $stateParams.orderId == "" ? '' : $stateParams.orderId) : sessionStorage.getItem('orderId') ;
+            var mobile = sessionStorage.getItem('mobile') == undefined ? REST.sessionParam('mobile', $stateParams.mobile == "" ? '' : $stateParams.mobile) : sessionStorage.getItem('mobile') ;
+            // alert('token=='+token);
+            // alert('orderId=='+orderId);
+            // alert('mobile=='+mobile);
             vm.handle = {
                 seveInfo:seveInfo
             };
@@ -45,13 +48,14 @@
                 contactName:'',
                 contactPhone:'',
                 depositAmount:'',
-                orderId:order
+                orderId:orderId
             };
 
             function seveInfo(data) {
+                data.token = token;
                 REST.post('app/orderbaseinfo/saveDetailinfo',data).then(function (res) {
                     if(res.code === '000000'){
-                            $state.go('app.medical',{mobile:mobile,order:order});
+                            $state.go('app.medical',{mobile:mobile,orderId:orderId,token:token});
                     }
                 })
             }

@@ -1,0 +1,110 @@
+//             function initWXinfo(){
+//             	REST.get().then(function(res){
+//             		vm.wxConfig = res.data;
+//             	})
+//             }
+//             startWeiXin();
+//
+// 			function startWeiXin() {
+// 			    wx.config({
+// 			        debug: false, 							// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+// 			        appId: vm.wxConfig, 					// 必填，公众号的唯一标识
+// 			        signature: vm.wxConfig, 				// 必填，签名，见附录1
+// 			        timestamp: vm.wxConfig, 				// 必填，生成签名的时间戳
+// 			        nonceStr: vm.wxConfig, 					// 必填，生成签名的随机串
+// 			        jsApiList: [ 							// 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+// 			            'chooseImage',
+// 			            'previewImage',
+// 			            'uploadImage',
+// 			            'downloadImage']
+// 			    });
+//
+// //			    wx.ready(function () {
+// //			        //验证客户端是否支持js接口
+// //			        wx.checkJsApi({
+// //			            jsApiList: [
+// //			                'chooseImage',
+// //			                'previewImage',
+// //			                'uploadImage',
+// //			                'downloadImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+// //			            success: function (res) {
+// //			                console.log(res);
+// //			            },
+// //			            fail: function (res) {
+// //			                REST.pop(res.message)
+// //			            }
+// //			        });
+// //			    })
+//
+// 			    wx.error(function (res) {
+// 			         REST.pop(res.message)
+// 			    });
+// 			}
+//
+// 			function openCamera(type) {
+//                 wx.ready(function(res){
+//                     console.log(res);
+//                     // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+//                 });
+// 			    wx.chooseImage({
+// 			        count: 1, // 默认9
+// 			        sizeType: ['original', 'compressed'], 	// 可以指定是原图还是压缩图，默认二者都有
+// 			        sourceType: ['album', 'camera'], 		// 可以指定来源是相册还是相机，默认二者都有
+// 			        success: function (res) {
+// 			            var localIds = res.localIds; 		// 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+// 			            uploadImage(localIds);
+// 			        },
+// 			        fail: function (res) {
+// 			             REST.pop(res.message);
+// 			        }
+// 			    });
+// 			}
+//
+// 			function uploadImage(localIds) {
+// 			    wx.uploadImage({
+// 			        localId: localIds[0], 					// 需要上传的图片的本地ID，由chooseImage接口获得
+// 			        isShowProgressTips: 1, 					// 默认为1，显示进度提示
+// 			        success: function (res) {
+// 			            var serverId = res.serverId; 		// 返回图片的服务器端ID
+// 			            var formData = new FormData();
+//                         formData.append("orderId", order);
+//                         formData.append("token",token );
+//                         $(".voucher").each(function () {
+//                             if (this.files.length > 0) {
+//                                 for (var i = 0; i < this.files.length; i++) {
+//                                     formData.append("file", this.files[i]);
+//                                 }
+//                             }
+//                      });
+//                     $.ajax({
+//                         crossDomain: true,
+//                         type: "post",
+//                         url: RS.ip + url,
+//                         async: false,
+//                         contentType: false, 				//这个一定要写
+//                         processData: false, 				//这个也一定要写，不然会报错
+//                         data: formData,
+//                         dataType: 'text',
+//                         success: function (data) {
+//                             REST.pop(JSON.parse(data).message);
+//                             if(num === 1) {   //zheng
+//                                 if (JSON.parse(data).code === '000000'){
+//                                     vm.facadeIdCardInfo = JSON.parse(data).data;
+//                                     vm.facadeIdCard = JSON.parse(data).data.custIdCardFront;
+//                                     vm.facadeIdCardFlag = true;
+//                                 }
+//                             }else {   //fan
+//                                 if(JSON.parse(data).code === '000000'){
+//                                     vm.custIdCardValtime = JSON.parse(data).data;
+//                                     vm.identityCard =JSON.parse(data).data.custIdCardBack;
+//                                     vm.identityCardFlag = true;
+//                                 }
+//                             }
+//                             setTimeout(function () {
+//                                 removeLoading('test1');
+//                             }, 2000);
+//                         }
+//                     });
+// 			          }
+// 			    });
+// 			}
