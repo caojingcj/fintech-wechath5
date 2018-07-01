@@ -68,6 +68,7 @@
                 orderId: orderId
             };
 
+            vm.serviceIdInfo = '';
             function uploadPhotos(url, num) {
                 wx.chooseImage({
                     count: 1, // 默认9
@@ -89,7 +90,6 @@
                     localId: localIds.toString(), 	// 需要上传的图片的本地ID，由chooseImage接口获得   真你吗坑老子 草
                     isShowProgressTips: 1, 					// 默认为1，显示进度提示
                     success: function (res) {
-                        images.serverId = res.serverId;
                         var data = {
                             token: token,
                             orderId: orderId,

@@ -9,9 +9,6 @@
             var token = sessionStorage.getItem('finTechInfo') == undefined ? REST.sessionParam('token', $stateParams.token == "" ? '' : $stateParams.token) : sessionStorage.getItem('finTechInfo');
             var orderId = sessionStorage.getItem('orderId') == undefined ? REST.sessionParam('orderId', $stateParams.orderId == "" ? '' : $stateParams.orderId) : sessionStorage.getItem('orderId');
             var mobile = sessionStorage.getItem('mobile') == undefined ? REST.sessionParam('mobile', $stateParams.mobile == "" ? '' : $stateParams.mobile) : sessionStorage.getItem('mobile');
-            // alert('token=='+token);
-            // alert('orderId=='+orderId);
-            // alert('mobile=='+mobile);
             var vm = this;
             vm.handle = {
                 goStep: goStep,
@@ -51,7 +48,6 @@
                         },
                         fail: function (res) {
                             console.log("check api fail: ", res)
-
                         }
                     });
                 });
@@ -62,13 +58,14 @@
                 });
             });
 
-            function upPic(num) {
+            function upPic() {
+                alert(111);
                 wx.chooseImage({
                     count: 1, // 默认9
                     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
                     sourceType: ['album','camera'], // 可以指定来源是相册还是相机，默认二者都有
                     success: function (res) {// 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-                        uploadImage(res.localIds);
+                        uploadImageF(res.localIds);
                     },
                     fail: function () {
                     },
@@ -77,7 +74,7 @@
                 });
             }
 
-            function uploadImage(localIds) {
+            function uploadImageF(localIds) {
                 wx.uploadImage({
                     localId: localIds.toString(), 	// 需要上传的图片的本地ID，由chooseImage接口获得   真你吗坑老子 草
                     isShowProgressTips: 1, 					// 默认为1，显示进度提示
@@ -86,7 +83,7 @@
                             token: token,
                             orderId: orderId,
                             serverId: res.serverId,
-                            atthType:0
+                            attchType:0
                         };
                         REST.get('app/orderbaseinfo/saveOrderAttachment?', data).then(function (value) {
                             if (value.code === '000000') {

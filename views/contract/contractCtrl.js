@@ -9,9 +9,9 @@
             var token = sessionStorage.getItem('finTechInfo') == undefined ? REST.sessionParam('token', $stateParams.token == "" ? '' : $stateParams.token) : sessionStorage.getItem('finTechInfo') ;
             var orderId = sessionStorage.getItem('orderId') == undefined ? REST.sessionParam('orderId', $stateParams.orderId == "" ? '' : $stateParams.orderId) : sessionStorage.getItem('orderId') ;
             var mobile = sessionStorage.getItem('mobile') == undefined ? REST.sessionParam('mobile', $stateParams.mobile == "" ? '' : $stateParams.mobile) : sessionStorage.getItem('mobile') ;
-            // alert('token=='+token);
-            // alert('orderId=='+orderId);
-            // alert('mobile=='+mobile);
+            alert('token=='+token);
+            alert('orderId=='+orderId);
+            alert('mobile=='+mobile);
             var windowHeight = $window.innerHeight; //获取窗口高度
             $scope.objHeight={
                 "height":windowHeight - 120
@@ -49,6 +49,8 @@
             }
 
             function nextStep() {
+                alert('orderId是=' + orderId)
+                alert('token是=' + token)
                 REST.get('/app/orderbaseinfo/remoteSignCaOrder?orderId=' + orderId + '&token=' + token).then(function (res) {
                     if (res.code === '000000') {
                         $state.go('app.orderList', {mobile: mobile, orderId: orderId,token:token});
