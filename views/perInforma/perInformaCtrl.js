@@ -10,9 +10,6 @@
             var token = sessionStorage.getItem('finTechInfo') == undefined ? REST.sessionParam('token', $stateParams.token == "" ? '' : $stateParams.token) : sessionStorage.getItem('finTechInfo') ;
             var orderId = sessionStorage.getItem('orderId') == undefined ? REST.sessionParam('orderId', $stateParams.orderId == "" ? '' : $stateParams.orderId) : sessionStorage.getItem('orderId') ;
             var mobile = sessionStorage.getItem('mobile') == undefined ? REST.sessionParam('mobile', $stateParams.mobile == "" ? '' : $stateParams.mobile) : sessionStorage.getItem('mobile') ;
-            // alert('token=='+token);
-            // alert('orderId=='+orderId);
-            // alert('mobile=='+mobile);
             vm.handle = {
                 seveInfo:seveInfo
             };
@@ -36,7 +33,7 @@
                     {val:1,tit:'自雇人士'},
                     {val:2,tit:'工薪阶层'},
                     {val:3,tit:'学生'},
-                    {val:4,tit:'自由职业'},
+                    {val:4,tit:'自由职业'}
                 ]
             };
 
@@ -48,11 +45,11 @@
                 contactName:'',
                 contactPhone:'',
                 depositAmount:'',
-                orderId:orderId
+                orderId:orderId,
+                token:token
             };
 
             function seveInfo(data) {
-                data.token = token;
                 REST.post('app/orderbaseinfo/saveDetailinfo',data).then(function (res) {
                     if(res.code === '000000'){
                             $state.go('app.medical',{mobile:mobile,orderId:orderId,token:token});

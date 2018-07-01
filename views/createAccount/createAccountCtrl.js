@@ -10,6 +10,8 @@
             var token = sessionStorage.getItem('finTechInfo') == undefined ? REST.sessionParam('token', $stateParams.token == "" ? '' : $stateParams.token) : sessionStorage.getItem('finTechInfo');
             var orderId = sessionStorage.getItem('orderId') == undefined ? REST.sessionParam('orderId', $stateParams.orderId == "" ? '' : $stateParams.orderId) : sessionStorage.getItem('orderId');
             var mobile = sessionStorage.getItem('mobile') == undefined ? REST.sessionParam('mobile', $stateParams.mobile == "" ? '' : $stateParams.mobile) : sessionStorage.getItem('mobile');
+            // alert('orderId===' + orderId);
+            // alert('token===' + token);
             vm.handle = {
                 nextStep: nextStep,
                 uploadPhotos: uploadPhotos
@@ -18,7 +20,7 @@
                 vm.data = value.data;
                 console.log("请求微信配置返回数据：", vm.data);
                 wx.config({
-                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                     appId: vm.data.appId, // 必填，公众号的唯一标识
                     timestamp: vm.data.timestamp, // 必填，生成签名的时间戳
                     nonceStr: vm.data.noncestr, // 必填，生成签名的随机串
@@ -41,19 +43,14 @@
                             'uploadImage',
                             'downloadImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
                         success: function (res) {
+                            // alert('微信配置成功');
                             console.log("checked api: ", res);
                         },
                         fail: function (res) {
-
+                            // alert('微信配置失败');
                             console.log("check api fail: ", res)
-
                         }
                     });
-                });
-                wx.error(function (res) {
-                    REST.pop('config配置错误');
-                    console.log("Weixin jsdk error", res);
-                    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
                 });
             });
 
@@ -69,11 +66,12 @@
             };
 
             vm.serviceIdInfo = '';
+
             function uploadPhotos(url, num) {
                 wx.chooseImage({
                     count: 1, // 默认9
                     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-                    sourceType: ['album','camera'], // 可以指定来源是相册还是相机，默认二者都有
+                    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
                     success: function (res) {
                         var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                         uploadImage(localIds, url, num);
@@ -98,13 +96,13 @@
                         REST.get(url, data).then(function (value) {
                             if (value.code === '000000') {
                                 if (num === 1) {
-                                    alert('上传的是正面');
-                                    $(".facadeIdCardFlag").text('已上传').css("color","#0d8ddb");//控制饭面已经上传
+                                    vm.facadeIdCardInfo = value.data;  						//zheng   finTechInfo-openId
+                                    $(".facadeIdCardFlag").text('已上传').css("color", "#0d8ddb");//控制饭面已经上传
                                     vm.facadeIdCardFlag = true;  				//控制正面已经上传
                                 } else {
-                                    alert('上传的是反面');
+                                    vm.custIdCardValtime = value.data;
                                     vm.identityCardFlag = true;
-                                    $(".identityCardFlag").text('已上传').css("color","#0d8ddb");//控制饭面已经上传
+                                    $(".identityCardFlag").text('已上传').css("color", "#0d8ddb");//控制饭面已经上传
                                 }
                                 REST.pop(value.message);
                             } else {
@@ -114,9 +112,19 @@
                     }
                 });
             }
-
+            vm.flag = true;
             function nextStep() {
-                if (vm.facadeIdCardFlag && vm.identityCardFlag) {
+                var allInfo = vm.facadeIdCardInfo.custRealname + vm.facadeIdCardInfo.custRealname + vm.facadeIdCardInfo.custRealname + vm.facadeIdCardInfo.custRealname
+                    + vm.custIdCardValtime.custIdCardValBegin + vm.custIdCardValtime.custIdCardValEnd;
+                // alert(allInfo);
+                for (var i = 0; i < allInfo.length; i++) {
+                    if (allInfo[i] == '*') {
+                        REST.pop('信息有误,请确认');
+                        vm.flag = false;
+                        break;
+                    }
+                }
+                if (vm.facadeIdCardFlag && vm.identityCardFlag && vm.flag) {
                     $('body').loading({
                         title: '请稍等',
                         name: 'test1',
@@ -130,7 +138,7 @@
                     setTimeout(function () {
                         removeLoading('test1');
                     }, 2000);
-                    REST.pop('请确认照片是否传完')
+                    REST.pop('请确认信息无误并已传完')
                 }
             }
         }])

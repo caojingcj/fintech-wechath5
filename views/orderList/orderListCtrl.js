@@ -5,17 +5,17 @@
     'use strict';
 
     app
-        .controller('orderListCtrl', ['REST', '$timeout', '$state', '$scope', '$stateParams', 'currencyFilter',function (REST, $timeout, $state, $scope, $stateParams,currencyFilter) {
-            var token = sessionStorage.getItem('finTechInfo') == undefined ? REST.sessionParam('token', $stateParams.token == "" ? '' : $stateParams.token) : sessionStorage.getItem('finTechInfo') ;
-            var orderId = sessionStorage.getItem('orderId') == undefined ? REST.sessionParam('orderId', $stateParams.orderId == "" ? '' : $stateParams.orderId) : sessionStorage.getItem('orderId') ;
-            var mobile = sessionStorage.getItem('mobile') == undefined ? REST.sessionParam('mobile', $stateParams.mobile == "" ? '' : $stateParams.mobile) : sessionStorage.getItem('mobile') ;
+        .controller('orderListCtrl', ['REST', '$timeout', '$state', '$scope', '$stateParams', 'currencyFilter', function (REST, $timeout, $state, $scope, $stateParams, currencyFilter) {
+            var token = sessionStorage.getItem('finTechInfo') == undefined ? REST.sessionParam('token', $stateParams.token == "" ? '' : $stateParams.token) : sessionStorage.getItem('finTechInfo');
+            var orderId = sessionStorage.getItem('orderId') == undefined ? REST.sessionParam('orderId', $stateParams.orderId == "" ? '' : $stateParams.orderId) : sessionStorage.getItem('orderId');
+            var mobile = sessionStorage.getItem('mobile') == undefined ? REST.sessionParam('mobile', $stateParams.mobile == "" ? '' : $stateParams.mobile) : sessionStorage.getItem('mobile');
             // alert('token=='+token);
             // alert('orderId=='+orderId);
             // alert('mobile=='+mobile);
             var vm = this;
             vm.handle = {
                 goDetail: goDetail,
-                formatMoney:formatMoney
+                formatMoney: formatMoney
             };
 
             initOrderList();
@@ -26,24 +26,52 @@
                 })
             }
 
-            function goDetail(num) {
+            function goDetail(num, status) {
                 $('body').loading({
                     title: '请稍等',
-                    name: 'test',
+                    name: 'test1',
                     discription: '数据加载中..'
                 });
-                if(num === '05'){
+                if (num === '05') {
                     setTimeout(function () {
-                        $state.go('app.orderDetail',{mobile:mobile,orderId:orderId,token:token});
-                        removeLoading('test');
+                        $state.go('app.orderDetail', {mobile: mobile, orderId: orderId, token: token});
+                        removeLoading('test1');
                     }, 1000);
-                }else {
+                } else {
+//      	操作类型00扫码01项目信息填写02身份信息认证03运营商认证04个人信息填写05附件上传06签署合同91审批11取消12退款13提前结清99结清09取消确认81取消驳回
+                    if (status === '01') {
+                        setTimeout(function () {
+                            removeLoading('test1');
+                            $state.go('app.createAccount', {mobile: mobile})
+                        }, 2000);
+                    } else if(status === '02'){
+                        setTimeout(function () {
+                            removeLoading('test1');
+                            $state.go('app.home', {mobile: mobile})
+                        }, 2000);
+                    }else if(status === '03'){
+                        setTimeout(function () {
+                            removeLoading('test1');
+                            $state.go('app.perInforma', {mobile: mobile})
+                        }, 2000);
+                    }else if(status === '04' ){
+                        setTimeout(function () {
+                            removeLoading('test1');
+                            $state.go('app.medical', {mobile: mobile})
+                        }, 2000);
+                    }else if(status === '05' ){
+                        setTimeout(function () {
+                            removeLoading('test1');
+                            $state.go('app.contract', {mobile: mobile})
+                        }, 2000);
+                    }
                     setTimeout(function () {
-                        $state.go('app.entAccount',{mobile:mobile,orderId:orderId,token:token});
+                        $state.go('app.entAccount', {mobile: mobile, orderId: orderId, token: token});
                         removeLoading('test');
                     }, 1000);
                 }
             }
+
             function formatMoney(val) {
                 return val ? currencyFilter(val, '￥') : '-'
             }

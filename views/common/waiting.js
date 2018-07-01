@@ -33,11 +33,11 @@
 
         var parameter = eval('(' + userInfo + ')');
         // var arr = Object.keys(parameter);   对象转数组 很牛逼的
-
         sessionStorage.setItem('finTechInfo-openId',parameter.openId);
         sessionStorage.setItem('finTechInfo',parameter.token);
         sessionStorage.setItem('orderId',parameter.orderId);
         sessionStorage.setItem('mobile',parameter.mobile);
+        // alert('token====' + parameter.token)
         // alert(parameter.openId);
         // alert(parameter.token);
         if (!parameter.loginFlag) {
@@ -60,7 +60,6 @@
 						removeLoading('test1');
 						$state.go('app.createAccount', {mobile: parameter.mobile})
 					}, 2000);
-        			
         		}else if(parameter.orderOperation === '02' ){
         			setTimeout(function () {
 						removeLoading('test1');
@@ -78,20 +77,27 @@
 						removeLoading('test1');
 						$state.go('app.medical', {mobile: parameter.mobile})
 					}, 2000);
-        			
         		}else if(parameter.orderOperation === '05' ){
         			setTimeout(function () {
 						removeLoading('test1');
 						$state.go('app.contract', {mobile: parameter.mobile})
 					}, 2000);
         			
-        		}else {
+        		}
+
+        		else if(parameter.orderOperation === ''){     //根据状态跳转到订单列表
+                    setTimeout(function () {
+                        removeLoading('test1');
+                        $state.go('app.orderList', {mobile: parameter.mobile})
+                    }, 2000);
+                } else {
+        		    REST.pop('当前用户无订单');
                     setTimeout(function () {
                         removeLoading('test1');
                         $state.go('app.entAccount', {mobile: parameter.mobile})
                     }, 2000);
         		}
-        	}else {
+        	} else {
                 setTimeout(function () {
                     removeLoading('test1');
                     $state.go('app.entAccount', {mobile: parameter.mobile})

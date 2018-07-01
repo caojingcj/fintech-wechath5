@@ -11,64 +11,43 @@
                         <div class="activity-stream">
                             <div class="col-sm-12"
                                  style="padding-bottom: 10px;border-bottom: 1px solid #928c8c;border-radius: 3px;">
-                                <span style="width: 30%;text-align: left;display: inline-block;color: #3f4244">正面</span>
-                                <span style="width: 31%;text-align: center;display: inline-block" class="facadeIdCardFlag">未上传</span>
-                                <span style="width: 31%;text-align: right;display: inline-block;color: #337ab7"
+                                <span style="width: 48%;text-align: left;display: inline-block;color: #3f4244">正面</span>
+
+                                <span style="width: 48%;text-align: right;display: inline-block;color: #337ab7"
                                       ng-click="cre.handle.uploadPhotos('app/orderbaseinfo/saveIdentityPositive?',1)">上传</span>
                             </div>
 
-                            <div class="col-sm-12" style="padding-bottom: 10px;margin-top: 70px;border-bottom: 1px solid #928c8c;border-radius: 3px;">
-                                <span style="width: 30%;text-align: left;display: inline-block;color: #3f4244">反面</span>
-                                <span style="width: 31%;text-align: center;display: inline-block" class="identityCardFlag">未上传</span>
-                                <span style="width: 31%;text-align: right;display: inline-block;color: #337ab7"
+                            <ul class="ul-list" style="margin-bottom: 0;margin-top: 18px;">
+                                <li><span> <i class="fa fa-fw fa-user"></i> 姓名</span><span class="ng-binding">{{cre.facadeIdCardInfo.custRealname}}</span>
+                                </li>
+                                <li><span> <i class="fa fa-fw fa-vcard"></i> 身份证</span><span class="ng-binding">{{cre.facadeIdCardInfo.custIdCardNo}}</span>
+                                </li>
+                                <li><span> <i class="fa fa-fw fa-child"></i> 名族</span><span class="ng-binding">{{cre.facadeIdCardInfo.custNation}}</span>
+                                </li>
+                                <li><span> <i class="fa fa-fw fa-mobile"></i> 住址</span><span class="ng-binding">{{cre.facadeIdCardInfo.custAddress}}</span>
+                                </li>
+                            </ul>
+
+                            <div class="col-sm-12"
+                                 style="padding-bottom: 10px;margin-top: 70px;border-bottom: 1px solid #928c8c;border-radius: 3px;">
+                                <span style="width: 48%;text-align: left;display: inline-block;color: #3f4244">反面</span>
+
+                                <span style="width: 48%;text-align: right;display: inline-block;color: #337ab7"
                                       ng-click="cre.handle.uploadPhotos('app/orderbaseinfo/saveIdentitySide?',2)">上传</span>
                             </div>
-                            <!--<div class="well text-center" style="margin-bottom: 0;padding: 15px 0;">-->
-                            <!--<i class="glyphicon glyphicon-camera upPic"-->
-                            <!--ng-click="cre.handle.uploadPhotos('app/orderbaseinfo/saveIdentityPositive?',1)"></i>-->
-                            <!--</div>-->
+                            <ul class="ul-list" style="margin-bottom: 0;margin-top: 18px;">
+                                <li><span> <i class="fa fa-fw fa-mobile"></i> 有效期开始</span><span class="ng-binding">{{cre.custIdCardValtime.custIdCardValBegin | date:'yyyy-MM-dd'}}</span>
+                                </li>
+                                <li><span> <i class="fa fa-fw fa-mobile"></i> 有效期结束</span><span class="ng-binding">{{cre.custIdCardValtime.custIdCardValEnd | date:'yyyy-MM-dd'}}</span>
+                                </li>
+                            </ul>
                         </div>
-                        <!--<ul class="ul-list" style="margin-bottom: 0">-->
-                        <!--<li><span> <i class="fa fa-fw fa-user"></i> 姓名</span><span class="ng-binding">{{cre.facadeIdCardInfo.custRealname}}</span>-->
-                        <!--</li>-->
-                        <!--<li><span> <i class="fa fa-fw fa-vcard"></i> 身份证</span><span class="ng-binding">{{cre.facadeIdCardInfo.custIdCardNo}}</span>-->
-                        <!--</li>-->
-                        <!--<li><span> <i class="fa fa-fw fa-child"></i> 名族</span><span class="ng-binding">{{cre.facadeIdCardInfo.custNation}}</span>-->
-                        <!--</li>-->
-                        <!--<li><span> <i class="fa fa-fw fa-mobile"></i> 住址</span><span class="ng-binding">{{cre.facadeIdCardInfo.custAddress}}</span>-->
-                        <!--</li>-->
-                        <!--</ul>-->
                     </div>
                 </div>
             </div>
-
-            <!--<div class="ibox float-e-margins">-->
-                <!--<div class="ibox-title">-->
-                    <!--<h5>身份证</h5>-->
-                <!--</div>-->
-                <!--<div class="ibox-content">-->
-                    <!--<div class="activity-stream">-->
-                        <!--<div class="well text-center" style="margin-bottom: 0;padding: 15px 0;">-->
-                            <!--<i class="glyphicon glyphicon-camera upPic"-->
-                               <!--ng-click="cre.handle.uploadPhotos('app/orderbaseinfo/saveIdentitySide?',2)"></i>-->
-
-                            <!--&lt;!&ndash;<i class="glyphicon glyphicon-camera upPic"&ndash;&gt;-->
-                            <!--&lt;!&ndash;ng-click="cre.handle.uploadPhotosfan('app/orderbaseinfo/saveIdentitySide','上传身份反面',2)"&ndash;&gt;-->
-                            <!--&lt;!&ndash;ng-if="!cre.identityCard"></i>&ndash;&gt;-->
-                        <!--</div>-->
-                        <!--&lt;!&ndash;<ul class="ul-list" style="margin-bottom: 0">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<li><span> <i class="fa fa-fw fa-mobile"></i> 有效期开始</span><span class="ng-binding">{{cre.custIdCardValtime.custIdCardValBegin | date:'yyyy-MM-dd'}}</span>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<li><span> <i class="fa fa-fw fa-mobile"></i> 有效期结束</span><span class="ng-binding">{{cre.custIdCardValtime.custIdCardValEnd | date:'yyyy-MM-dd'}}</span>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-
         </div>
-
         <div class="col-xs-12 col-sm-12 text-center" style="margin-bottom: 25px;margin-top: 50px">
+            <p style="color: red">请确保所有信息无误</p>
             <button type="submit" class="loginBtn" href="#licInfo" style="padding: 8px 25px;"
                     ng-click="cre.handle.nextStep()">
                 <i class="fa fa-arrow-right"></i>&nbsp;下一步

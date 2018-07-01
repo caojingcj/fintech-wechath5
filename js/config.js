@@ -24,7 +24,7 @@
         app.controllerProvider = $controllerProvider;
 
         // $urlRouterProvider.otherwise("app/entAccount");    // 商户系统进注册页面
-        $urlRouterProvider.otherwise("/waiting");    // 商户系统进注册页面
+        // $urlRouterProvider.otherwise("/waiting");    // 商户系统进注册页面
 
         $ocLazyLoadProvider.config({
             debug: 0
@@ -54,6 +54,30 @@
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load('views/common/waiting.js')
+                    }]
+                }
+            })
+
+            .state('orderlist', {
+                url: "/orderlist",
+                templateUrl: "views/common/orderlist.html",
+                controller: 'orderlistCtrl',
+                data: {pageTitle: '等待中', specialClass: 'gray-bg'},
+                resolve: {
+                    deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load('views/common/orderlist.js')
+                    }]
+                }
+            })
+
+            .state('return', {
+                url: "/return",
+                templateUrl: "views/common/return.html",
+                controller: 'returnCtrl',
+                data: {pageTitle: '等待中', specialClass: 'gray-bg'},
+                resolve: {
+                    deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load('views/common/return.js')
                     }]
                 }
             })
@@ -121,7 +145,7 @@
                 url: "/medical",
                 templateUrl: "views/medical/medical.html",
                 data: {pageTitle: '附件上传'},
-                params: {mobile:'',orderId:'',token:''},
+                params: {orderId:'',token:''},
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load('views/medical/medicalCtrl.js')

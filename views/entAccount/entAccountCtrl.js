@@ -76,6 +76,7 @@
                     vm.data.companyId = res.data.order.companyId;
                     vm.data.companyName = res.data.order.companyName;
                     sessionStorage.setItem('orderId', res.data.order.orderId);
+                    // alert(res.data.order.orderId);
                 })
             }
 

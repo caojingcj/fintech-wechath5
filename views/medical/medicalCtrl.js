@@ -8,20 +8,18 @@
         .controller('medicalCtrl', ['REST', '$timeout', '$state', '$scope', 'RS', '$stateParams', function (REST, $timeout, $state, $scope, RS, $stateParams) {
             var token = sessionStorage.getItem('finTechInfo') == undefined ? REST.sessionParam('token', $stateParams.token == "" ? '' : $stateParams.token) : sessionStorage.getItem('finTechInfo');
             var orderId = sessionStorage.getItem('orderId') == undefined ? REST.sessionParam('orderId', $stateParams.orderId == "" ? '' : $stateParams.orderId) : sessionStorage.getItem('orderId');
-            var mobile = sessionStorage.getItem('mobile') == undefined ? REST.sessionParam('mobile', $stateParams.mobile == "" ? '' : $stateParams.mobile) : sessionStorage.getItem('mobile');
+            var mobile = sessionStorage.getItem('mobile');
             var vm = this;
             vm.handle = {
                 goStep: goStep,
                 upPic: upPic
             };
-
             vm.flag = false;
-
             REST.get('app/weixin/wxJSSignature?token=' + token).then(function (value) {
                 vm.data = value.data;
                 console.log("请求微信配置返回数据：", vm.data);
                 wx.config({
-                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                     appId: vm.data.appId, // 必填，公众号的唯一标识
                     timestamp: vm.data.timestamp, // 必填，生成签名的时间戳
                     nonceStr: vm.data.noncestr, // 必填，生成签名的随机串
@@ -59,11 +57,10 @@
             });
 
             function upPic() {
-                alert(111);
                 wx.chooseImage({
                     count: 1, // 默认9
                     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-                    sourceType: ['album','camera'], // 可以指定来源是相册还是相机，默认二者都有
+                    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
                     success: function (res) {// 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                         uploadImageF(res.localIds);
                     },
@@ -74,6 +71,8 @@
                 });
             }
 
+            vm.orderStatus = '';
+
             function uploadImageF(localIds) {
                 wx.uploadImage({
                     localId: localIds.toString(), 	// 需要上传的图片的本地ID，由chooseImage接口获得   真你吗坑老子 草
@@ -83,17 +82,20 @@
                             token: token,
                             orderId: orderId,
                             serverId: res.serverId,
-                            attchType:0
+                            attchType: 0
                         };
+
                         REST.get('app/orderbaseinfo/saveOrderAttachment?', data).then(function (value) {
-                            if (value.code === '000000') {
-                                $(".medicalList").text('已上传').css("color", "#0d8ddb");//控制饭面已经上传
-                                vm.flag = true;  				//控制正面已经上传
-                                REST.pop(value.message);
-                            } else {
-                                REST.pop(value.message);
-                            }
+                            // alert('成功回调');
+                            vm.orderStatus = value.data.orderStatus;
+                            // alert(vm.orderStatus);
+                            // $(".medicalList").text('已上传').css("color", "#0d8ddb");//控制饭面已经上传
+                            vm.flag = true;
+                            REST.pop(value.message);
                         })
+                    },
+                    fail: function (res) {
+                        // alert('错误回调==' + res)
                     }
                 });
             }
@@ -105,15 +107,20 @@
                         name: 'test',
                         discription: '数据加载中..'
                     });
-
-                    setTimeout(function () {
-                        $state.go('app.contract', {mobile: mobile, orderId: orderId, token: token});
-                        removeLoading('test');
-                    }, 1000);
+                    if (vm.orderStatus === '01' || vm.orderStatus === '03') {
+                        setTimeout(function () {
+                            $state.go('app.orderList', {mobile: mobile, orderId: orderId, token: token});  //待审批   跳转到订单列表 状态是带审批
+                            removeLoading('test');
+                        }, 1000);
+                    } else if (vm.orderStatus === '04') {
+                        setTimeout(function () {
+                            $state.go('app.contract', {mobile: mobile, orderId: orderId, token: token});  //待用户签署   跳转到签署页面
+                            removeLoading('test');
+                        }, 1000);
+                    }
                 } else {
                     REST.pop('请上传附件');
                 }
-
             }
         }])
 })();

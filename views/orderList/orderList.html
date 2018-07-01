@@ -14,7 +14,7 @@
                              'alert-hhh': item.orderStatus === '04',
                              'alert-gray': item.orderStatus === '11' || item.orderStatus === '12' || item.orderStatus === '13' || item.orderStatus === '03'
                             }" style="position: relative;">
-                                <i class="glyphicon glyphicon-menu-right goTodetail" ng-click="ord.handle.goDetail(item.orderStatus)"
+                                <i class="glyphicon glyphicon-menu-right goTodetail" ng-click="ord.handle.goDetail(item.orderStatus,item.orderOperation)"
                                    ng-if="item.orderStatus == '00' || item.orderStatus == '04' || item.orderStatus == '00' ||item.orderStatus == '05' || item.orderStatus == '12' || item.orderStatus == '99'"></i>
                                 <ul class="ul-list" style="margin-bottom: 0">
                                     <li><span class="pull-left fontWeight"> <i
