@@ -24,7 +24,7 @@
         app.controllerProvider = $controllerProvider;
 
         // $urlRouterProvider.otherwise("app/entAccount");    // 商户系统进注册页面
-        // $urlRouterProvider.otherwise("/waiting");    // 商户系统进注册页面
+//      $urlRouterProvider.otherwise("app/contract");    // 商户系统进注册页面
 
         $ocLazyLoadProvider.config({
             debug: 0

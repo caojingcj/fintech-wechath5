@@ -8,19 +8,21 @@
         .controller('returnCtrl', ['REST', '$timeout', '$state', '$scope', function (REST, $timeout, $state, $scope) {
             var orderId = sessionStorage.getItem('orderId');
             var token = sessionStorage.getItem('finTechInfo');
-            alert('缓存获取token= '+token);
-            alert('orderId= '+orderId);
+            var loginFlag = sessionStorage.getItem('loginFlag') ;
+            if(loginFlag === 'false'){
+                $state.go('login');
+            }
             var  vm =this;
             vm.handle = {
             };
-
             vm.dataList = [];
-
             initReturnList();
-
+            vm.code = true;
             function initReturnList() {
                 REST.get('app/orderbaseinfo/userReturnplans?token=' + token).then(function (res) {
                     vm.dataList = res.data.userReturnplan;
+                },function (reason) {
+                    vm.code = false;
                 })
             }
 

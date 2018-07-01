@@ -1,6 +1,7 @@
 <div ng-controller="contractCtrl as con" class="createAccountCtrl">
     <div class="wrapper sidebar-content wrapper-content animated fadeInRight homeCtrl"
          ng-class="isSmart?'smart-no-padding':''" >
+        <!--<object data="test.html" style="height: 100%;width: 100%;" ng-style="objHeight"></object>-->
 
         <div class="container-fluid" style="padding-left: 0;padding-right: 0;margin-top: 25px;display:inline;">
             <div class="col-xs-12 col-sm-12">
@@ -10,7 +11,8 @@
                     <p class="details">本合作协议（以下简称“本协议”）由以下三方于 年 月 日（“签署日”）于上海【】区（“签订地”）签订：</p>
                     <br/>
                     <hr/>
-                    <table border="1" cellspacing="0" CONTRACT_IDcellpadding="0" style="border-collapse: collapse;width: 100%;" class="tableList">
+                    <table border="1" cellspacing="0" CONTRACT_IDcellpadding="0" style="border-collapse: collapse;width: 100%;"
+                           class="tableList">
                         <tr>
                             <td>甲方</td>
                             <td>{{con.data.PartyA_Name}}</td>
@@ -139,7 +141,9 @@
 
                     <dl class="transverse subtitle">
                         <dt>2.1</dt>
-                        <dd>丙方在购买丙方商品/服务时，如申请分期服务的应在舵定平台完成注册，并根据甲方、乙方要求上传相应的资料，包括但不限于客户资信审核材料（身份信息、信用信息、债权债务情况、履约能力和个人资信状况）、影像资料、服务/商品收据、产品相关信息（服务类型、金额、周期）等。</dd>
+                        <dd>
+                            丙方在购买丙方商品/服务时，如申请分期服务的应在舵定平台完成注册，并根据甲方、乙方要求上传相应的资料，包括但不限于客户资信审核材料（身份信息、信用信息、债权债务情况、履约能力和个人资信状况）、影像资料、服务/商品收据、产品相关信息（服务类型、金额、周期）等。
+                        </dd>
                     </dl>
 
                     <dl class="transverse subtitle">
@@ -157,7 +161,8 @@
                         <dd>丙方应按照还款计划约定，将应付款项通过第三方支付或银行转账等方式支付至甲方如下指定账户（下称“甲方指定账户”）：</dd>
                     </dl>
 
-                    <table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;width: 100%;" class="tableList">
+                    <table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;width: 100%;"
+                           class="tableList">
                         <tr>
                             <td>开户名称</td>
                             <td>{{con.data.PartyA_COMPANY_ACCOUNT_NAME}}</td>
@@ -178,7 +183,8 @@
                         <dd>乙方和丙方授权，甲方指定账户作为接收丙方支付应付的款项的账户，并由甲方扣除甲方信息技术服务费、提前还款手续费及其他费用（由甲方与乙方另行约定）后将剩余金额划转至乙方如下任一指定账户：</dd>
                     </dl>
                     <p>乙方指定账户信息（一）：</p>
-                    <table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;width: 100%;" class="tableList">
+                    <table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;width: 100%;"
+                           class="tableList">
                         <tr>
                             <td>开户名称</td>
                             <td>{{con.data.COMPANY_ACCOUNT_NAME}}</td>
@@ -193,7 +199,8 @@
                         </tr>
                     </table>
                     <p>乙方指定账户信息（二）：</p>
-                    <table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;width: 100%;" class="tableList">
+                    <table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;width: 100%;"
+                           class="tableList">
                         <tr>
                             <td>开户名称</td>
                             <td></td>
@@ -207,14 +214,19 @@
                             <td></td>
                         </tr>
                     </table>
-                    <p>乙方理解并同意，甲方按照本协议的约定或依乙方的要求向前述任一账户支付款项的，即视为甲方已按照本协议的约定向乙方足额支付乙方每期应收款且乙方已足额收到该款项，乙方对此不得提出任何异议。上述指定账户由乙方根据业务需要自行指定，相应责任与后果由乙方自行承担，甲方对此不承担除按照本协议的约定支付乙方每期应收款的任何其他经济或法律上的责任。</p>
+                    <p>
+                        乙方理解并同意，甲方按照本协议的约定或依乙方的要求向前述任一账户支付款项的，即视为甲方已按照本协议的约定向乙方足额支付乙方每期应收款且乙方已足额收到该款项，乙方对此不得提出任何异议。上述指定账户由乙方根据业务需要自行指定，相应责任与后果由乙方自行承担，甲方对此不承担除按照本协议的约定支付乙方每期应收款的任何其他经济或法律上的责任。</p>
                     <dl class="transverse subtitle">
                         <dt>2.6</dt>
-                        <dd>2.6丙方提前还款且经乙方同意的，丙方应按照剩余应还分期本金的3%向甲方支付提前还款手续费。丙方应于乙方、丙方确定的提前还款日将剩余分期本金、分期手续费及提前还款手续费一并支付至甲方指定账户。乙方、丙方确认提前还款日后应书面通知甲方。</dd>
+                        <dd>
+                            2.6丙方提前还款且经乙方同意的，丙方应按照剩余应还分期本金的3%向甲方支付提前还款手续费。丙方应于乙方、丙方确定的提前还款日将剩余分期本金、分期手续费及提前还款手续费一并支付至甲方指定账户。乙方、丙方确认提前还款日后应书面通知甲方。
+                        </dd>
                     </dl>
                     <dl class="transverse subtitle">
                         <dt>2.7</dt>
-                        <dd>2.7丙方同意并授权，丙方在还款日未将应付款项支付至甲方指定账户的，乙方有权委托甲方或甲方合作的其他方对丙方进行催收，并将丙方的信息提供给甲方或甲方合作的其他方。丙方完全认可并同意，甲方或甲方合作的其他方对其进行催收，且不提出任何异议。</dd>
+                        <dd>
+                            2.7丙方同意并授权，丙方在还款日未将应付款项支付至甲方指定账户的，乙方有权委托甲方或甲方合作的其他方对丙方进行催收，并将丙方的信息提供给甲方或甲方合作的其他方。丙方完全认可并同意，甲方或甲方合作的其他方对其进行催收，且不提出任何异议。
+                        </dd>
                     </dl>
 
                     <!--合同的签署与生效-->
@@ -224,7 +236,8 @@
                         <dt>3.1</dt>
                         <dd>分期基本信息如下：</dd>
                     </dl>
-                    <table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;width: 100%;" class="tableList">
+                    <table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;width: 100%;"
+                           class="tableList">
                         <tr>
                             <td>商品/服务内容</td>
                             <td></td>
@@ -272,7 +285,8 @@
                         <dd>本协议签署后，丙方应将首付款一次性支付至乙方如下账户。首付款作为押金可用于抵扣有分期服务总费用。
                         </dd>
                     </dl>
-                    <table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;width: 100%;" class="tableList">
+                    <table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;width: 100%;"
+                           class="tableList">
                         <tr>
                             <td>开户名称</td>
                             <td></td>
@@ -282,7 +296,7 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td>账   号</td>
+                            <td>账 号</td>
                             <td></td>
                         </tr>
                     </table>
@@ -304,15 +318,21 @@
 
                     <dl class="transverse subtitle">
                         <dt>4.2</dt>
-                        <dd>如丙方未还款日前通过第三方支付或银行转账方式主动支付应付款项的，则丙方在此不可撤销地授权银联或其他第三方支付机构在约定时间（包括但不限于还款日、逾期）扣划至甲方指定账户。该等划扣以及丙方主动在乔融金服触发还款后自动从丙方指定账户中扣划应付款项至还款账户，均无需取得丙方的另行同意。</dd>
+                        <dd>
+                            如丙方未还款日前通过第三方支付或银行转账方式主动支付应付款项的，则丙方在此不可撤销地授权银联或其他第三方支付机构在约定时间（包括但不限于还款日、逾期）扣划至甲方指定账户。该等划扣以及丙方主动在乔融金服触发还款后自动从丙方指定账户中扣划应付款项至还款账户，均无需取得丙方的另行同意。
+                        </dd>
                     </dl>
                     <dl class="transverse subtitle">
                         <dt>4.3</dt>
-                        <dd>丙方可在分期服务期间任何时间提前一次性偿还剩余全部分期服务总费用，但需经乙方书面同意。丙方提前偿还剩余全部分期服务总费用的，除支付当期及剩余应付款项外，还应向乙方支付提前还款手续费（以下统称“提前还款金额”）。提前还款手续费=【剩余应还分期本金*3%】。</dd>
+                        <dd>
+                            丙方可在分期服务期间任何时间提前一次性偿还剩余全部分期服务总费用，但需经乙方书面同意。丙方提前偿还剩余全部分期服务总费用的，除支付当期及剩余应付款项外，还应向乙方支付提前还款手续费（以下统称“提前还款金额”）。提前还款手续费=【剩余应还分期本金*3%】。
+                        </dd>
                     </dl>
                     <dl class="transverse subtitle">
                         <dt>4.4</dt>
-                        <dd>丙方应于【提出提前还款申请当月的还款日】一次性偿还全部提前还款金额。丙方在此不可撤销地授权银联或其他第三方支付机构于当月还款日将提前还款金额一次性从丙方指定账户中划扣至甲方指定账户，并同时不可撤销地授权甲方将提前还款金额划扣至乙方指定账户，该等扣划无需另行取得甲方同意。</dd>
+                        <dd>
+                            丙方应于【提出提前还款申请当月的还款日】一次性偿还全部提前还款金额。丙方在此不可撤销地授权银联或其他第三方支付机构于当月还款日将提前还款金额一次性从丙方指定账户中划扣至甲方指定账户，并同时不可撤销地授权甲方将提前还款金额划扣至乙方指定账户，该等扣划无需另行取得甲方同意。
+                        </dd>
                     </dl>
                     <dl class="transverse subtitle">
                         <dt>4.5</dt>
@@ -368,19 +388,27 @@
                         <dd>丙方在此承诺并保证：
                             <dl class="transverse subtitle">
                                 <dt>1)</dt>
-                                <dd>丙方系年满18周岁的中华人民共和国（为本协议之目的，不包括香港特别行政区、澳门特别行政区和台湾地区）公民，具有完全民事权利能力与民事行为能力，具有签订和履行本协议的资格和能力，丙方可以独立地作为一方诉讼主体；</dd>
+                                <dd>
+                                    丙方系年满18周岁的中华人民共和国（为本协议之目的，不包括香港特别行政区、澳门特别行政区和台湾地区）公民，具有完全民事权利能力与民事行为能力，具有签订和履行本协议的资格和能力，丙方可以独立地作为一方诉讼主体；
+                                </dd>
                             </dl>
                             <dl class="transverse subtitle">
                                 <dt>2)</dt>
-                                <dd>丙方向甲方、乙方提供的所有信息和资料真实、准确、完整且是最新的，不存在任何虚假记载、误导性陈述或重大遗漏；若丙方提供或维持任何错误、虚假、过时或不完整的资料或遗漏，或者甲方、乙方依独立判断怀疑丙方提供的信息、资料存在或可能存在错误、虚假、过时或不完整，甲方有权通知乙方，乙方有权暂停或终止向丙方提供分期服务，并自行或委托甲方通知丙方提前全部偿还商品/服务总费用。丙方应按照甲方或乙方要求履行还款义务。甲方、乙方对此不承担任何责任，并且丙方同意负担甲方、乙方由此所产生的全部直接或间接支出或损失；</dd>
+                                <dd>
+                                    丙方向甲方、乙方提供的所有信息和资料真实、准确、完整且是最新的，不存在任何虚假记载、误导性陈述或重大遗漏；若丙方提供或维持任何错误、虚假、过时或不完整的资料或遗漏，或者甲方、乙方依独立判断怀疑丙方提供的信息、资料存在或可能存在错误、虚假、过时或不完整，甲方有权通知乙方，乙方有权暂停或终止向丙方提供分期服务，并自行或委托甲方通知丙方提前全部偿还商品/服务总费用。丙方应按照甲方或乙方要求履行还款义务。甲方、乙方对此不承担任何责任，并且丙方同意负担甲方、乙方由此所产生的全部直接或间接支出或损失；
+                                </dd>
                             </dl>
                             <dl class="transverse subtitle">
                                 <dt>3)</dt>
-                                <dd>丙方在本协议项下提供的任何信息发生变更的（包括但不限于联系方式或地址变更、指定账户发生销户、更换、冻结、查封等情形），丙方应于该等变更发生后的第二日且不晚于当月还款日书面通知甲方和乙方，否则因此导致包括但不限于银联等第三方支付机构代扣失败而造成丙方逾期的责任及损失由丙方自行承担；</dd>
+                                <dd>
+                                    丙方在本协议项下提供的任何信息发生变更的（包括但不限于联系方式或地址变更、指定账户发生销户、更换、冻结、查封等情形），丙方应于该等变更发生后的第二日且不晚于当月还款日书面通知甲方和乙方，否则因此导致包括但不限于银联等第三方支付机构代扣失败而造成丙方逾期的责任及损失由丙方自行承担；
+                                </dd>
                             </dl>
                             <dl class="transverse subtitle">
                                 <dt>4)</dt>
-                                <dd>丙方发生任何影响或者可能影响经济状况、信用状况、还款能力的事由，丙方应于前述变更可能发生之日前书面通知甲方和乙方，如变更为突发性的则至迟应在变更发生之日起两（2）个工作日内书面通知甲方和乙方；</dd>
+                                <dd>
+                                    丙方发生任何影响或者可能影响经济状况、信用状况、还款能力的事由，丙方应于前述变更可能发生之日前书面通知甲方和乙方，如变更为突发性的则至迟应在变更发生之日起两（2）个工作日内书面通知甲方和乙方；
+                                </dd>
                             </dl>
                             <dl class="transverse subtitle">
                                 <dt>5)</dt>
@@ -394,7 +422,9 @@
                         <dd>丙方在此不可撤销地授权乙方、甲方及其他合作机构：：
                             <dl class="transverse subtitle">
                                 <dt>1)</dt>
-                                <dd>为信用评估、数据处理、风险控制、逾期账款管理等向数据服务机构（包括不限于中国人民银行个人信用信息基础数据库、征信机构及其他机构，以下称“数据服务机构”）提供丙方个人信息从而查询丙方的资产、收入及个人信用信息（包括但不限于公共事业缴费、社保缴纳、金融机构贷款、担保等，以下统称“信用信息”）等，并向上述数据服务机构报送其信用信息；</dd>
+                                <dd>
+                                    为信用评估、数据处理、风险控制、逾期账款管理等向数据服务机构（包括不限于中国人民银行个人信用信息基础数据库、征信机构及其他机构，以下称“数据服务机构”）提供丙方个人信息从而查询丙方的资产、收入及个人信用信息（包括但不限于公共事业缴费、社保缴纳、金融机构贷款、担保等，以下统称“信用信息”）等，并向上述数据服务机构报送其信用信息；
+                                </dd>
                             </dl>
                             <dl class="transverse subtitle">
                                 <dt>2)</dt>
@@ -402,11 +432,15 @@
                             </dl>
                             <dl class="transverse subtitle">
                                 <dt>3)</dt>
-                                <dd>基于甲方和乙方为提供本协议服务至目的，甲方或甲方其他合作机构向数据服务机构查询丙方资产、收入及其信用信息时，数据服务机构可自行或委托其他数据服务机构使用丙方个人信息查询丙方资产及信用信息；甲方或甲方其他合作结构可复制、存储、使用、加工丙方信用信息，利用该信用信息建立数据模型并进行评价；无论本协议下分期服务申请是否通过，丙方均同意乙方及数据服务机构前述行为；</dd>
+                                <dd>
+                                    基于甲方和乙方为提供本协议服务至目的，甲方或甲方其他合作机构向数据服务机构查询丙方资产、收入及其信用信息时，数据服务机构可自行或委托其他数据服务机构使用丙方个人信息查询丙方资产及信用信息；甲方或甲方其他合作结构可复制、存储、使用、加工丙方信用信息，利用该信用信息建立数据模型并进行评价；无论本协议下分期服务申请是否通过，丙方均同意乙方及数据服务机构前述行为；
+                                </dd>
                             </dl>
                             <dl class="transverse subtitle">
                                 <dt>4)</dt>
-                                <dd>依据法律法规规定在必要情况下有权将丙方逾期付款情况及个人信息向相关第三方（包括但不限于依法成立的征信机构、债权人、资产方、受让方等）披露，由此产生的丙方不良信用记录或不利影响及后果由丙方自行承担。</dd>
+                                <dd>
+                                    依据法律法规规定在必要情况下有权将丙方逾期付款情况及个人信息向相关第三方（包括但不限于依法成立的征信机构、债权人、资产方、受让方等）披露，由此产生的丙方不良信用记录或不利影响及后果由丙方自行承担。
+                                </dd>
                             </dl>
                             <dl class="transverse subtitle">
                                 <dt>5)</dt>
@@ -420,7 +454,9 @@
                         <dd>丙方在此不可撤销地授权乙方6.4乙方及丙方理解并同意：
                             <dl class="transverse subtitle">
                                 <dt>1)</dt>
-                                <dd>本协议项下甲方仅提供信息技术服务。相关订单项下商品/服务的买卖关系的双方当事人仍为乙方和丙方，因商品/服务产生的任何纠纷均由乙方和丙方自行解决。与甲方无涉，丙方及乙方不得因该等争议或纠纷拒绝或延迟履行其在本协议项下的任何义务。</dd>
+                                <dd>
+                                    本协议项下甲方仅提供信息技术服务。相关订单项下商品/服务的买卖关系的双方当事人仍为乙方和丙方，因商品/服务产生的任何纠纷均由乙方和丙方自行解决。与甲方无涉，丙方及乙方不得因该等争议或纠纷拒绝或延迟履行其在本协议项下的任何义务。
+                                </dd>
                             </dl>
                             <dl class="transverse subtitle">
                                 <dt>2)</dt>
@@ -428,7 +464,9 @@
                             </dl>
                             <dl class="transverse subtitle">
                                 <dt>3)</dt>
-                                <dd>若甲方因此遭受任何索赔、诉讼，或甲方被诉讼、仲裁等，而法院、仲裁或其他第三方机构要求甲方参加该等诉讼、仲裁或其他法律程序，导致甲方支付任何款项或垫付费用（包括但不限于律师费、诉讼费、保全费及对第三方的赔偿、违约金等）的，乙方及丙方应无条件立即予以赔偿，并对此承担连带责任。</dd>
+                                <dd>
+                                    若甲方因此遭受任何索赔、诉讼，或甲方被诉讼、仲裁等，而法院、仲裁或其他第三方机构要求甲方参加该等诉讼、仲裁或其他法律程序，导致甲方支付任何款项或垫付费用（包括但不限于律师费、诉讼费、保全费及对第三方的赔偿、违约金等）的，乙方及丙方应无条件立即予以赔偿，并对此承担连带责任。
+                                </dd>
                             </dl>
                         </dd>
                     </dl>
@@ -441,11 +479,14 @@
                     </dl>
                     <dl class="transverse subtitle">
                         <dt>7.2</dt>
-                        <dd>丙方基于本协议项下服务而获知甲方、乙方的任何信息、资料（包括但不限于分期服务交易、结构、模式，分期服务的宣传资料，服务费率及其他信息等）均构成甲方或乙方保密信息，未经甲方或乙方书面同意，丙方不得将前述保密向第三方披露或用作任何商业或非商业的用途。</dd>
+                        <dd>
+                            丙方基于本协议项下服务而获知甲方、乙方的任何信息、资料（包括但不限于分期服务交易、结构、模式，分期服务的宣传资料，服务费率及其他信息等）均构成甲方或乙方保密信息，未经甲方或乙方书面同意，丙方不得将前述保密向第三方披露或用作任何商业或非商业的用途。
+                        </dd>
                     </dl>
                     <dl class="transverse subtitle">
                         <dt>7.3</dt>
-                        <dd>甲方、乙方应对丙方提供的资料、信息以及从数据服务机构获取的信用信息等丙方保密信息严格保密，不得将丙方保密信息用作任何非法用途。丙方知悉并同意，甲方、乙方基于服务及为实现本协议目的对丙方保密信息进行如下行为且不构成违约，但甲方、乙方不得将丙方个人信息未经脱敏且用于本协议之外的目的：
+                        <dd>
+                            甲方、乙方应对丙方提供的资料、信息以及从数据服务机构获取的信用信息等丙方保密信息严格保密，不得将丙方保密信息用作任何非法用途。丙方知悉并同意，甲方、乙方基于服务及为实现本协议目的对丙方保密信息进行如下行为且不构成违约，但甲方、乙方不得将丙方个人信息未经脱敏且用于本协议之外的目的：
                             <dl class="transverse subtitle">
                                 <dt>1)</dt>
                                 <dd>披露给合作的其他机构等用于对丙方资信审核的；</dd>
@@ -472,7 +513,9 @@
                     <p class="contract-title">八 . 违约责任</p>
                     <dl class="transverse subtitle">
                         <dt>8.1</dt>
-                        <dd>本协议任何一方违反本协议项下相关义务导致对方造成损失的，该方应当赔偿对方全部该等损失。违约方应赔偿给守约方的损失，包括但不限于因违约给守约方造成的直接损失，守约方支付的诉讼费和律师费等费用及其他间接损失。</dd>
+                        <dd>
+                            本协议任何一方违反本协议项下相关义务导致对方造成损失的，该方应当赔偿对方全部该等损失。违约方应赔偿给守约方的损失，包括但不限于因违约给守约方造成的直接损失，守约方支付的诉讼费和律师费等费用及其他间接损失。
+                        </dd>
                     </dl>
                     <dl class="transverse subtitle">
                         <dt>8.2</dt>
@@ -553,16 +596,20 @@
                     <p class="contract-title">九 . 免责条款</p>
                     <dl class="transverse subtitle">
                         <dt>9.1</dt>
-                        <dd>甲方有权对甲方平台不定期进行升级或停机维护，并可能导致甲方平台暂停或中止向乙方、丙方提供服务（包括但不限于申请、查询等）。甲方将通过甲方平台告知具体服务暂停或中止事宜及预计恢复时间。甲方该等暂停或中止向乙方、丙方提供服务不构成违约。
+                        <dd>
+                            甲方有权对甲方平台不定期进行升级或停机维护，并可能导致甲方平台暂停或中止向乙方、丙方提供服务（包括但不限于申请、查询等）。甲方将通过甲方平台告知具体服务暂停或中止事宜及预计恢复时间。甲方该等暂停或中止向乙方、丙方提供服务不构成违约。
                         </dd>
                     </dl>
                     <dl class="transverse subtitle">
                         <dt>9.2</dt>
-                        <dd>甲方出现下列任一状况而无法正常运作，致使无法向丙方提供本协议项下的各项服务，甲方不承担任何违约或赔偿责任，该状况包括但不限于： 1）系统维护期间；2）电信设备出现故障不能进行数据传输；3）因台风、地震、海啸、洪水、停电、战争、恐怖袭击等不可抗力之因素，造成系统障碍不能执行业务；4）由于黑客攻击、电信部门和其他甲方有信息技术依赖的相关部门、企事业单位技术调整或故障、网站升级、银行方面的问题等原因而造成的服务中断或者延迟。</dd>
+                        <dd>甲方出现下列任一状况而无法正常运作，致使无法向丙方提供本协议项下的各项服务，甲方不承担任何违约或赔偿责任，该状况包括但不限于：
+                            1）系统维护期间；2）电信设备出现故障不能进行数据传输；3）因台风、地震、海啸、洪水、停电、战争、恐怖袭击等不可抗力之因素，造成系统障碍不能执行业务；4）由于黑客攻击、电信部门和其他甲方有信息技术依赖的相关部门、企事业单位技术调整或故障、网站升级、银行方面的问题等原因而造成的服务中断或者延迟。
+                        </dd>
                     </dl>
                     <dl class="transverse subtitle">
                         <dt>9.3</dt>
-                        <dd>本协议有效期内，因国家相关主管部门颁布、变更的法令、政策导致甲方不能提供约定服务的，不视为其违约，甲方可根据相关的法令、政策变更合同内容或提前终止本协议，在此情况下，乙方、丙方已经享受服务而尚未到期或偿还的任何款项（包括分期服务总费用和手续费）视为立即到期丙方应立即归还，或者由乙方与丙方另行协商解决。
+                        <dd>
+                            本协议有效期内，因国家相关主管部门颁布、变更的法令、政策导致甲方不能提供约定服务的，不视为其违约，甲方可根据相关的法令、政策变更合同内容或提前终止本协议，在此情况下，乙方、丙方已经享受服务而尚未到期或偿还的任何款项（包括分期服务总费用和手续费）视为立即到期丙方应立即归还，或者由乙方与丙方另行协商解决。
                         </dd>
                     </dl>
                     <dl class="transverse subtitle">
@@ -640,7 +687,8 @@
                     </dl>
                     <p class="details center">（以下无正文）</p>
                     <br/>
-                    <table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;width: 100%;" class="tableList">
+                    <table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;width: 100%;"
+                           class="tableList">
                         <tr>
                             <td>
                                 <h4>甲方</h4>
@@ -658,14 +706,6 @@
                         </tr>
                     </table>
                 </div>
-
-                <!--<div class="ibox float-e-margins">-->
-                    <!--<div class="ibox-content" style="padding: 0;height: 100%">-->
-                        <!--<div class="activity-stream">-->
-                            <!--<object data="views/agreement/contract.html" style=" width:100% ;height:100%;" ng-style="objHeight"></object>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 text-center" style="margin-top: 20px;margin-bottom: 25px;">
@@ -676,10 +716,8 @@
         </div>
     </div>
 </div>
+
 <style>
-    /**
- *  Created by fangqing.
- */
     body, html {
         background-color: white;
         height: 100%;
@@ -703,7 +741,8 @@
         font-family: Roboto-Regular;
         font-size: 12px;
     }
-    .container>.list-title{
+
+    .container > .list-title {
         font-size: 14px;
         font-family: Roboto-Medium !important;
         line-height: 35px;
@@ -711,13 +750,14 @@
         padding-top: 5%;
         font-weight: bold;
     }
+
     .container > .contract-title {
         font-size: 20px;
         font-family: Roboto-Medium !important;
         line-height: 35px;
         display: block;
         padding-top: 5%;
-        margin-bottom: 0!important;
+        margin-bottom: 0 !important;
     }
 
     .container > .contract-title.center {
@@ -762,7 +802,7 @@
         width: 90% !important;
     }
 
-    .container  .table {
+    .container .table {
         width: 90%;
         margin-top: 5%;
         margin-left: 10%;
@@ -770,61 +810,67 @@
         border-right: 1px solid #757575;
     }
 
-    .container  .table > tbody > tr {
+    .container .table > tbody > tr {
         height: 35px;
     }
 
-    .container  .table > tbody > tr > td {
+    .container .table > tbody > tr > td {
         border-top: 1px solid #757575;
         border-left: 1px solid #757575;
         padding: 2%;
     }
 
-    .container>.promise{
+    .container > .promise {
         height: 140px;
         line-height: 70px;
         padding: 10px;
         margin-top: 50px;
     }
-    .container>.promise>.sign{
+
+    .container > .promise > .sign {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    .container>.promise>.sign-time{
+    .container > .promise > .sign-time {
         text-align: right;
     }
 
-    .container .formula{
+    .container .formula {
         display: inline-block;
         text-align: center;
     }
-    .container .formula>hr{
+
+    .container .formula > hr {
         background-color: #000;
     }
-    .container .formula>span>sup{
+
+    .container .formula > span > sup {
         font-size: 12px;
         -webkit-transform: scale(0.7);
         display: inline-block;
         margin-left: -12px;
     }
-    .container .promise2>div{
+
+    .container .promise2 > div {
         margin-top: 30px;
         line-height: 30px;
     }
-    dd{
-        margin-left: 5px!important;
+
+    dd {
+        margin-left: 5px !important;
     }
 
-    .tableList td{
+    .tableList td {
         padding-left: 5px;
         line-height: 25px;
         text-align: left;
         width: 50%;
     }
-    p{
-        line-height: 25px!important;
+
+    p {
+        line-height: 25px !important;
         padding: 0 10px;
     }
 </style>

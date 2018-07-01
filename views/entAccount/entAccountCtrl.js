@@ -5,7 +5,7 @@
     'use strict';
 
     app
-        .controller('entAccountCtrl', ['REST', '$timeout', '$state', '$scope', '$compile', '$stateParams', '$window','RS',function (REST, $timeout, $state, $scope, $compile, $stateParams,$window,RS) {
+        .controller('entAccountCtrl', ['REST', '$timeout', '$state', '$scope', '$compile', '$stateParams',function (REST, $timeout, $state, $scope, $compile, $stateParams) {
             var vm = this;
             var mobilew = REST.sessionParam('mobile', $stateParams.mobile == "" ? '' : $stateParams.mobile) ;
             var token = sessionStorage.getItem('finTechInfo') == undefined ? REST.sessionParam('token', $stateParams.token == "" ? '' : $stateParams.token) : sessionStorage.getItem('finTechInfo') ;
@@ -77,6 +77,8 @@
                     vm.data.companyName = res.data.order.companyName;
                     sessionStorage.setItem('orderId', res.data.order.orderId);
                     // alert(res.data.order.orderId);
+                },function (reason) {
+                    $state.go('app.orderList');
                 })
             }
 

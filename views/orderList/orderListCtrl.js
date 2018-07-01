@@ -9,6 +9,8 @@
             var token = sessionStorage.getItem('finTechInfo') == undefined ? REST.sessionParam('token', $stateParams.token == "" ? '' : $stateParams.token) : sessionStorage.getItem('finTechInfo');
             var orderId = sessionStorage.getItem('orderId') == undefined ? REST.sessionParam('orderId', $stateParams.orderId == "" ? '' : $stateParams.orderId) : sessionStorage.getItem('orderId');
             var mobile = sessionStorage.getItem('mobile') == undefined ? REST.sessionParam('mobile', $stateParams.mobile == "" ? '' : $stateParams.mobile) : sessionStorage.getItem('mobile');
+            var loginFlag = sessionStorage.getItem('loginFlag') ;
+            var openId = sessionStorage.getItem('finTechInfo-openId') ;
             // alert('token=='+token);
             // alert('orderId=='+orderId);
             // alert('mobile=='+mobile);
@@ -19,15 +21,20 @@
             };
 
             initOrderList();
-
+            vm.code = true;
+            if(loginFlag === 'false'){
+                $state.go('login');
+            }
             function initOrderList() {
                 REST.get('app/orderbaseinfo/orderBaseinfos?token=' + token).then(function (res) {
                     vm.data = res.data;
+                },function (reason) {
+                    vm.code = false;
+                    console.log(vm.code)
                 })
             }
 
             function goDetail(num, stat) {
-                alert(num);
                 $('body').loading({
                     title: '请稍等',
                     name: 'test1',

@@ -6,6 +6,8 @@
         var second = 60;
         var btn;
         var openId = sessionStorage.getItem('finTechInfo-openId');
+
+
         function doLoop() {
             second--;
             if (second > 0) {
