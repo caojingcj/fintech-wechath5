@@ -26,49 +26,51 @@
                 })
             }
 
-            function goDetail(num, status) {
+            function goDetail(num, stat) {
+                alert(num);
                 $('body').loading({
                     title: '请稍等',
                     name: 'test1',
                     discription: '数据加载中..'
                 });
-                if (num === '05') {
+                if (num === '05') {   // 进详情
                     setTimeout(function () {
                         $state.go('app.orderDetail', {mobile: mobile, orderId: orderId, token: token});
                         removeLoading('test1');
                     }, 1000);
-                } else {
-//      	操作类型00扫码01项目信息填写02身份信息认证03运营商认证04个人信息填写05附件上传06签署合同91审批11取消12退款13提前结清99结清09取消确认81取消驳回
-                    if (status === '01') {
+                } else if (num === '04') {  // 待用户签署   去签署页面
+                    setTimeout(function () {
+                        $state.go('app.contract', {mobile: mobile, orderId: orderId, token: token});
+                        removeLoading('test1');
+                    }, 1000);
+                } else if (num === '00') {
+                    //00代表是录入中的单子  操作类型00扫码01项目信息填写02身份信息认证03运营商认证04个人信息填写05附件上传06签署合同91审批11取消12退款13提前结清99结清09取消确认81取消驳回
+                    if (stat === '01') {
                         setTimeout(function () {
                             removeLoading('test1');
                             $state.go('app.createAccount', {mobile: mobile})
                         }, 2000);
-                    } else if(status === '02'){
+                    } else if (stat === '02') {
                         setTimeout(function () {
                             removeLoading('test1');
                             $state.go('app.home', {mobile: mobile})
                         }, 2000);
-                    }else if(status === '03'){
+                    } else if (stat === '03') {
                         setTimeout(function () {
                             removeLoading('test1');
                             $state.go('app.perInforma', {mobile: mobile})
                         }, 2000);
-                    }else if(status === '04' ){
+                    } else if (stat === '04') {
                         setTimeout(function () {
                             removeLoading('test1');
                             $state.go('app.medical', {mobile: mobile})
                         }, 2000);
-                    }else if(status === '05' ){
+                    } else if (stat === '05') {
                         setTimeout(function () {
                             removeLoading('test1');
                             $state.go('app.contract', {mobile: mobile})
                         }, 2000);
                     }
-                    setTimeout(function () {
-                        $state.go('app.entAccount', {mobile: mobile, orderId: orderId, token: token});
-                        removeLoading('test');
-                    }, 1000);
                 }
             }
 

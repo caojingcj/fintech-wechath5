@@ -11,7 +11,6 @@
             name: 'test1',
             discription: '加载中'
         });
-
         // alert(11)
 
         var GB2312UnicodeConverter = {
@@ -37,7 +36,6 @@
         sessionStorage.setItem('finTechInfo',parameter.token);
         sessionStorage.setItem('orderId',parameter.orderId);
         sessionStorage.setItem('mobile',parameter.mobile);
-        // alert('token====' + parameter.token)
         // alert(parameter.openId);
         // alert(parameter.token);
         if (!parameter.loginFlag) {
@@ -84,26 +82,14 @@
 					}, 2000);
         			
         		}
-
-        		else if(parameter.orderOperation === ''){     //根据状态跳转到订单列表
-                    setTimeout(function () {
-                        removeLoading('test1');
-                        $state.go('app.orderList', {mobile: parameter.mobile})
-                    }, 2000);
-                } else {
-        		    REST.pop('当前用户无订单');
-                    setTimeout(function () {
-                        removeLoading('test1');
-                        $state.go('app.entAccount', {mobile: parameter.mobile})
-                    }, 2000);
-        		}
-        	} else {
+        	} else if(){                //  根据值来判断是否跳转到我的订单页面
                 setTimeout(function () {
                     removeLoading('test1');
                     $state.go('app.entAccount', {mobile: parameter.mobile})
                 }, 2000);
-            }
+            }else if(){                 //    根据值来判断跳转到我要还款页面
 
+            }
         }
     }])
 })();

@@ -34,12 +34,16 @@
                     name: 'test',
                     discription: '数据加载中..'
                 });
-                REST.get('app/moxie/resultMoxie?userId=' + orderId).then(function (value) {
+                REST.get('app/moxie/resultMoxie?orderId=' + orderId).then(function (value) {
                     // alert(value.data.toString() =='000000');
-
                     if(value.data.toString() == '000000'){
                         setTimeout(function () {
                             $state.go('app.perInforma', {mobile: mobile, orderId: orderId, token: token});
+                            removeLoading('test');
+                        }, 1000);
+                    }else {
+                        REST.pop('正在认证中');
+                        setTimeout(function () {
                             removeLoading('test');
                         }, 1000);
                     }
