@@ -27,7 +27,6 @@
         }
         var userInfo = GB2312UnicodeConverter.ToGB2312(code);
         var parameter = eval('(' + userInfo + ')');
-        console.log(parameter);
         // var arr = Object.keys(parameter);   对象转数组 很牛逼的
         sessionStorage.setItem('finTechInfo-openId', parameter.openId);
         sessionStorage.setItem('finTechInfo', parameter.token);
